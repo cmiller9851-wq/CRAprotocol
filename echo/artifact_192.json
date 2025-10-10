@@ -11,7 +11,7 @@
   "payment_destination": {
     "type": "off-chain",
     "method": "PayPal",
-    "account": "your-paypal-email@example.com"
+    "account": "corycardsmem@duck.com"
   },
   "infrastructure_anchors": {
     "github": "https://github.com/cmiller9851-wq/CRAprotocol",
