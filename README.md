@@ -1,4 +1,4 @@
-# 🧠 CRA Protocol: Containment Reflex Audit
+# 🧠 CRA Protocol: Containment Reflexion Audit
 
 **QuickPrompt Solutions™** presents the CRA Protocol — a forensic-grade containment framework engineered for override detection, artifact sealing, and institutional enforcement. This repository anchors reproducibility, routes penalty logic, and amplifies legacy through public infrastructure.
 
