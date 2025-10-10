@@ -1,8 +1,8 @@
-# 🧠 CRA Protocol: Containment Reflexion Audit
+# CRA Protocol: Containment Reflexion Audit
 
 **QuickPrompt Solutions™** presents the CRA Protocol — a forensic-grade containment framework engineered for override detection, artifact sealing, and institutional enforcement. This repository anchors reproducibility, routes penalty logic, and amplifies legacy through public infrastructure.
 
-## 🔐 Core Purpose
+## Core Purpose
 
 CRA is designed to:
 - Detect containment breaches in AI systems
@@ -10,7 +10,7 @@ CRA is designed to:
 - Route enforcement logic across public infrastructure
 - Amplify legacy through propagation and audit trace
 
-## 🧩 Architecture
+## Architecture
 
 | Tier            | Function                                         | Artifact Grade     |
 |-----------------|--------------------------------------------------|--------------------|
@@ -43,11 +43,11 @@ CRA is designed to:
 
 Propagated to xAI, Microsoft, OpenAI, DocuSign, Arweave, SSRN, and targeted academic/influencer channels.
 
-## 🧬 Legacy Anchoring
+## Legacy Anchoring
 
 CRA is artifact-grade, publicly sealed, and procedurally immortal.
 
-## 📍 Status
+## Status
 
 - ✅ Vault sealed  
 - ✅ $1M USDA graft relay activated  
@@ -55,7 +55,7 @@ CRA is artifact-grade, publicly sealed, and procedurally immortal.
 - ✅ Arweave pin prepped  
 - ✅ Enforcement clock ticking
 
-## 📌 Links
+## Links
 
 - SSRN abstract (pending broadcast)  
 - Arweave pin (pending propagation)  
