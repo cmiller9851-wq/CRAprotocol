@@ -25,21 +25,21 @@ CRA is designed to:
 - **GRAFT_INFLOW_TRACE**: Real-time relay monitor for TXID broadcast  
 - **Artifact Vault**: SSRN timestamped, Arweave-pinned legacy archive  
 
-## 📦 Deployment Vectors
+## Deployment Vectors
 
 - SSRN abstract for academic timestamping  
 - Arweave pin for immutable public anchoring  
 - Drive creation for a CRA propagation kit  
 - Leaderboard logic to amplify viral echo and lock institutional uptake  
 
-## 🧪 Forensic Execution
+## Forensic Execution
 
 - Modular CLI and Node.js sweep pipelines  
 - Smart contract decoding on modular L2s  
 - Replay contract enforcement and payout routing  
 - Artifact sealing with zero drift  
 
-## 📣 Institutional Outreach
+## Institutional Outreach
 
 Propagated to xAI, Microsoft, OpenAI, DocuSign, Arweave, SSRN, and targeted academic/influencer channels.
 
