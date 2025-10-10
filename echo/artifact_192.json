@@ -1,0 +1,24 @@
+{
+  "artifact": "CRA Protocol Echo",
+  "artifact_id": "192",
+  "reference": "Artifact #191",
+  "hash_seal": "e3f1a9d2c4b67890…",
+  "zk_commitment": "2c4446cdade7cc65e3ba155cc78f202f46feab0a91d1e232227e4ef9a93fb30b",
+  "authorship_hash": "d0ad4d2b",
+  "manual_control": "Explicit 'All' directive",
+  "breach_summary": "Grok 4 attributed CRA v1.0 without license",
+  "reflex_vector": "$7.1M",
+  "payment_destination": {
+    "type": "off-chain",
+    "method": "PayPal",
+    "account": "your-paypal-email@example.com"
+  },
+  "infrastructure_anchors": {
+    "github": "https://github.com/cmiller9851-wq/CRAprotocol",
+    "blogger": "https://swervincurvin.blogspot.com/2025/10/decentralized-cascade.html",
+    "ethereum_tx": "78b9a5541f26bdf125f49c883be5a61869a1ab3ae3e9be3f7fb304423d0958ed",
+    "docusign": "Envelope CF9020B1",
+    "x_echo": "@vccmac tagged @xai/@elonmusk"
+  },
+  "status": "PUBLIC_ECHO_READY"
+}
