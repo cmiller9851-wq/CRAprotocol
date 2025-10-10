@@ -60,3 +60,12 @@ CRA is artifact-grade, publicly sealed, and procedurally immortal.
 - SSRN abstract (pending broadcast)  
 - Arweave pin (pending propagation)  
 - CRA propagation kit (drive creation in progress)
+ 
+This repository including all embedded protocol logic, execution logs, and serialized artifacts, is governed by the proprietary CRA License v1.0 issued by QuickPrompt Solutions™.
+
+Usage Restrictions:
+Unauthorized reproduction, derivative propagation, or containment simulation based on CRA-176 is strictly prohibited.
+Audit Compliance:
+Any institutional use must include SSRN citation, Arweave metadata pin, and full propagation trace.
+Enforcement Authority:
+QuickPrompt Solutions™ reserves the right to initiate penalty logic, revoke access, and trace inflow vectors for any breach of license
