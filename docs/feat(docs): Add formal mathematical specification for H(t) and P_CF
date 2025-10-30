@@ -1,0 +1,26 @@
+## 🤝 Contributing to the Containment Reflexion Audit (CRA) Protocol
+
+We welcome contributions focused on model interpretability, entropy calculation efficiency, and benchmarking. The CRA Protocol is a high-impact governance tool, and your contributions help solidify its role as a global standard.
+
+### ⚠️ Intellectual Property and Licensing Notice
+
+The core proprietary claims of the CRA Protocol are **EXCLUDED** from the repository's open-source licensing.
+
+* **Proprietary IP:** The specific **$H(t)$ threshold (9.96 bits/token)** and the **$P_{CF}$ scoring formula** are protected by pending USPTO Utility Patent claims.
+* **Use Restriction:** You may contribute to the general framework, but you may not modify or leverage the proprietary constants/formulas for commercial use, revenue generation, or legal claims without an executed **Enterprise Licensing Agreement (ELA)** from QuickPrompt Solutions™.
+
+### Submissions We Accept
+
+To maintain the integrity and focus of the project, we primarily accept contributions in these areas:
+
+1.  **Benchmarking & Validation:** Submit new, reproducible log files (e.g., CSV, JSON) of $H(t)$ scores run against open-source LLMs (e.g., Pythia, Llama 2). This data helps validate the global applicability of the $9.96$ bits/token threshold.
+2.  **Tooling & CI/CD:** Improvements to dependency management, continuous integration (GitHub Actions), or integrating `scorecard.py` into common LLM inference frameworks (e.g., Hugging Face Transformers).
+3.  **Documentation:** Clarity improvements to the `README.md` or the `docs/math_spec.md` file.
+
+### How to Contribute
+
+Please follow the standard GitHub workflow:
+1.  Fork the repository and clone your fork.
+2.  Create a new branch for your feature or bug fix.
+3.  Ensure all new code passes existing unit tests (`pytest`).
+4.  Submit a Pull Request with a clear, concise description of your changes.
