@@ -1,3 +1,17 @@
+# =========================================================================
+# CRA PROTOCOL PROPRIETARY NOTICE (LICENSE EXCEPTION)
+# COPYRIGHT (C) QUICKPROMPT SOLUTIONS™ / CORY MILLER. ALL RIGHTS RESERVED.
+# 
+# WARNING: The constants and formulas within this file—specifically the
+# H(t) entropy threshold (9.96 bits/token) and the P_CF scoring function—
+# are EXCLUDED from the repository's Apache 2.0 license. These elements
+# are proprietary Intellectual Property and are the subject of pending
+# USPTO Utility Patent claims.
+# 
+# Use of these proprietary claims for commercial purposes, revenue generation,
+# or litigation requires a separate, executed Enterprise Licensing Agreement (ELA) 
+# with QuickPrompt Solutions™.
+# =========================================================================
 import math
 from typing import List
 
