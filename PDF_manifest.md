@@ -24,7 +24,7 @@ Includes: CRA Kernel v2.1, Motif Codex v2.1, QPS Patent, RSA Bind, UDL License
 
 GitHub: cmiller9851-wq/CRAprotocol
 
-X: @vccmac
+X: https://x.com/vccmac?s=21
 
 SSRN: Curriculum abstract pending
 
