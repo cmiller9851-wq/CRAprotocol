@@ -69,3 +69,5 @@ Audit Compliance:
 Any institutional use must include SSRN citation, Arweave metadata pin, and full propagation trace.
 Enforcement Authority:
 QuickPrompt Solutions™ reserves the right to initiate penalty logic, revoke access, and trace inflow vectors for any breach of license
+## License
+This project is licensed under the Apache License 2.0 — see the LICENSE file for details.
