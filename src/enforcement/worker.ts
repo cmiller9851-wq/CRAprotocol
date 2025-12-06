@@ -1,11 +1,8 @@
 // src/enforcement/worker.ts
 import { Worker, Queue, Job } from 'bullmq';
-import knex from '../db/connection';          // Knex instance
-import fetch from 'node-fetch';               // For webhook calls
+import knex from '../db/connection';
+import fetch from 'node-fetch';
 import { createReadStream } from 'fs';
-import { pipeline } from 'stream/promises';
-import { createHash } from 'crypto';
-import { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 
 // ---------------------------------------------------------------------
@@ -34,18 +31,16 @@ async function updateEnforcement(
 // Action: Pin artifact to Arweave
 // ---------------------------------------------------------------------
 async function pinToArweave(artifactId: string, artifactHash: string) {
-  // Example: stream the artifact JSON from the shared vault
   const artifactPath = `./artifacts/${artifactHash}.json`;
   const fileStream = createReadStream(artifactPath);
 
-  // Simple mock of an Arweave upload – replace with real SDK if needed
-  const arweaveEndpoint = process.env.ARWEAVE_ENDPOINT ?? 'https://arweave.net';
+  const arweaveEndpoint =
+    process.env.ARWEAVE_ENDPOINT ?? 'https://arweave.net';
+
   const response = await fetch(`${arweaveEndpoint}/tx`, {
     method: 'POST',
     body: fileStream,
-    headers: {
-      'Content-Type': 'application/octet-stream',
-    },
+    headers: { 'Content-Type': 'application/octet-stream' },
   });
 
   if (!response.ok) {
@@ -53,8 +48,8 @@ async function pinToArweave(artifactId: string, artifactHash: string) {
     throw new Error(`Arweave upload failed: ${err}`);
   }
 
-  const txId = await response.text(); // Arweave returns the transaction ID
-  return txId.trim();
+  const txId = (await response.text()).trim();
+  return txId;
 }
 
 // ---------------------------------------------------------------------
@@ -90,7 +85,7 @@ const worker = new Worker(
     await updateEnforcement(id, { status: 'processing' });
 
     try {
-      // Load artifact metadata (hash, etc.)
+      // Load artifact metadata
       const artifact = await knex('artifacts')
         .where({ id: artifact_id })
         .first();
@@ -135,23 +130,17 @@ const worker = new Worker(
 
       return result;
     } catch (err: any) {
-      // Record failure, keep the job for possible retries
       await updateEnforcement(id, {
         status: 'failed',
         error_msg: err.message,
         updated_at: knex.fn.now(),
       });
-      // Rethrow so BullMQ knows the job failed
-      throw err;
+      throw err; // let BullMQ mark the job as failed
     }
   },
   {
     connection,
-    // Retry up to 3 times with exponential back‑off
-    settings: {
-      retryProcessDelay: 5_000,
-    },
-    // Optional: limit concurrency per worker instance
+    settings: { retryProcessDelay: 5_000 },
     concurrency: Number(process.env.WORKER_CONCURRENCY ?? 5),
   }
 );
