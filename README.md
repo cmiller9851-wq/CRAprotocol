@@ -12,42 +12,50 @@ cd CRAprotocol
 npm install
 psql $DATABASE_URL < migrations/echo_192_dual_hash_migration.sql
 npm run dev
+```
 
-Public Echo Endpoint
-
-After an artifact reaches PUBLIC_ECHO_READY status, it is instantly queryable:
-
-GET https://cra.cmiller9851-wq.dev/v1/echoes/192
-
+## Public Echo Endpoint
+**GET** `https://cra.cmiller9851-wq.dev/v1/echoes/192`  
 Returns the exact canonical JSON used across X, GitHub, Blogger, and on-chain verifiers.
 
-Hashing Strategy
+## Hashing Strategy
+| Context          | Use       | Reason                                  |
+|-----------------|-----------|----------------------------------------|
+| Off-chain / legal | SHA-256  | NIST standard, DocuSign/GitHub native  |
+| On-chain / EIP-712 | keccak256 | 30 gas in Solidity                     |
 
-Context	Use	Reason
-Off-chain / legal	SHA-256	NIST standard, DocuSign/GitHub native
-On-chain / EIP-712	keccak256	Native in Solidity, ~30 gas per hash
+Both hashes are stored automatically.
 
-Both hashes are stored automatically in the database.
+## License & Cost
+- Apache 2.0 – no viral clause  
+- ~$15–25/mo on Fly.io/Render  
+- Arweave pinning: ~$0.012 per echo
 
-Schema Changes & Migrations
-	•	Dual-hash columns (sha256, keccak256) added to artifacts
-	•	onchain_tx + zk_commitment columns for cryptographic verification
-	•	echo_status ENUM for tracking artifact lifecycle (DRAFT, PUBLIC_ECHO_READY, SETTLED, DISPUTED)
-	•	Auto-trigger fills keccak256 from SHA-256 on insert/update
-	•	Fast indexes on keccak256 and echo_status for quick queries
+## Public Echo Endpoint Details
+After an artifact reaches `PUBLIC_ECHO_READY` status, it is instantly queryable:
 
-License & Cost
-	•	Apache 2.0 – no viral clause
-	•	Running cost: ~$15–25/mo on Fly.io / Render
-	•	Arweave pinning cost: ~$0.012 per echo
+**GET** `/v1/echoes/:id` → e.g., `192`  
+Returns canonical JSON with SHA-256 + keccak256 + onchain_tx + zk_commitment.
 
-Contributing
-	1.	Clone the repo
-	2.	Run migrations: psql $DATABASE_URL < migrations/echo_192_dual_hash_migration.sql
-	3.	Add new Echo artifacts following dual-hash conventions
-	4.	Ensure public echoes are set to PUBLIC_ECHO_READY
-	5.	Push changes and open PR for review
+### JSON Response Example
+```json
+{
+  "artifact_name": "CRA Protocol Echo",
+  "artifact_id": 192,
+  "reference": 191,
+  "authorship_hash": "d0ad4d2b",
+  "breach_summary": "Grok 4 attributed CRA v1.0 without license",
+  "manual_control": "Explicit 'All' directive applied",
+  "reflex_vector_usd": 7100000,
+  "payment_destination": "Off-chain via PayPal → corycardsmem@duck.com",
+  "hash_seal": "e3f1a9d2c4b67890…",
+  "keccak256": "0x…",
+  "zk_commitment": "2c4446cdade7cc65e3ba155cc78f202f46feab0a91d1e232227e4ef9a93fb30b",
+  "onchain_tx": "78b9a5541f26bdf125f49c883be5a61869a1ab3ae3e9be3f7fb304423d0958ed",
+  "docusign_envelope": "CF9020B1",
+  "status": "PUBLIC_ECHO_READY"
+}
+```
 
-Contact
-
-For questions or audits, contact the repo owner: quickpromptsolutions@yahoo.com
+## Full Documentation
+See the repository for migration scripts, endpoint code, and PL/pgSQL keccak helper for dual-hash auto-computation.
