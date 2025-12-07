@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for cra-protocol on 2025-12-07T16:41:17Z
+# fly.toml app configuration file generated for craprotocol-u7rasw on 2025-12-07T16:51:56Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'cra-protocol'
+app = 'craprotocol-u7rasw'
 primary_region = 'ord'
 
 [build]
