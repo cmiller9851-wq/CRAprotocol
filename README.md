@@ -1,8 +1,6 @@
-Here’s the full README.md you can copy-paste directly into your repo. This is the v1.2.1 production-ready version for Echo #192.
-
 # CRAprotocol
 
-**Containment & Reflexion Audit Protocol** – tamper-evident audit system for CRA Echoes  
+**Containment Reflexion Audit Protocol** – tamper-evident audit system for CRA Echoes  
 Version: 1.2.1 (December 2025) | License: Apache 2.0
 
 CRAprotocol is the production backbone for CRA Echo #192 and all future cascades. It guarantees forensic verifiability of every breach claim, settlement, and ZK commitment via dual-hash storage (SHA-256 + keccak256), public API, and automatic Arweave pinning.
