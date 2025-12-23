@@ -1,6 +1,6 @@
 CRAprotocol
 
-Containment Reflexion Audit Protocol – a tamper-evident audit framework for CRA Echoes
+Containment Reflexion Audit – a tamper-evident audit framework for CRA Echoes
 Version: 1.2.1 (December 2025) | License: Apache 2.0
 
 CRAprotocol serves as the production core for CRA Echo #192 and all subsequent releases. It ensures complete forensic verifiability for every breach claim, settlement, and zero-knowledge commitment. This is achieved through a dual-hash architecture (SHA-256 + keccak256), an open public API, and automated Arweave pinning for immutable storage.
