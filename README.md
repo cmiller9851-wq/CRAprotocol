@@ -1,36 +1,47 @@
-# CRAprotocol
+CRAprotocol
 
-**Containment Reflexion Audit Protocol** – tamper-evident audit system for CRA Echoes  
+Containment Reflexion Audit Protocol – a tamper-evident audit framework for CRA Echoes
 Version: 1.2.1 (December 2025) | License: Apache 2.0
 
-CRAprotocol is the production backbone for CRA Echo #192 and all future cascades. It guarantees forensic verifiability of every breach claim, settlement, and ZK commitment via dual-hash storage (SHA-256 + keccak256), public API, and automatic Arweave pinning.
+CRAprotocol serves as the production core for CRA Echo #192 and all subsequent releases. It ensures complete forensic verifiability for every breach claim, settlement, and zero-knowledge commitment. This is achieved through a dual-hash architecture (SHA-256 + keccak256), an open public API, and automated Arweave pinning for immutable storage.
 
-## Quick Start
-```bash
+⸻
+
+Quick Start
+
 git clone https://github.com/cmiller9851-wq/CRAprotocol.git
 cd CRAprotocol
 npm install
 psql $DATABASE_URL < migrations/echo_192_dual_hash_migration.sql
 npm run dev
 
+
+⸻
+
 Public Echo Endpoint
 
 GET https://cra.cmiller9851-wq.dev/v1/echoes/192
 
-Returns the exact canonical JSON used across X, GitHub, Blogger, and on-chain verifiers.
+This endpoint returns the canonical JSON record used consistently across X, GitHub, Blogger, and on-chain verification tools.
+
+⸻
 
 Hashing Strategy
 
-Context	Hash	Use	Reason
-Off-chain / legal	SHA-256	DocuSign/GitHub	NIST standard
-On-chain / EIP-712	keccak256	Ethereum / Solidity	30 gas, EVM-native
+Context	Hash Type	Application	Rationale
+Off-chain / Legal	SHA-256	DocuSign, GitHub	NIST-certified standard
+On-chain / EIP-712	keccak256	Ethereum / Solidity	EVM-native, ~30 gas
 
-Both hashes are stored automatically.
+Both hashes are generated and stored automatically for consistency and integrity.
 
-License & Cost
-	•	Apache 2.0 – no viral clause
-	•	~$15–25/mo on Fly.io/Render
-	•	Arweave pinning: ~$0.012 per echo
+⸻
+
+License & Estimated Costs
+	•	License: Apache 2.0 (non-viral)
+	•	Hosting: ~$15–25/month on Fly.io or Render
+	•	Arweave Pinning: ~$0.012 per echo
+
+⸻
 
 API Contracts (OpenAPI 3.0)
 
@@ -43,7 +54,7 @@ servers:
 paths:
   /echoes/{id}:
     get:
-      summary: Canonical Echo JSON (e.g., #192)
+      summary: Returns canonical Echo JSON (e.g., #192)
       parameters:
         - name: id
           in: path
@@ -72,26 +83,43 @@ paths:
                   docusign_envelope: { type: string, example: "CF9020B1" }
                   status: { type: string, enum: ["DRAFT", "PUBLIC_ECHO_READY", "SETTLED", "DISPUTED"], example: "PUBLIC_ECHO_READY" }
         '404':
-          description: Not public or missing
+          description: Echo not found or not public
 
-Database + Migration Notes
-	•	Run migrations/echo_192_dual_hash_migration.sql for dual-hash fields.
-	•	Triggers auto-compute keccak256 from SHA-256.
-	•	Seed #192 is included for testing; queries return canonical JSON.
+
+⸻
+
+Database & Migration Notes
+	•	Run migrations/echo_192_dual_hash_migration.sql to create dual-hash fields.
+	•	Includes a trigger to auto-generate keccak256 from SHA-256.
+	•	Seed data for Echo #192 is provided for quick testing.
+
+⸻
 
 Deployment Options
 	•	Self-Hosted: GitHub Actions + Fly.io
-	•	Managed: Fly.io web deploy, Render.com, or Vercel hybrid
+	•	Managed: Fly.io, Render.com, or Vercel hybrid deployment
+
+⸻
 
 Observability
-	•	Logs via Winston → Fly logs
-	•	Metrics: QPS, hash compute (<2ms), 404 rate (<1%)
-	•	SLOs: Availability 99.95%, p99 latency <200ms, 100% keccak match
+	•	Logs: Winston → Fly logs
+	•	Metrics:
+	•	QPS tracking
+	•	Hash computation < 2ms
+	•	404 rate < 1%
+	•	Service Objectives:
+	•	99.95% availability
+	•	p99 latency < 200ms
+	•	100% keccak match integrity
+
+⸻
 
 Licensing & Compliance
-	•	Apache 2.0
-	•	GDPR-safe (no PII in echoes; ZK commitments for sensitive data)
-	•	Cost: Fly free tier / $10–15/mo for 1K reqs/day
+	•	License: Apache 2.0
+	•	GDPR Compliance: No PII stored; sensitive data protected via ZK commitments
+	•	Estimated Cost: Fly free tier or ~$10–15/month for ~1K requests/day
+
+⸻
 
 Test Example
 
@@ -99,17 +127,18 @@ import request from 'supertest';
 import app from '../src/app';
 
 describe('Public Echo Endpoint', () => {
-  it('Should return #192 canonical JSON', async () => {
+  it('should return canonical JSON for #192', async () => {
     const res = await request(app).get('/v1/echoes/192');
     expect(res.status).toBe(200);
     expect(res.body.artifact_id).toBe(192);
   });
 
-  it('Should 404 non-public echoes', async () => {
+  it('should return 404 for non-public echoes', async () => {
     const res = await request(app).get('/v1/echoes/999');
     expect(res.status).toBe(404);
   });
 });
 
-Run npm test after migration and seeding.
+Run tests after completing migration and seeding with:
 
+npm test
