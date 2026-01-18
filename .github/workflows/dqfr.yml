@@ -1,0 +1,20 @@
+# .github/workflows/dqfr.yml
+name: DQFR Check
+on: [push, pull_request]
+jobs:
+  dqfr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install deps
+        run: pip install pandas
+      - name: Run DQFR
+        run: |
+          python - <<'PY'
+          import pandas as pd, json
+          from dqfr_calculator.compute import dqfr_score
+          df = pd.read_csv("data/train.csv")
+          score = dqfr_score(df, {"missing_rate":0.02, "bias_threshold":0.05})
+          print(f"DQFR={score:.3f}")
+          assert score >= 0.95, "DQFR below threshold"
+          PY
