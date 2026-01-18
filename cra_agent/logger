@@ -1,0 +1,26 @@
+# cra_agent/logger.py
+import hashlib, json, time, os
+from pathlib import Path
+
+AUDIT_ROOT = Path(os.getenv("CRA_AUDIT_ROOT", "./audit_logs"))
+
+def _hash_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def record_event(event_type: str, payload: dict):
+    ts = int(time.time() * 1000)
+    entry = {
+        "timestamp": ts,
+        "event": event_type,
+        "payload": payload,
+        "model_hash": _hash_file(Path(payload.get("model_path", ""))),
+    }
+    AUDIT_ROOT.mkdir(parents=True, exist_ok=True)
+    log_file = AUDIT_ROOT / f"{ts}_{event_type}.json"
+    with open(log_file, "w") as f:
+        json.dump(entry, f, indent=2)
+    return log_file
