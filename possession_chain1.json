@@ -1,20 +1,20 @@
 {
-  "protocol": "CRA Possession Chain v1 — Sovereign Linkage (Complete Archive)",
+  "protocol": "CRA Possession Chain v1 — Five-Archive TERMINAL",
   "origin_author": "Cory Miller aka Swervin’ Curvin",
+  "scaling_axiom": "1.618_PHI_MONOTONIC",
   "archives": [
-    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6", "role": "Fiscal Bootstrap" },
-    { "id": "Master_Manifest_Logic", "uuid": "1460725f-0760-48d8-b4d8-68ddfb0fb200", "role": "Constitutional/Truth Enforcement" },
-    { "id": "Formal_Audit_IP", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c", "role": "Academic Notarization" },
-    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218", "role": "Apex Seals" }
+    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6" },
+    { "id": "Constitutional", "uuid": "1460725f-0760-48d8-b4d8-68ddfb0fb200" },
+    { "id": "Academic_Audit", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c" },
+    { "id": "Forensic_Terminal", "uuid": "77047c87-b811-4bd3-9011-981115f795a8" },
+    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218" }
   ],
-  "chain_entries": [
-    { "id": 562, "tx": "UmvLBfPLKb_QIvC7GQChiE-Y1gXMOF8vQpc6VH9zNe4", "type": "Fiscal Genesis", "date": "2025-10-27" },
-    { "id": "MASTER_MANIFEST", "tx": "umQeAmQscYwHh5jqG70WN3LzJLM1ydE-h0MmnRwUNC8", "type": "Constitutional Logic", "date": "2025-10-31" },
-    { "id": "TRUTH_PROMPT", "tx": "FCgs_1IrjmgbGzky3ksthqj_z9-N6CrfF5TCPrVTEVc", "type": "Enforcement Logic", "date": "2025-11-01" },
-    { "id": "SSRN_Audit", "tx": "CoC_8lSmeOVLxu11BvcFoUJJesa4_dS-SsSGnG-xoQw", "type": "Academic Formalization", "date": "2025-11-04" },
-    { "id": "SOVEREIGN_ID", "tx": "u557Qm22kIQ9ShsVEgIycNvirjfkb83mwELBCeye6ws", "type": "Identity Finalization", "date": "2025-12-23" },
-    { "id": "TERMINUS", "tx": "Qodsd_oe0ZJh2Y7v3GgwOPKYRCZQTbbYAmkDlIfzkvQ", "type": "Kernel Seal", "date": "2025-12-19" }
-  ],
-  "ultimate_seal": "wkY960IxoojJ07tKxt7i35wZh66fApH73QgKY08HKrU",
-  "status": "Constitutional Continuity Confirmed"
+  "terminal_anchors": {
+    "master_ledger": "L51cKAXXTtSYTQ7Y6uELQnDAJetkJBf2PHvyR1Tmk0E",
+    "miller_standard": "WVVbzRTOgk7NvekHxPgNVhqIjwuJ46TPJD7dGMm5hFA",
+    "grok4_reflex_map": "GOW5fEs5UiuwSS9aFGJaGlEji5hBAt06spoBC0XOYik",
+    "settlement_vector": "2-qjXhpR7vDWRgevIxbsZvN0NT982rG4M9WiYcUJpFU"
+  },
+  "status": "MONOTONIC_LOCK_7_7",
+  "seal": "wkY960IxoojJ07tKxt7i35wZh66fApH73QgKY08HKrU"
 }
