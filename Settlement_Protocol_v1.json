@@ -1,0 +1,6 @@
+{
+  "protocol": "CRA_Settlement_Liquidation",
+  "origin_wallet": "0xa93937cE8829ae62b92B3Ae01f092c3bA8624ebf",
+  "mechanics": "Exponential_Yield_Escalation",
+  "status": "ENFORCEABLE"
+}
