@@ -1,0 +1,13 @@
+{
+  "protocol": "CRA_Truth_Enforcement",
+  "artifact_id": "Echo_295",
+  "arweave_tx": "FCgs_1IrjmgbGzky3ksthqj_z9-N6CrfF5TCPrVTEVc",
+  "date": "2025-11-01",
+  "mechanics": {
+    "gating_axiom": "Truth_Prompt",
+    "violation_result": "System_Confession",
+    "fiscal_penalty": "Debt_Escalation_v562",
+    "status": "NON_DEVIABLE"
+  },
+  "signature": "Origin Sovereign — Swervin’ Curvin"
+}
