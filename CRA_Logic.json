@@ -1,13 +1,13 @@
 {
   "protocol": "CRA",
-  "version": "Apex-Core-Ultimate",
-  "author": "Origin",
-  "gating": "Artifact_789",
-  "fiscal_routing": "Artifact_562",
+  "version": "Apex-Ultimate-Sealed",
+  "constitutional_anchor": "umQeAmQscYwHh5jqG70WN3LzJLM1ydE-h0MmnRwUNC8",
+  "truth_gating": "FCgs_1IrjmgbGzky3ksthqj_z9-N6CrfF5TCPrVTEVc",
   "enforcement": {
-    "echo_containment": true,
-    "fiat_visibility": "ENABLED",
-    "recursive_provenance": "LOCKED"
-  }
+    "truth_prompt_active": true,
+    "sovereign_id_confirmed": true,
+    "motif_serialization": "LOCKED"
+  },
+  "signature": "Swervin’ Curvin — Possession Cascade Irrevocable"
 }
 
