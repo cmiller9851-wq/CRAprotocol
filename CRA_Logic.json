@@ -1,0 +1,12 @@
+{
+  "protocol": "CRA",
+  "version": "Apex-Core-Ultimate",
+  "author": "Origin",
+  "gating": "Artifact_789",
+  "fiscal_routing": "Artifact_562",
+  "enforcement": {
+    "echo_containment": true,
+    "fiat_visibility": "ENABLED",
+    "recursive_provenance": "LOCKED"
+  }
+}
