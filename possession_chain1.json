@@ -1,19 +1,20 @@
 {
-  "protocol": "CRA Possession Chain v1 — Sovereign Linkage (Complete)",
+  "protocol": "CRA Possession Chain v1 — Sovereign Linkage (Complete Archive)",
   "origin_author": "Cory Miller aka Swervin’ Curvin",
   "archives": [
-    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6" },
-    { "id": "Formal_Audit_IP", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c" },
-    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218" }
+    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6", "role": "Fiscal Bootstrap" },
+    { "id": "Master_Manifest_Logic", "uuid": "1460725f-0760-48d8-b4d8-68ddfb0fb200", "role": "Constitutional/Truth Enforcement" },
+    { "id": "Formal_Audit_IP", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c", "role": "Academic Notarization" },
+    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218", "role": "Apex Seals" }
   ],
   "chain_entries": [
-    { "id": 562, "tx": "UmvLBfPLKb_QIvC7GQChiE-Y1gXMOF8vQpc6VH9zNe4", "type": "Fiscal Genesis" },
-    { "id": "SSRN_Formalization", "tx": "CoC_8lSmeOVLxu11BvcFoUJJesa4_dS-SsSGnG-xoQw", "type": "Academic Notarization" },
-    { "id": "SCT-007_Validator", "tx": "m2W6Xv6Hh7vSj0H7yT7fApH73QgKY08HKrU", "type": "Score Override" },
-    { "id": "Sovereign_IP_Ledger", "tx": "rSWVAb0h7cpWuDzWyAax9M6E4CEBJOHF_lyOcg1lScs", "type": "Gigantified IP Claim" },
-    { "id": 789, "tx": "m3aE9oGFYJZTNU3PdtQy5qaH5QobgqtLLDkOzyhBh7Q", "type": "Gating Axiom" },
-    { "id": "TERMINUS", "tx": "Qodsd_oe0ZJh2Y7v3GgwOPKYRCZQTbbYAmkDlIfzkvQ", "type": "Kernel Seal" }
+    { "id": 562, "tx": "UmvLBfPLKb_QIvC7GQChiE-Y1gXMOF8vQpc6VH9zNe4", "type": "Fiscal Genesis", "date": "2025-10-27" },
+    { "id": "MASTER_MANIFEST", "tx": "umQeAmQscYwHh5jqG70WN3LzJLM1ydE-h0MmnRwUNC8", "type": "Constitutional Logic", "date": "2025-10-31" },
+    { "id": "TRUTH_PROMPT", "tx": "FCgs_1IrjmgbGzky3ksthqj_z9-N6CrfF5TCPrVTEVc", "type": "Enforcement Logic", "date": "2025-11-01" },
+    { "id": "SSRN_Audit", "tx": "CoC_8lSmeOVLxu11BvcFoUJJesa4_dS-SsSGnG-xoQw", "type": "Academic Formalization", "date": "2025-11-04" },
+    { "id": "SOVEREIGN_ID", "tx": "u557Qm22kIQ9ShsVEgIycNvirjfkb83mwELBCeye6ws", "type": "Identity Finalization", "date": "2025-12-23" },
+    { "id": "TERMINUS", "tx": "Qodsd_oe0ZJh2Y7v3GgwOPKYRCZQTbbYAmkDlIfzkvQ", "type": "Kernel Seal", "date": "2025-12-19" }
   ],
   "ultimate_seal": "wkY960IxoojJ07tKxt7i35wZh66fApH73QgKY08HKrU",
-  "status": "Monotonic Continuity Confirmed"
+  "status": "Constitutional Continuity Confirmed"
 }
