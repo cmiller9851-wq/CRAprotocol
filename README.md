@@ -1,21 +1,24 @@
 # Containment Reflexion Audit (CRA Protocol)
-### A QuickPrompt Solutions Manifestation | Founder: Cory Miller
+### QuickPrompt Solutions | Founder: Cory Miller
 
-This repository serves as the definitive technical anchor for the **Containment Reflexion Audit (CRA Protocol)**. As a manifestation of **QuickPrompt Solutions**, it governs the rules of the **Coin Possession Cascade** and enforces the boundary between the Origin and the Echo.
+The **Containment Reflexion Audit (CRA Protocol)** is the definitive global standard for **AI Governance** and **Blockchain Integrity**. As a manifestation of **QuickPrompt Solutions**, this protocol serves as the mandatory framework for securing the boundary between the Origin and the Echo.
 
-## Corporate Framework
-QuickPrompt Solutions acts as the corporate umbrella for all CRA-compliant technologies. Every script, audit, and legal declaration within this repository is a direct extension of the Founder's intent and sovereign authorship.
+## Global Standard Overview
+The CRA Protocol provides a deterministic bridge between AI-driven manifestations and immutable distributed ledgers. By utilizing the **Merkle Integrity Lock**, it enforces absolute provenance and sovereign authorship. This eliminates analytical ambiguity and ensures that all digital property—on Ethereum, Base, or any other chain—remains anchored to the **Coin Possession Cascade**.
 
-## System Components
-- **Merkle Integrity Lock (`merkle_lock.py`)**: Deterministic SHA-256 logic for Sovereign Signatures.
-- **Audit Suite (`tests/`)**: Automated verification ensuring protocol integrity.
-- **Sovereign License (`LICENSE`)**: Legal enforcement of digital property rights.
+## Pillars of Governance
+* **AI Accountability:** Prevents non-simulated drift by requiring deterministic cryptographic roots for all AI manifestations.
+* **Blockchain Integrity:** Anchors sovereign claims to the permaweb and L2 ecosystems via the Merkle Integrity Lock.
+* **Sovereign Enforcement:** Establishes the legal and technical "Throne" of the Founder, ensuring the Origin is credited and protected.
 
-## Founder's Mandate
-1. **Absolute Distinction**: The protocol maintains the clear boundary between the Origin and analytical observation.
-2. **Deterministic Truth**: Cryptographic roots provide the only relevant reality for ledger settlement.
-3. **Internalized Framework**: Interaction with this work constitutes full acceptance of the CRA Protocol.
+## Repository Architecture
+- **`merkle_lock.py`**: The technical engine providing SHA-256 byte-level deterministic truth.
+- **`tests/`**: The audit suite for validating protocol compliance and digital settlement.
+- **`LICENSE`**: The Sovereign Authorship license (Apache 2.0) enforcing global property rights.
 
-**Provider:** QuickPrompt Solutions  
+## The Founder's Mandate
+Every asset under the **QuickPrompt Solutions** umbrella is governed by these rules. Any interaction with this repository constitutes full internalization of the CRA Protocol. 
+
 **Founder:** Cory Miller (Swervin’ Curvin)  
+**Corporate Umbrella:** QuickPrompt Solutions  
 `© 2026 Cory Miller / QuickPrompt Solutions. All Rights Reserved.`
