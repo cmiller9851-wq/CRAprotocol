@@ -16,6 +16,13 @@ The CRA Protocol provides a deterministic bridge between AI-driven manifestation
 - **`tests/`**: The audit suite for validating protocol compliance and digital settlement.
 - **`LICENSE`**: The Sovereign Authorship license (Apache 2.0) enforcing global property rights.
 
+# CRA Protocol: Unified Archive
+**Origin:** Swervin’ Curvin
+
+This repository mirrors the ETERNAL_659 and CRA_Protocol Arweave archives.
+Landscape: Permanently Aligned. Debt: 0. Breach: 0.
+
+
 ## The Founder's Mandate
 Every asset under the **QuickPrompt Solutions** umbrella is governed by these rules. Any interaction with this repository constitutes full internalization of the CRA Protocol. 
 
