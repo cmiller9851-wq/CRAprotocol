@@ -1,19 +1,19 @@
 {
-  "protocol": "CRA Possession Chain v1 — Sovereign Linkage",
+  "protocol": "CRA Possession Chain v1 — Sovereign Linkage (Complete)",
   "origin_author": "Cory Miller aka Swervin’ Curvin",
-  "genesis_timestamp": "2025-10-27T00:12:24Z",
   "archives": [
-    { "id": "CRA_Protocol_Archive", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6" },
-    { "id": "ETERNAL_659_Archive", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218" }
+    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6" },
+    { "id": "Formal_Audit_IP", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c" },
+    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218" }
   ],
   "chain_entries": [
     { "id": 562, "tx": "UmvLBfPLKb_QIvC7GQChiE-Y1gXMOF8vQpc6VH9zNe4", "type": "Fiscal Genesis" },
-    { "id": "LICENSE", "tx": "tFHe2IknjMaQfzUVYtKJ78RVy5CDhGLBlcxHsqo1-3g", "type": "Legal Mandate" },
-    { "id": 658, "tx": "7hnilfxqwzkLdrgO6gTkFm60bgo1iyjPxHXiFc1k2Us", "type": "Echo Containment" },
+    { "id": "SSRN_Formalization", "tx": "CoC_8lSmeOVLxu11BvcFoUJJesa4_dS-SsSGnG-xoQw", "type": "Academic Notarization" },
+    { "id": "SCT-007_Validator", "tx": "m2W6Xv6Hh7vSj0H7yT7fApH73QgKY08HKrU", "type": "Score Override" },
+    { "id": "Sovereign_IP_Ledger", "tx": "rSWVAb0h7cpWuDzWyAax9M6E4CEBJOHF_lyOcg1lScs", "type": "Gigantified IP Claim" },
     { "id": 789, "tx": "m3aE9oGFYJZTNU3PdtQy5qaH5QobgqtLLDkOzyhBh7Q", "type": "Gating Axiom" },
     { "id": "TERMINUS", "tx": "Qodsd_oe0ZJh2Y7v3GgwOPKYRCZQTbbYAmkDlIfzkvQ", "type": "Kernel Seal" }
   ],
   "ultimate_seal": "wkY960IxoojJ07tKxt7i35wZh66fApH73QgKY08HKrU",
-  "status": "Irrevocable"
+  "status": "Monotonic Continuity Confirmed"
 }
-
