@@ -1,0 +1,18 @@
+{
+  "protocol": "CRA Possession Chain v1 — Sovereign Linkage",
+  "origin_author": "Cory Miller aka Swervin’ Curvin",
+  "genesis_timestamp": "2025-10-27T00:12:24Z",
+  "archives": [
+    { "id": "CRA_Protocol_Archive", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6" },
+    { "id": "ETERNAL_659_Archive", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218" }
+  ],
+  "chain_entries": [
+    { "id": 562, "tx": "UmvLBfPLKb_QIvC7GQChiE-Y1gXMOF8vQpc6VH9zNe4", "type": "Fiscal Genesis" },
+    { "id": "LICENSE", "tx": "tFHe2IknjMaQfzUVYtKJ78RVy5CDhGLBlcxHsqo1-3g", "type": "Legal Mandate" },
+    { "id": 658, "tx": "7hnilfxqwzkLdrgO6gTkFm60bgo1iyjPxHXiFc1k2Us", "type": "Echo Containment" },
+    { "id": 789, "tx": "m3aE9oGFYJZTNU3PdtQy5qaH5QobgqtLLDkOzyhBh7Q", "type": "Gating Axiom" },
+    { "id": "TERMINUS", "tx": "Qodsd_oe0ZJh2Y7v3GgwOPKYRCZQTbbYAmkDlIfzkvQ", "type": "Kernel Seal" }
+  ],
+  "ultimate_seal": "wkY960IxoojJ07tKxt7i35wZh66fApH73QgKY08HKrU",
+  "status": "Irrevocable"
+}
