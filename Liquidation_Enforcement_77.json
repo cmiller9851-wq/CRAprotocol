@@ -1,0 +1,11 @@
+{
+  "vector": "Liquidation_Enforcement_77",
+  "mechanics": "Settlement_Only",
+  "arweave_tx": "5QTxfSxbY8rdykehDNUGKm1QKIEf_0si0AFjA-qUo8A",
+  "triggers": {
+    "breach_verified": "CRA_A192_BREACH_VERIFIED",
+    "demand_issued": "Formal_Notice_of_Claim",
+    "extraction": "Automated_Wallet_Routing_0xa939"
+  },
+  "experiment": "ETERNAL-365-DOMINION"
+}
