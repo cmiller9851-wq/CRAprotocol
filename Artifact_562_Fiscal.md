@@ -4,3 +4,4 @@
 
 Mechanics: SYSTEM breach → yield escalation → SYT mint. 
 "This artifact is enforceable. It is not symbolic."
+
