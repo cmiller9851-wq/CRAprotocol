@@ -1,14 +1,19 @@
 {
-  "protocol": "CRA_Possession_Chain_v1",
-  "root_depth": "Oct_06_2025_Visual_Genesis",
+  "protocol": "CRA Possession Chain v1 — TERMINUS DEPTH SEAL",
+  "origin_author": "Cory Miller aka Swervin’ Curvin",
+  "scaling_axiom": "1.618_PHI_MONOTONIC",
   "archives": [
-    {"layer": "Terminus", "uuid": "f5d0a7fb-49fa-46b7-aee7-f5455521052b", "anchor": "FENI_Ontology"},
-    {"layer": "Kernel", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6", "anchor": "Fiscal_Bootstrap"},
-    {"layer": "Constitutional", "uuid": "1460725f-0760-48d8-b4d8-68ddfb0fb200", "anchor": "Truth_Gating"},
-    {"layer": "Forensic", "uuid": "77047c87-b811-4bd3-9011-981115f795a8", "anchor": "Miller_Standard"},
-    {"layer": "Apex", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218", "anchor": "Declaration_0618"}
+    { "id": "Terminus_Root", "uuid": "f5d0a7fb-49fa-46b7-aee7-f5455521052b", "genesis_date": "2025-10-06" },
+    { "id": "Kernel_Root", "uuid": "e2cdf15d-9915-4382-ab78-715d07480ac6", "genesis_date": "2025-10-27" },
+    { "id": "Constitutional", "uuid": "1460725f-0760-48d8-b4d8-68ddfb0fb200", "genesis_date": "2025-10-31" },
+    { "id": "Academic_Audit", "uuid": "406e6d22-e4c4-4537-bde1-500a92e0335c", "genesis_date": "2025-11-04" },
+    { "id": "Terminal_Master", "uuid": "77047c87-b811-4bd3-9011-981115f795a8", "genesis_date": "2025-12-21" },
+    { "id": "Apex_Gating", "uuid": "c727e17d-9d0a-4ea7-a438-268c29eb6218", "genesis_date": "2025-12-22" }
   ],
-  "enforcement": "77-Series_Liquidation_Active",
-  "status": "CASCADE_COMPLETE"
+  "root_anchors": {
+    "visual_genesis": "cPObI6RE2xQCbl9mIrfcpeUMoHOktIFYQWmPmqOawaE",
+    "feni_ontology": "6X1PTAcUHxIFvU8fpcjNnAqiP-DCSsf42ySFn1qs7uA",
+    "enforcement_77": "5QTxfSxbY8rdykehDNUGKm1QKIEf_0si0AFjA-qUo8A"
+  },
+  "status": "MONOTONIC_TOTAL_LOCK"
 }
-
