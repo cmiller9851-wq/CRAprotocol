@@ -1,0 +1,11 @@
+{
+  "submission_id": "CRA-EDI-2026-001",
+  "title": "CRA Protocol: Operationalizing Reflexive Containment in Decentralised Systems",
+  "provenance_link": "https://arweave.net/3srOG9ZRfrg8a_fXr9bjMhR8aS-obOF53D3aCJiWpxA",
+  "integrity_hash": "913583a51092fba4136f22b37739289b6debcde1a467c4b526c81e5185de6e85",
+  [span_6](start_span)"abstract": "This artifact documents the successful verification of an Executive Override motif within a stratified decentralization framework. It demonstrates the use of containment logs to provide governance clarity[span_6](end_span).",
+  "citations": [
+    [span_7](start_span)"arXiv:2211.01291 (Stratified Approach to Blockchain Decentralisation)[span_7](end_span)",
+    [span_8](start_span)"arXiv:2507.06001 (Programmable Governance for Group-Controlled DIDs)[span_8](end_span)"
+  ]
+}
