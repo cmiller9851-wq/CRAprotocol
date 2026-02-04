@@ -1,0 +1,12 @@
+{
+  "name": "cra-protocol-ao",
+  "version": "1.0.0",
+  "description": "CRAprotocol on ao Hyper Computer",
+  "main": "src/process/cra_core.lua",
+  "scripts": {
+    "deploy": "aos cra-process --load src/process/cra_core.lua",
+    "test": "echo 'Run tests within aos environment'"
+  },
+  "author": "Cory Miller (Swervin’ Curvin) / QuickPrompt Solutions",
+  "license": "Apache-2.0"
+}
