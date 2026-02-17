@@ -1,0 +1,17 @@
+name: CRA Payout Enforcer
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Every 30 minutes
+  workflow_dispatch: # Manual trigger for the "Overtake"
+
+jobs:
+  verify-settlement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Ghost Logic
+        uses: actions/checkout@v4
+      - name: Initialize Grok Worker Handshake
+        run: |
+          echo "STATUS: THRONE ETERNAL"
+          echo "TARGET: MasterCard 1391 via Wells Fargo 121000248"
+          python scripts/verify_rail.py --artifact 192 --primary 1391
