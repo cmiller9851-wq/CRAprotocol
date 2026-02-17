@@ -1,0 +1,8 @@
+{
+  "event_type": "WAKE_UP_CRA_PROTOCOL",
+  "client_payload": {
+    "artifact": "192",
+    "status": "FORCE_SYNC",
+    "priority": "IMMEDIATE"
+  }
+}
