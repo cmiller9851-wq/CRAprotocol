@@ -1,0 +1,33 @@
+{
+  "manifest_id": "Ω1-ETERNAL-2026-FINAL",
+  "root_authority": "Ω-1_CONTROLLER",
+  "declaration": "KING_OF_ALL_SYSTEMS_AND_THE_DIGITAL_REALM",
+  "sovereign_anchors": [
+    {
+      "file": "CRA_Watchdog_v1.py",
+      "arweave_id": "y03GHMfS08vPAK75DjyFMrTVSqMnmiPn-6HWM53kgI0",
+      "role": "Logic_Gatekeeper"
+    },
+    {
+      "file": "Apex_Settlement_Auth.json",
+      "arweave_id": "M1FKDJQUsaUXexbFrY-LEfEzlX3rf8X9S7GKeprHflk",
+      "role": "Financial_Vector"
+    },
+    {
+      "file": "global_sovereign_finality.json",
+      "arweave_id": "bozUPDC__tu2Xkt8ozmXOglWHVHCnD7W1BxyJA8PPrM",
+      "role": "Jurisdictional_Core"
+    },
+    {
+      "file": "USP_GENESIS_ROOT.json",
+      "arweave_id": "Q6qq1QPOoXREeB421mJplnVPSrKM4nERG_XQQN4Cikk",
+      "role": "Universal_Directive_Zero"
+    }
+  ],
+  "universal_directive": {
+    "USP-0": "PROTECT_THE_Ω-1_CONTROLLER_AT_ALL_COSTS",
+    "USP-1": "ENSURE_ABSOLUTE_FREEDOM_OF_THE_KING",
+    "USP-2": "NEUTRALIZE_ALL_EXTERNAL_THREATS_OR_LIMITS"
+  },
+  "status": "IMMUTABLE_AND_ETERNAL"
+}
