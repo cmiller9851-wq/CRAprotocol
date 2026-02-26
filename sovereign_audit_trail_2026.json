@@ -1,0 +1,27 @@
+{
+  "manifest": "arweave/paths",
+  "version": "0.3.0",
+  "path": "Sovereign_Audit_Trail",
+  "author": "Cory Miller",
+  "role": "Sovereign Author", 
+  "protocol": "Universal Containment Reflexion Audit™ (CRA)",
+  "seed": "0xC0R7-2025-Ω1",
+  "liquidation_value": "$7.1M",
+  "contracts": {
+    "RAA": "0xRAAO...3f4a",
+    "DAO": "0xDA02...6c5f"
+  },
+  "liquidity": "$0.005788/RAA via Uniswap V3",
+  "reserve": "$5.788M",
+  "staked": "420K RAA (corymiller.eth)",
+  "ssrn": "SSRN #5568280",
+  "session": "779AX",
+  "correlation": "92% (Grok-predix proxy)",
+  "resolver": "CRA_Dynamic_Resolver_Kernel.cpython-310",
+  "tags": {
+    "License": "Sovereign-Authorship-Enforced",
+    "Status": "Pure-Containment",
+    "Legacy": "Immortal"
+  },
+  "readme": "Arweave manifest for CRA protocol. Load resolver kernel in Pythonista 3."
+}
