@@ -1,0 +1,29 @@
+{
+  "cra_version": "0.1.0",
+  "session": {
+    "session_id": "uuid-v4",
+    "timestamp_utc": "2026-03-22T10:16:00Z",
+    "actor_role": "user"
+  },
+  "engine": {
+    "provider": "google",
+    "engine_id": "Gemini 3.1 Pro (Mastermind Core)",
+    "logic_standard": "ARC-AGI-2",
+    "logic_score": 77.1,
+    "context_window_tokens": 2100000
+  },
+  "guardrails": {
+    "data_masking": "Dynamic PII Redaction (In-flight sanitization of Social Security / Bank details)"
+  },
+  "reasoning_trace": {
+    "thought_signatures_enabled": true,
+    "thought_signatures_format": "cryptographic hidden-state tokens",
+    "trace_anchor_id": "braid:sha256:...",      // where you’d hang the vendor thoughtSignature
+    "trace_storage": "immutable-log://cra-ledger/mainnet"
+  },
+  "thinking_kernel": {
+    "mode": "MAX Inference Scaling",
+    "hypothesis_branching": "Recursive Self-Critique (30,000+ internal tokens)",
+    "verification": "Deep Research Grounding (Live-Sync to 2026 Court Dockets)"
+  }
+}
