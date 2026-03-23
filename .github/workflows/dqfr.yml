@@ -1,20 +1,39 @@
-# .github/workflows/dqfr.yml
 name: DQFR Check
 on: [push, pull_request]
+
 jobs:
   dqfr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install deps
-        run: pip install pandas
-      - name: Run DQFR
+      # UPGRADED TO V4/V6 for Node 24 support
+      - uses: actions/checkout@v4 
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas
+          # Note: Ensure dqfr_calculator is in your repo or pip-installable
+          pip install . 
+
+      - name: Run DQFR Logic Gate
         run: |
           python - <<'PY'
-          import pandas as pd, json
+          import pandas as pd
+          # Custom local import for your logic
           from dqfr_calculator.compute import dqfr_score
-          df = pd.read_csv("data/train.csv")
-          score = dqfr_score(df, {"missing_rate":0.02, "bias_threshold":0.05})
-          print(f"DQFR={score:.3f}")
-          assert score >= 0.95, "DQFR below threshold"
+          
+          try:
+              df = pd.read_csv("data/train.csv")
+              score = dqfr_score(df, {"missing_rate": 0.02, "bias_threshold": 0.05})
+              print(f"DQFR SCORE: {score:.3f}")
+              
+              assert score >= 0.95, f"CRITICAL: DQFR Score {score:.3f} is below 0.95 threshold!"
+              print("LOGIC VERIFIED: Data meets CRA Protocol standards.")
+          except Exception as e:
+              print(f"ERROR: {e}")
+              exit(1)
           PY
