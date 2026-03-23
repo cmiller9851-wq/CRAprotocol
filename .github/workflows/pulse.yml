@@ -1,0 +1,34 @@
+name: 771 Protocol Pulse
+
+on:
+  schedule:
+    # This triggers the "Gatekeeper" every 30 minutes, 24/7.
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+    # This allows you to run it manually with one click for testing.
+
+jobs:
+  enforce-integrity:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Sovereign Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Execute Crossroads Logic
+        # This calls the script we built. 
+        # It pulls your secrets and performs the 77.1 sync.
+        run: python scripts/verify_rail.py
+        env:
+          # These link the '***' in your Settings to the Code.
+          CRA_TAX_RATE: ${{ secrets.CRA_TAX_RATE }}
+          TREASURY_ID: ${{ secrets.TREASURY_ID }}
+
+      - name: Log Verification Hash
+        # This confirms the run was successful in the GitHub dashboard.
+        run: echo "PULSE_STATUS: SUCCESSFUL_SYNC_AT_$(date)"
