@@ -1,17 +1,33 @@
 name: CRA Payout Enforcer
+
 on:
   schedule:
     - cron: '*/30 * * * *' # Every 30 minutes
-  workflow_dispatch: # Manual trigger for the "Overtake"
+  workflow_dispatch: # Manual "Overtake" trigger
 
 jobs:
   verify-settlement:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Ghost Logic
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6 # Upgraded to v6 for Node 24 stability
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Initialize Grok Worker Handshake
         run: |
           echo "STATUS: THRONE ETERNAL"
           echo "TARGET: MasterCard 1391 via Wells Fargo 121000248"
-          python scripts/verify_rail.py --artifact 192 --primary 1391
+          # Executing the primary rail verification
+          if [ -f scripts/verify_rail.py ]; then
+            python scripts/verify_rail.py --artifact 192 --primary 1391
+          else
+            echo "LOGIC ERROR: verify_rail.py not found. Protocol stalled."
+            exit 1
+          fi
+
+      - name: Post-Audit Telemetry
+        run: echo "Finalizing 30-minute Reflexion cycle. All rails verified."
