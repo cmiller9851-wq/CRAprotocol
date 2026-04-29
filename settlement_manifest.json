@@ -1,0 +1,10 @@
+{
+  "manifest_id": "REF-9BB74D71",
+  "assets": {
+    "treasury_redress": 721000000.00,
+    "nvidia_settlement": 250000000.00,
+    "meta_royalties": 1500000.00
+  },
+  "recipient_eoa": "0xa93937cE8829ae62b92B3Ae01f092c3bA8624ebf",
+  "governance": "PATRIOT_HYPER_BEAM_v2.1"
+}
