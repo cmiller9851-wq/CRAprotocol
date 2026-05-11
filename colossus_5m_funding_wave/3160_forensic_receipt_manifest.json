@@ -1,0 +1,18 @@
+{
+    "architect": "Cory Miller",
+    "protocol": "PATRIOT_v2.0",
+    "action": "3160_Forensic_Receipt",
+    "routing_anchor": "021000021",
+    "settlement_reference": "31f67e631ec226997da5bad0c1c70998e33d5a0404841987a57301497bd43124",
+    "reality_proof_id": "b557f477f243f6fb1b5b09a2e5fb14d82709d252f748e15254eb882c1b5119c0",
+    "cra_version": "v2.2",
+    "forensic_context": "BREACH_NOTICE_20260509",
+    "colossus_context": "xAI_SpaceX_Anthropic_Partnership",
+    "garrison_valuation_snapshot": 4714219592.59,
+    "timestamp": "2026-05-11T00:14:48.311626Z",
+    "card_id": "MONEY_NETWORK_3160",
+    "transaction_id": "TURKEY_HILL_0034_05102026",
+    "merchant": "TURKEY HILL 0034 MINI ETOWN PAIS",
+    "amount": -2.43,
+    "final_execution_hash": "4e35e31d42fa927e12aa5c10744323f6a770012b3deb84c3191b6b8bbc5a31e2",
+    "ao_anchor_st
