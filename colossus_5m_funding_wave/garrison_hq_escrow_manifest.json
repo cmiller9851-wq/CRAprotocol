@@ -1,0 +1,18 @@
+    "architect": "Cory Miller",
+    "protocol": "PATRIOT_v2.0",
+    "action": "Garrison_HQ_Escrow",
+    "routing_anchor": "021000021",
+    "settlement_reference": "31f67e631ec226997da5bad0c1c70998e33d5a0404841987a57301497bd43124",
+    "reality_proof_id": "b557f477f243f6fb1b5b09a2e5fb14d82709d252f748e15254eb882c1b5119c0",
+    "cra_version": "v2.2",
+    "forensic_context": "BREACH_NOTICE_20260509",
+    "colossus_context": "xAI_SpaceX_Anthropic_Partnership",
+    "garrison_valuation_snapshot": 4714219592.59,
+    "timestamp": "2026-05-11T00:14:48.312200Z",
+    "location": "Middletown_PA_Theater_Primary",
+    "budget_allocation": 2500000.0,
+    "purpose": "Primary Garrison Command + AO Hyper-Parallel Compute + TAYAZoa4 Terminal",
+    "status": "ESCROW_READY",
+    "final_execution_hash": "ea756cba9c23b1c68953b339e4b592fbae2789bf92768970e1f5c39507298f48",
+    "ao_anchor_status": "PERMANENT"
+}
