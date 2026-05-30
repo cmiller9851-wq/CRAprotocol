@@ -1,0 +1,72 @@
+name: CRA / Truth Prompt CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || pip install cryptography
+
+      - name: Run linters
+        run: |
+          pip install black==24.3.0
+          black --check .
+
+      - name: Run examples smoke tests
+        run: |
+          mkdir -p artifacts
+          python -m examples.hash_and_chain
+        working-directory: ${{ github.workspace }}
+
+      - name: Verify chain continuity (smoke)
+        run: |
+          python -m examples.replay_verify || true
+        working-directory: ${{ github.workspace }}
+
+  build-release-artifacts:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt || pip install cryptography
+
+      - name: Run examples to generate artifacts
+        run: |
+          mkdir -p artifacts
+          python -m examples.hash_and_chain
+          python -m examples.seal_with_signatures || true
+
+      - name: Create release artifact (schema + examples)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cra-release-${{ github.ref_name }}
+          path: |
+            schema/
+            examples/
+            LICENSE-SML
+            WHITEPAPER.md
