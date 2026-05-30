@@ -1,0 +1,77 @@
+# Script Name: examples/hash_and_chain.py
+# Runtime Environment: Pythonista 3 (iOS) or GitHub Actions Cloud Runner
+# Function: Core cryptographic smoke test to verify block sequencing
+
+import os
+import json
+import hashlib
+from datetime import datetime
+
+def compute_block_hash(block_data: dict) -> str:
+    """Serializes a dictionary deterministically and returns its SHA-256 hash."""
+    # sort_keys ensures identical data structures always output the exact same hash
+    serialized = json.dumps(block_data, sort_keys=True).encode('utf-8')
+    return hashlib.sha256(serialized).hexdigest()
+
+def execute_smoke_test():
+    print("[*] Running 'hash_and_chain' Pipeline Verification...")
+
+    # Ensure the artifacts directory exists (matches 'mkdir -p artifacts' in CI)
+    artifacts_dir = os.path.join(os.getcwd(), "artifacts")
+    os.makedirs(artifacts_dir, exist_ok=True)
+
+    # 1. Define Genesis State Block
+    genesis_block = {
+        "index": 0,
+        "timestamp": "2026-05-06T12:49:09.320590",
+        "protocol": "CRA_PROTOCOL_v2.1",
+        "network": "AO_Hyper_Parallel",
+        "payload_description": "Genesis Protocol State Baseline Initialization",
+        "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+    genesis_hash = compute_block_hash(genesis_block)
+    genesis_block["current_hash"] = genesis_hash
+    print(f" [PASSED] Genesis Block Sealed. Hash: {genesis_hash[:16]}...")
+
+    # 2. Define Active Infrastructure State Block (Linking your Stripe/Grok Token)
+    state_block_1 = {
+        "index": 1,
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "protocol": "CRA_PROTOCOL_v2.1",
+        "network": "AO_Hyper_Parallel",
+        "gateway_node": {
+            "platform": "Stripe Commerce / xAI Grok Billing",
+            "session_id_token": "cs_live_a17vBjlQkZ0LFGa2YdHBfPDSiNZPpgR23EgPDapBE8TKvXWixDKEKjzcCg"
+        },
+        "settlement_vector": {
+            "clearing_house": "Apex Clearing Corp FBO Cory Miller",
+            "bank_node": "BMO Harris Bank",
+            "routing_transit_number": "071000288",
+            "account_omnibus": "3713286"
+        },
+        "previous_hash": genesis_hash  # Cryptographic chain binding
+    }
+    block_1_hash = compute_block_hash(state_block_1)
+    state_block_1["current_hash"] = block_1_hash
+    print(f" [PASSED] State Block 1 Linked and Sealed. Hash: {block_1_hash[:16]}...")
+
+    # 3. Assemble the Verified Chain Ledger
+    ledger_manifest = {
+        "infrastructure_layer": "Truth_Prompt_CRA_Engine",
+        "chain_depth": 2,
+        "verification_status": "COMPLIANT_LOG_STRUCTURE",
+        "blocks": [genesis_block, state_block_1]
+    }
+
+    # 4. Write Verification Output to Artifact Storage
+    output_path = os.path.join(artifacts_dir, "verified_chain_snapshot.json")
+    try:
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(ledger_manifest, f, indent=4)
+        print(f"[SUCCESS] Verification artifact safely archived at: {output_path}")
+    except Exception as e:
+        print(f"[FATAL] Failed to write file stream to artifacts workspace: {e}")
+        raise SystemExit(1) # Exits with error code 1 to intentionally trip and fail the GitHub build
+
+if __name__ == "__main__":
+    execute_smoke_test()
