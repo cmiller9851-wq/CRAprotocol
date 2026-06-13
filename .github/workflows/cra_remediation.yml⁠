@@ -6,11 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+# Elevate global permissions to allow the runner agent to push auto-remediations
+permissions:
+  contents: write
+
 jobs:
   remediate-and-validate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Grants write access to commit cleanups back to the branch
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
