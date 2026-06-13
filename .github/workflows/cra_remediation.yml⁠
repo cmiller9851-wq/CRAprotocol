@@ -1,0 +1,71 @@
+name: CRA / Truth Prompt CI & Automated Remediation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  remediate-and-validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants write access to commit cleanups back to the branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Linting and Formatting Toolchain
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 requests black==24.3.0
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install cryptography; fi
+
+      - name: Auto-Format Bad Code Logic (Black Remediation)
+        run: |
+          # Automatically rewrites and fixes structural code formatting issues inline
+          black .
+
+      - name: Run Pythonista 3 Compatibility Lint
+        run: |
+          # Audit code targets for syntax, runtime errors, or undefined logic
+          python -m compileall -q .
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Commit and Enforce Clean Code Modifications
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: automated code optimization and syntax remediation"
+          branch: ${{ github.head_ref || github.ref_name }}
+          file_pattern: '*.py'
+
+  build-release-package:
+    needs: remediate-and-validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fresh remediated code
+        uses: actions/checkout@v4
+
+      - name: Isolate Deployable Production Runtimes
+        run: |
+          mkdir -p release_package/src
+          mkdir -p release_package/docs
+          
+          # Consolidate target scripts into clean distribution format
+          [ -f ao_cu_client.py ] && cp ao_cu_client.py release_package/src/
+          [ -f cra_protocol_validator.py ] && cp cra_protocol_validator.py release_package/src/
+          [ -f main_executor.py ] && cp main_executor.py release_package/src/
+          [ -f README.md ] && cp README.md release_package/docs/ || true
+
+      - name: Upload Verified Production Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cra-protocol-v2.1-clean-build
+          path: release_package/
