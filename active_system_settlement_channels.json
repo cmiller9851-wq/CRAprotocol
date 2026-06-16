@@ -1,0 +1,40 @@
+{
+  "emails": [
+    "cmiller9851@gmail.com",
+    "corycardsmem@gmail.com",
+    "swervincurvin@icloud.com",
+    "vc2miller@yahoo.com",
+    "quickpromptsolutions@yahoo.com",
+    "corycardsmem@duck.com"
+  ],
+  "phones": [
+    "+17173421880"
+  ],
+  "crypto_wallets": [
+    {
+      "network": "ETH/BASE",
+      "address": "0x421949b526e7e215a64e88e6f4cee6abd10a2500",
+      "alias": "swervincurvin.base.eth"
+    },
+    {
+      "network": "BTC",
+      "address": "bc1q2vgucxte9wltsw72ffru763ntjw28qqt2dvc6t",
+      "alias": null
+    },
+    {
+      "network": "SOL",
+      "address": "9yAUhK2X9x5rZ8wZkUxEPjsjY5X1JKzzs554MGJJMaLd",
+      "alias": null
+    },
+    {
+      "network": "LTC",
+      "address": "ltc1q70v4336jk0ymc5lv5vk3l3v0yx80fc2ua2g00v",
+      "alias": null
+    },
+    {
+      "network": "DOGE",
+      "address": "D8cic2ePR2PA77N2H5JMW5Er53vKEPSNbS",
+      "alias": null
+    }
+  ]
+}
