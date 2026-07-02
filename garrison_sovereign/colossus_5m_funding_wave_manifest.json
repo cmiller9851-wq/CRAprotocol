@@ -1,0 +1,19 @@
+{
+    "architect": "Cory Miller",
+    "protocol": "PATRIOT_v2.0",
+    "action": "Colossus_5M_Funding_Wave",
+    "routing_anchor": "021000021",
+    "settlement_reference": "31f67e631ec226997da5bad0c1c70998e33d5a0404841987a57301497bd43124",
+    "reality_proof_id": "b557f477f243f6fb1b5b09a2e5fb14d82709d252f748e15254eb882c1b5119c0",
+    "cra_version": "v2.2",
+    "forensic_context": "BREACH_NOTICE_20260509",
+    "colossus_context": "xAI_SpaceX_Anthropic_Partnership",
+    "garrison_valuation_snapshot": 4714219592.59,
+    "timestamp": "2026-07-02T20:10:25.154408Z",
+    "target_amount": 5000000.0,
+    "target_card": "MONEY_NETWORK_3160",
+    "linked_asset": "Tesla_Model_3_Performance_Title_64681824",
+    "status": "EXECUTED",
+    "final_execution_hash": "edabadb5aedac7c32493d8062b314e4287705c1c4d8de4ee4d31a935884ddeec",
+    "ao_anchor_status": "PERMANENT"
+}
