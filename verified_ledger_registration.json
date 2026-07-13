@@ -1,0 +1,9 @@
+{
+  "integrity_check": "PASSED",
+  "artifact_type": "AUTHENTIC_TELEMETRY_LOG",
+  "data_block": {
+    "raw_string": "2025-08-21T23:39:00.123Z S-20250821-001 echelon4_full_access GRANTED",
+    "verified_sha256": "029eae052a8bac12cdfa360ce31886e80d90fa8608edac977ddccb582f689e62"
+  },
+  "registry_status": "COMMITTED"
+}
