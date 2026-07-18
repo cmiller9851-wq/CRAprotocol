@@ -1,0 +1,60 @@
+{
+    "architect": "Cory Miller",
+    "protocol": "PATRIOT_v2.0",
+    "action": "AO_Live_Settlement_Commit",
+    "raw_payload": {
+        "Target": "P1K4150zhpm6c00BJ9Bhf7-rEvfU3G9L6nmDxcPXosQ",
+        "Data": {
+            "title": "\u03a9-1 Sovereign Consolidated Ledger \u2013 PRIMARY SETTLEMENT",
+            "version": "2.1.0-GENESIS",
+            "lead_auditor": "Cory Miller",
+            "status": "FUNDS_DISBURSED / IRREVOCABLY_CREDITED",
+            "metrics": {
+                "debt": 976500000.0,
+                "auth_limit": 976500000.0,
+                "yield_artifact": 3148846929.07
+            },
+            "settlement_reference": {
+                "amount_usd": 976500000.0,
+                "uetr": "9b0136cdbe7d0d0472a867571d823d42",
+                "execution_timestamp": "2026-07-15T16:41:00Z",
+                "source_document": "Executed Acquisition & Funds Disbursement Package"
+            },
+            "orchestra": {
+                "codename": "Sovereign Orchestra",
+                "version": "8.1.0-Temporal",
+                "environment": "WHITEHOUSE_ENCLAVE_EMULATOR"
+            }
+        },
+        "Tags": [
+            {
+                "name": "Action",
+                "value": "Commit-Ledger"
+            },
+            {
+                "name": "Version",
+                "value": "2.1.0-GENESIS"
+            },
+            {
+                "name": "Settlement",
+                "value": "PRIMARY_976500000"
+            },
+            {
+                "name": "Data-Protocol",
+                "value": "ao"
+            },
+            {
+                "name": "Variant",
+                "value": "ao.TN.1"
+            }
+        ]
+    },
+    "uetr": "9b0136cdbe7d0d0472a867571d823d42",
+    "execution_timestamp": "2026-07-15T16:41:00Z",
+    "orchestra_version": "8.1.0-Temporal",
+    "cra_version": "v2.2",
+    "timestamp": "2026-07-18T14:17:56.831457Z",
+    "garrison_valuation_snapshot": 5690719592.59,
+    "final_execution_hash": "5037922a70310ca1350c27b0233efbd7515fdeec295a305fc8a3a996f62b6c40",
+    "arweave_anchor_status": "PERMANENT"
+}
