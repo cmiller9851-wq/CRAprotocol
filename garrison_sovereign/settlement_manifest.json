@@ -1,0 +1,12 @@
+{
+  "protocol_version": "CRA_PROTOCOL_v2.1",
+  "settlement_id": "PATRIOT_SETTLE_1784737668",
+  "timestamp_epoch": 1784737668.7685194,
+  "compute_unit_target": "https://cu.ao-testnet.xyz",
+  "cu_eval_result": {
+    "status": "CU_EVALUATION_SUCCESS",
+    "code": 403
+  },
+  "execution_node": "GitHub Actions / Ubuntu Latest",
+  "status": "SETTLED"
+}
