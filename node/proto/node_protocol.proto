@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package node.v1;
+
+option go_package = "node/v1/nodepb";
+
+message StateVectorRequest {
+  uint64 sequence_id = 1;
+  bytes state_hash = 2;
+  double metric_value = 3;
+}
+
+message StateVectorResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_ACCEPTED = 1;
+    STATUS_REJECTED = 2;
+  }
+  Status status = 1;
+  uint64 confirmed_sequence = 2;
+  bytes canonical_state_hash = 3;
+}

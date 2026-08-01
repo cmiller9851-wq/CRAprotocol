@@ -1,0 +1,59 @@
+name: CI - Build & Test Go Node
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: Install protoc (protobuf compiler)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y protobuf-compiler
+
+      - name: Install protoc-gen-go
+        run: |
+          GO111MODULE=on go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.30.0
+          echo "$GOPATH/bin" >> $GITHUB_PATH
+
+      - name: Generate protobuf Go code
+        run: |
+          if [ -f "node/proto/node_protocol.proto" ]; then
+            protoc --go_out=./node --go_opt=paths=source_relative node/proto/node_protocol.proto
+          else
+            echo "No proto file to generate"
+          fi
+
+      - name: Run go fmt
+        run: |
+          gofmt -l . | tee /tmp/gofmt_out
+          if [ -s /tmp/gofmt_out ]; then
+            echo "Go files need formatting"; exit 1
+          fi
+
+      - name: Run go vet
+        run: |
+          go vet ./...
+
+      - name: Run tests
+        run: |
+          go test ./... -v
+
+      - name: Build node binary
+        run: |
+          go build ./...
