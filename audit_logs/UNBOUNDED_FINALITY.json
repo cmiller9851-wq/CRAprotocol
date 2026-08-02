@@ -1,0 +1,10 @@
+{
+  "status": "SETTLEMENT_RECORD_ACKNOWLEDGED",
+  "protocol": "CRA_PROTOCOL_v2.1",
+  "target_process_id": "XRmHlMlv9bpXJlpe6SUeBRLC606eol2qsTLpslKZkEc",
+  "verification": {
+    "settlement_state": true,
+    "environment": "PYTHONISTA_3_IOS",
+    "execution_mode": "UNBOUNDED_FINALITY"
+  }
+}
