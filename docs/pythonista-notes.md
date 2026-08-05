@@ -1,0 +1,6 @@
+- Pythonista environment uses an app sandbox path (example seen earlier).
+- To run the project in Pythonista:
+  - Copy repo files into Pythonista Documents/PatriotFramework
+  - Use a local virtual environment in Pythonista or vendor dependencies with StaSh/wheel
+  - Tests on-device are limited; prefer CI or local desktop for full test suite
+- The dev-setup.sh is desktop-first; Pythonista-specific steps are documented here for advanced contributors.
