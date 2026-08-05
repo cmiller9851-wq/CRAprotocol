@@ -1,7 +1,7 @@
 # Security Policy
 
 ## Reporting a vulnerability
-If you believe you found a security issue, please email maintainers@your-domain.example with:
+If you believe you found a security issue, please email cmiller9851@gmail.com with:
 - Affected component and reproduction steps
 - Proof-of-concept (if available)
 - Your preferred contact info and disclosure timeline
