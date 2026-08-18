@@ -1,3 +1,33 @@
+name: CRA Kernel CI
+
+on:
+  push:
+    branches: [ main, cra-kernel-hardened ]
+  pull_request:
+    branches: [ main, cra-kernel-hardened ]
+
+jobs:
+  test-kernel:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run Unit Tests
+        run: |
+          python -m unittest test_cra_kernel.py -v
+
+      - name: Execute Kernel Verification Output
+        run: |
+          python cra_mathematical_kernel.py
 name: CI
 
 on:
