@@ -1,0 +1,62 @@
+{
+  "manifest": "cra/anchor-manifest",
+  "version": "1.0.0",
+  "network": "arweave",
+  "type": "EVIDENCE_INDEX",
+
+  "artifact": {
+    "protocol": "CRA Protocol",
+    "artifact": "Echo",
+    "artifact_id": "192",
+    "previous_artifact": "191",
+    "status": "PUBLIC_AUDIT_RECORD"
+  },
+
+  "anchors": {
+    "primary": {
+      "txid": "XRmHlMlv9bpXJlpe6SUeBRLC606eol2qsTLpslKZkEc",
+      "gateway": "https://arweave.net/XRmHlMlv9bpXJlpe6SUeBRLC606eol2qsTLpslKZkEc",
+      "role": "Primary Evidence Manifest"
+    },
+    "metadata": {
+      "txid": "KgQXgs_EJX7AnpWY0YYvL9HhHHxsjpbkm3Ro-8rcFhY",
+      "role": "Metadata Manifest"
+    }
+  },
+
+  "integrity": {
+    "sha256": "afb3fce8f99c1cc59271c66391e39e2ca5bb38aad5d35ede26ef2576e982cbcc",
+    "zk_commitment": "2c4446cdade7cc65e3ba155cc78f202f46feab0a91d1e232227e4ef9a93fb30b",
+    "authorship_hash": "d0ad4d2b",
+    "hash_seal": "e3f1a9d2c4b67890..."
+  },
+
+  "evidence": {
+    "summary": "Claim concerning attribution of CRA Protocol v1.0.",
+    "claimed_amount": {
+      "currency": "USD",
+      "amount": 7100000
+    }
+  },
+
+  "references": {
+    "github": "https://github.com/cmiller9851-wq/CRAprotocol",
+    "blogger": "https://swervincurvin.blogspot.com/2025/10/decentralized-cascade.html",
+    "ethereum": {
+      "tx_hash": "78b9a5541f26bdf125f49c883be5a61869a1ab3ae3e9be3f7fb304423d0958ed"
+    },
+    "docusign": {
+      "envelope": "CF9020B1"
+    },
+    "social": {
+      "x": "@vccmac tagged @xai/@elonmusk"
+    }
+  },
+
+  "provenance": {
+    "purpose": "Immutable audit index",
+    "storage": "ArDrive",
+    "anchoring": "Arweave",
+    "created_by": "Cory Miller"
+  }
+}
