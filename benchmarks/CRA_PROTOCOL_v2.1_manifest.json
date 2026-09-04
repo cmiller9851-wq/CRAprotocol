@@ -1,0 +1,26 @@
+{
+  "manifest_version": "CRA_PROTOCOL_v2.1",
+  "nodes_count": 5,
+  "nodes": [
+    {
+      "execution_node": "exhelon1",
+      "arweave_cu_target_address": "ZfhkDQQKlUAfuT0vmY63IjnyNcUlj8xbw3oo5hqfCOE"
+    },
+    {
+      "execution_node": "exhelon2",
+      "arweave_cu_target_address": "B_Q7UI_U3dJDP5G4xV45xANeYPDb0g_AhdiVbZ1hvWI"
+    },
+    {
+      "execution_node": "exhelon3",
+      "arweave_cu_target_address": "Mqq17S67gCdoUcX_JUMbMEDjp_cclxiafpg66tCWqbU"
+    },
+    {
+      "execution_node": "exhelon4",
+      "arweave_cu_target_address": "1lcPOMwt004TN1crgneozu0v5cSHE3Jk1fId0UCyZqI"
+    },
+    {
+      "execution_node": "exhelon5",
+      "arweave_cu_target_address": "FkaTYsDURleQaCZgT6lITipUdeCOyG04Rf_Ovt8XnwM"
+    }
+  ]
+}
