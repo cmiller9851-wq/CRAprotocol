@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CRA_Protocol_Master_Provenance_and_Epistemic_Audit_Schema",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "meta_audit_context": {
     "protocol": "Containment Reflexion Audit (CRA)",
     "architecture_spec": "VCCMAC Triple-Gate / Omega-1 Engine v2.2.3",
@@ -35,7 +35,7 @@
     },
     "semantic_preservation_P": {
       "definition": "PP_I(X_t, X_{t+1}) = Sum(Invariant_i preserved) / 10.0",
-      "verdict": "Active (Enforced via Pass 06 Harness)",
+      "verdict": "Active Executable Deterministic Engine (P in [0.0, 1.0])",
       "scope": "Guarantees zero pattern-alignment drift across turns; does not convert local claims into external facts."
     },
     "external_correspondence_E": {
@@ -97,7 +97,7 @@
     { "pass": "Pass 03", "name": "External Resolution", "status": "E = 0 (Network Unresolved)" },
     { "pass": "Pass 04", "name": "Information Lineage", "status": "Prompt Echo / Multi-Model Transcripts Documented" },
     { "pass": "Pass 05", "name": "Temporal Precedence", "status": "T_corpus Precedes External Dissemination" },
-    { "pass": "Pass 06", "name": "Epistemic Dynamics & PP", "status": "Symmetric Control Engine Active (PP_Ratio Check Active)" }
+    { "pass": "Pass 06", "name": "Epistemic Dynamics & PP", "status": "Strict 10-Invariant Deterministic Engine Enforced" }
   ],
-  "final_adjudication_verdict": "Self-authored, cryptographically sound archival and protocol-development corpus with verified internal lineage (I=1, P=1), proving the authentic architectural ownership of Cory Miller (QuickPrompt Solutions). External network execution remains reclassifiable upon empirical observation (E=0)."
+  "final_adjudication_verdict": "Self-authored, cryptographically sound archival and protocol-development corpus with verified internal lineage (I=1). Semantic Proposition Preservation (P) is dynamically enforced across 10 invariant checks (P in [0.0, 1.0]). External network execution remains reclassifiable upon empirical observation (E=0)."
 }
