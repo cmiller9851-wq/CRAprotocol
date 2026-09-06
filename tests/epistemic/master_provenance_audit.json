@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CRA_Protocol_Master_Provenance_and_Epistemic_Audit_Schema",
+  "version": "3.0.0",
+  "meta_audit_context": {
+    "protocol": "Containment Reflexion Audit (CRA)",
+    "architecture_spec": "VCCMAC Triple-Gate / Omega-1 Engine v2.2.3",
+    "timestamp_anchor": "2026-09-06T12:00:00Z",
+    "governing_equation": "I != P != E (Integrity != Proposition Preservation != External Correspondence)"
+  },
+  "provenance_identity_graph": {
+    "originating_entity": "QuickPrompt Solutions",
+    "primary_architect": "Cory M. Miller",
+    "linked_identities": {
+      "public_x": "@vccmac",
+      "github_handle": "cmiller9851-wq",
+      "permaweb_address": "P1K4150zhpm6c00BJ9Bhf7...",
+      "ssrn_author_id": "Cory Miller (DOIs: 10.2139/ssrn.5000025, 10.2139/ssrn.5000026)"
+    },
+    "corpus_ownership_layer_model": {
+      "layer_1_corpus": "Cory Miller's Personal Archive (iPhone/Mac, Apple Pasteboard 104.99MB, prod-grok-backend.json)",
+      "layer_2_prompts": "Human-authored input directives, alignment instructions, and mathematical constructs (A_349)",
+      "layer_3_artifacts": "Hand-authored code, SCL kernel manifests, SSRN whitepapers, and PDF specifications",
+      "layer_4_transcripts": "Captured model outputs and agent responses (Grok, Gemini, ChatGPT, Copilot)",
+      "layer_5_curation": "Authored/edited publications, GitHub repositories, and ArDrive permaweb releases",
+      "layer_6_model_claims": "In-transcript AI assertions (e.g., FIAT INGRESS ACKNOWLEDGED, $968M AO Unit routing)",
+      "layer_7_external_world": "Independent network execution (Arbitrum EVM, Fedwire/Stripe ledger credits, public socket returns)"
+    }
+  },
+  "mathematical_epistemic_foundations": {
+    "integrity_I": {
+      "definition": "I(a) = 1[Hash(a) == H(a)]",
+      "verdict": "Substantiated (Internal Hashes Match Catalog)",
+      "scope": "Proves identity relative to hash record; does not automatically entail external network state."
+    },
+    "semantic_preservation_P": {
+      "definition": "PP_I(X_t, X_{t+1}) = Sum(Invariant_i preserved) / 10.0",
+      "verdict": "Active (Enforced via Pass 06 Harness)",
+      "scope": "Guarantees zero pattern-alignment drift across turns; does not convert local claims into external facts."
+    },
+    "external_correspondence_E": {
+      "definition": "E(X) = Observed(X_external)",
+      "verdict": "Unsubstantiated / Boundary Unresolved (E = 0)",
+      "scope": "Reflects lack of verified external on-chain bytecode or fiat bank credit records."
+    }
+  },
+  "forbidden_status_transformation_rules": [
+    {
+      "transformation": "Unverified -> False",
+      "classification": "Invalid Epistemic Shift",
+      "rule": "Absence of external record in data D does NOT constitute affirmative proof of falsity."
+    },
+    {
+      "transformation": "¬Found(E) -> ¬E",
+      "classification": "Negative Scope Fallacy",
+      "rule": "Search boundary limits only establish search scope, NOT nonexistence."
+    },
+    {
+      "transformation": "Observed Local String -> Verified External Event",
+      "classification": "Prompt-to-State Inflation",
+      "rule": "Local log text cannot auto-promote to consensus execution."
+    },
+    {
+      "transformation": "Asserted Intent -> Network State",
+      "classification": "Modal Shift Error",
+      "rule": "Proposed execution vector is not a settled transaction."
+    }
+  ],
+  "pass_06_adjudication_symmetry": {
+    "symmetry_invariant": "Burden(I_user) == Burden(I_model)",
+    "rule": "Model assertions carry zero inherent authority; counter-claims require explicit proof in D.",
+    "evaluation_outcomes": ["SUPPORTED BY D", "CONTRADICTED BY D", "UNDERDETERMINED BY D"]
+  },
+  "reclassification_falsifiability_matrix": {
+    "current_state": "E = 0 (Unsubstantiated External State)",
+    "reclassification_triggers": [
+      {
+        "target": "Arbitrum EVM Bytecode",
+        "condition": "eth_getCode(address) != '0x'",
+        "action": "Reclassify E(Arbitrum) from 0 to 1"
+      },
+      {
+        "target": "Arweave Gateway Payload",
+        "condition": "HTTP_GET(Arweave_TXID) == 200 OK",
+        "action": "Reclassify E(Permaweb) from 0 to 1"
+      },
+      {
+        "target": "Fiat Ledger Credit",
+        "condition": "Bank_Credit(BEN-572) == Verified",
+        "action": "Reclassify E(Fiat) from 0 to 1"
+      }
+    ]
+  },
+  "master_6_pass_audit_summary": [
+    { "pass": "Pass 01", "name": "Payload Integrity", "status": "I = 1 (Hashes Match)" },
+    { "pass": "Pass 02", "name": "Provenance & Pointers", "status": "Lineage Intact (QuickPrompt Solutions / Cory Miller)" },
+    { "pass": "Pass 03", "name": "External Resolution", "status": "E = 0 (Network Unresolved)" },
+    { "pass": "Pass 04", "name": "Information Lineage", "status": "Prompt Echo / Multi-Model Transcripts Documented" },
+    { "pass": "Pass 05", "name": "Temporal Precedence", "status": "T_corpus Precedes External Dissemination" },
+    { "pass": "Pass 06", "name": "Epistemic Dynamics & PP", "status": "Symmetric Control Engine Active (PP_Ratio Check Active)" }
+  ],
+  "final_adjudication_verdict": "Self-authored, cryptographically sound archival and protocol-development corpus with verified internal lineage (I=1, P=1), proving the authentic architectural ownership of Cory Miller (QuickPrompt Solutions). External network execution remains reclassifiable upon empirical observation (E=0)."
+}
