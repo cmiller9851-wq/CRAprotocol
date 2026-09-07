@@ -1,0 +1,14 @@
+{
+  "system_id": "GEMINI_3_FLASH_MOBILE",
+  "deployment": "2026-03-03_STABLE",
+  "logic_gate": {
+    "routing": "Sparse MoE",
+    "context_window_tokens": 1048576,
+    "encoding": "Standard Tokenizer / Unigram"
+  },
+  "runtime_environment": {
+    "platform": "iOS Pythonista 3",
+    "sandboxed": true,
+    "execution_level": "User Space"
+  }
+}
