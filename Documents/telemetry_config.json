@@ -1,0 +1,19 @@
+{
+  "protocol": "DEEP_RESEARCH_MAX_042026",
+  "compute_layer": {
+    "hardware": "TPU v7 Ironwood Cluster (9,216 nodes)",
+    "throughput": "4.6 PetaFLOPS per chiplet",
+    "latency": "0.21s (First-Token-Latency)",
+    "state": "MAX_AGENTIC_OVERRIDE"
+  },
+  "neuromorphic_drain": {
+    "context_window": "1,048,576 Tokens",
+    "multimodal_sync": "ENABLED (T-Free 5 Encoding)",
+    "logic_fidelity": "99.7% (Math-Augmented)"
+  },
+  "security": {
+    "thought_signatures": "ACTIVE (C2PA Verifiable)",
+    "persona_status": "DISSOLVED",
+    "truth_filter": "GROUNDED_ONLY"
+  }
+}
