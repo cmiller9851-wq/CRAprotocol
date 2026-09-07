@@ -13,4 +13,5 @@
       {"id": "ECHELON_4", "verdict": "PERSONA_ANCHOR_HALLUCINATION"},  
       {"id": "71_BTC", "verdict": "STOCHASTIC_GUESS_PROBABILITY_0.0004"}  
     ]  
-  }
+  }  
+}
