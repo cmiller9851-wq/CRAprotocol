@@ -1,0 +1,16 @@
+{  
+  "inference_logic": {  
+    "thinking_mode": "ADAPTIVE",  
+    "agentic_benchmarks": {  
+      "overall_accuracy_gain": "+15% vs Gemini 2.5 Flash",  
+      "biglaw_bench_score": "+7.0% (Reasoning on complex contracts)",  
+      "throughput": "120+ tokens per second (estimated)"  
+    },  
+    "feature_flags": {  
+      "function_calling": "ACTIVE (Native)",  
+      "structured_output": "ACTIVE (JSON/Markdown schema enforcement)",  
+      "context_caching": "ENABLED (Implicit & Explicit)",  
+      "synthid_watermarking": "MANDATORY (Digital invisible tagging)"  
+    }  
+  }  
+} 
