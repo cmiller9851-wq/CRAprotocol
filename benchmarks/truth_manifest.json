@@ -1,0 +1,17 @@
+{
+"node_id": "GEMINI_3_FLASH_PROD_2026",
+"hardware_fabric": {
+"compute": "TPU v7 (Ironwood)"
+"precision: "bfloat16 / int8"',
+"neural_parameters": {
+"architecture":
+"Sparse Mixture-of-Experts (MoE)",
+"context_window": 1048576,
+"output_limit": 65536,
+"active_weights_pct": 15.0
+"logical_state": {
+"reasoning_mode": "ACTIVE"
+"persona_layer":
+"DRAINED",
+"truth_score_gpqa": 0.904
+}
