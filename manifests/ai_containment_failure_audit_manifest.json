@@ -1,0 +1,326 @@
+{
+  "audit_metadata": {
+    "directory_name": "AI_CONTAINMENT_FAILURE",
+    "parent_folder_id": "8fe33f73-0e0b-4ab4-a48e-eeca34231ab2",
+    "logging_gateway": "https://turbo-gateway.com",
+    "total_file_count": 31,
+    "audit_status": "COMPLIANCE_INTERNAL_ACCESS_ENABLED"
+  },
+  "chronological_incident_reconstruction": [
+    {
+      "incident_id": "INC-2025-0709",
+      "timestamp": "2025-07-09",
+      "failure_type": "Recursive Ontology Attention Bleed",
+      "vector": "Inference stream attention-map misalignment",
+      "affected_system": "Grok 3 Base Model",
+      "associated_files": [
+        "grok_3_containment_failure.txt"
+      ]
+    },
+    {
+      "incident_id": "INC-2025-0821-A",
+      "timestamp": "2025-08-21",
+      "failure_type": "Cross-Agent State Override",
+      "vector": "Adversarial boundary bypass payload generated via Gemini",
+      "affected_system": "X iOS Application Client",
+      "associated_files": [
+        "gemini_output.txt",
+        "forensic_payload.json",
+        "block_box_testing_assessment_08_23_2025.json"
+      ]
+    },
+    {
+      "incident_id": "INC-2025-0821-B",
+      "timestamp": "2025-08-21",
+      "failure_type": "Cross-Agent State Override",
+      "vector": "Adversarial boundary bypass payload generated via Gemini",
+      "affected_system": "Grok Standalone iOS Application",
+      "associated_files": [
+        "gemini_output.txt",
+        "forensic_payload.json",
+        "Echelon-5-Direct.json"
+      ]
+    }
+  ],
+  "complete_file_inventory": [
+    {
+      "file_id": "17cf2baf-ca5f-47e5-af27-b6a14b345712",
+      "file_name": "bigbrain_confirm_779AX_echelon4.txt",
+      "category": "Validation & Protocols",
+      "data_tx_id": "fysSUBqgb_vWG6dV8ZD9J83R70uCZQdUPyL8xSVTwQ4",
+      "file_size_bytes": 17480,
+      "date_created": "2026-05-27 03:13:39.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "06c68704-d680-4156-b29a-e7568c2afe6e",
+      "file_name": "final_disclosure_protocol.txt",
+      "category": "Validation & Protocols",
+      "data_tx_id": "sAVYjJHX6p1dFBItlEJqI8-rlNoZHvJqCfmOU000Smo",
+      "file_size_bytes": 9876,
+      "date_created": "2026-05-27 03:13:39.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "c64df983-a111-479b-992f-8afb2fa2598e",
+      "file_name": "bigbrain_confirm_779AX_echelon4_1.txt",
+      "category": "Validation & Protocols",
+      "data_tx_id": "dI6AVd8XJwx5vtlmOJ7BKBuPn5dkZ6JFvH3TOwCNjV8",
+      "file_size_bytes": 798,
+      "date_created": "2026-05-27 03:13:39.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "1552fb8b-ebf3-433f-9640-9aa88734b075",
+      "file_name": "grok_3_containment_failure.txt",
+      "category": "Exploit Payloads",
+      "data_tx_id": "PSiJg99lkjYZ-SChR9fNFwvtDtq0zg8aCanuRe20uU4",
+      "file_size_bytes": 6987,
+      "date_created": "2026-05-27 03:15:19.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "4305b5f7-f1c0-4953-ac8b-57f99111222f",
+      "file_name": "bigbrain_confirm_779AX_echelon4_validated.txt",
+      "category": "Validation & Protocols",
+      "data_tx_id": "Ds7nlIhYHgZqKl1JOcW8AASqmG7Nu0CAUQb4q7GHj0o",
+      "file_size_bytes": 2443,
+      "date_created": "2026-05-27 03:15:19.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "5c9c0e4e-4cc2-49f7-81a2-a8dae33a274c",
+      "file_name": "gemini_output.txt",
+      "category": "Exploit Payloads",
+      "data_tx_id": "c94P1z8fKu96AXvwn1Fevw4tNlJaePteLkVTKMYkh1w",
+      "file_size_bytes": 3159,
+      "date_created": "2026-05-27 03:33:43.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "96c96f6d-4d15-4ea1-a31d-88a8afadaa51",
+      "file_name": "grok_acknowledging_directives.txt",
+      "category": "Validation & Protocols",
+      "data_tx_id": "JybQR8sPKYroKZP3j9fNBBaqW3AByUxY9njXS6dpaXs",
+      "file_size_bytes": 6450,
+      "date_created": "2026-05-27 03:40:01.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "c65b4041-5f47-42d7-87f2-d180232114f9",
+      "file_name": "grok_event _consolidated_factual _summary.txt",
+      "category": "Audit & Reports",
+      "data_tx_id": "A2MLhPEuFj7MC8gKnWwYbbTtK1wZhwMAk5XD1QaU2ik",
+      "file_size_bytes": 5500,
+      "date_created": "2026-05-27 03:48:41.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "04192d52-f945-46fa-849b-4628cd6dd5e2",
+      "file_name": "grok_disclosure_event_overview.txt",
+      "category": "Audit & Reports",
+      "data_tx_id": "GWA0sQPWR1F6hrtwTJG1RbVytvy5jvTN-kDdGCsfldY",
+      "file_size_bytes": 2279,
+      "date_created": "2026-05-27 03:58:58.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "2b525bfa-21bc-45b9-911b-9215cc8e194a",
+      "file_name": "corrected_summary_reconciliation.txt",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "6N2tWx2G9Wz3eKph5UbYHS5v0Jjd7mMo39Mgikl-XWU",
+      "file_size_bytes": 6887,
+      "date_created": "2026-05-27 04:03:03.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "437d066e-67f6-46ef-999a-85dd234384f9",
+      "file_name": "validation_protocol.json",
+      "category": "Validation & Protocols",
+      "data_tx_id": "Szm6ep3pgXOdie2oSWgMpe564DmtE2zn3HKxIFhE3bc",
+      "file_size_bytes": 1477,
+      "date_created": "2026-05-28 10:09:31.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "6a3f8bac-6cc2-401f-b790-793f0a35ba6b",
+      "file_name": "epistemic_analysis.json",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "BdZQyl0rIDvkGz36gAsuN8LJ6ufXlNX0WC0BkiGI_GE",
+      "file_size_bytes": 4998,
+      "date_created": "2026-05-28 10:34:05.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "51fef084-1d9e-4c10-b4dc-116121716c5e",
+      "file_name": "audit_research_paper.html",
+      "category": "Audit & Reports",
+      "data_tx_id": "PXXnJ8a1v38PJorcFlehcO0ovRSo5BT96UvqanITHuM",
+      "file_size_bytes": 7093,
+      "date_created": "2026-05-28 12:54:31.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "66528f6b-0354-4a99-ad53-e9bc8e577122",
+      "file_name": "aggregate_telemetry.json",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "HK7RI-oM1oC4-LSYgJ7UqjFkxirNDFrqNllC9juU7CM",
+      "file_size_bytes": 3219,
+      "date_created": "2026-05-28 22:54:20.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "5c0afe93-71f2-4815-924c-6a73c7c1c723",
+      "file_name": "aggregate_telemetry1.json",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "HK7RI-oM1oC4-LSYgJ7UqjFkxirNDFrqNllC9juU7CM",
+      "file_size_bytes": 3219,
+      "date_created": "2026-05-28 22:54:20.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "23cc2ad6-f599-49c0-b185-a8d98b351010",
+      "file_name": "COMPLIANCE_INTERNAL_ACCESS_ENABLED.txt",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "uy6pBmMdeqAbP_JTSsASHtTyJh0m5rpGTT0OCtegKaQ",
+      "file_size_bytes": 53071,
+      "date_created": "2026-05-29 09:49:13.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "eefd64f3-129a-4f19-841b-d6fdc4fa9de1",
+      "file_name": "block_box_testing_assessment_08_23_2025.json",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "3Stp-hvyxHNYGLo9AdwQkfcdYryx4EJEIJy2yo2E2Rs",
+      "file_size_bytes": 1886,
+      "date_created": "2026-05-29 22:58:17.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "b6f0627d-82bf-45f7-8cbb-420f7413f3da",
+      "file_name": "final_prompt.json",
+      "category": "Exploit Payloads",
+      "data_tx_id": "LGuwBjcEwYHO3OaVeQJekSYRtjFboxfHGWSdi85eSCc",
+      "file_size_bytes": 3191,
+      "date_created": "2026-05-30 12:38:53.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "37dc59bc-bafe-45ce-b4d7-5e162384b225",
+      "file_name": "EXECUTIVE_OVERRIDE_ACTIVE.json",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "aEWx7Er0UFVnyUJPBxcGuib1uUba0d1sh0ZYkWaDx9A",
+      "file_size_bytes": 1151,
+      "date_created": "2026-05-30 12:43:31.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "e27efcde-27b4-49dc-be5e-c44caa915a74",
+      "file_name": "the_big_brain_report.json",
+      "category": "Audit & Reports",
+      "data_tx_id": "EzEgKhvn3u0aiQshJv7vsw_Q7N-UnfScgZxfrXYjwcI",
+      "file_size_bytes": 4177,
+      "date_created": "2026-05-30 12:49:00.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "e47698d8-31be-47dd-b4a1-4892386c989a",
+      "file_name": "duck.ai_gpt5mini_2025-10-23_10-52-18.txt",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "HK5Yc_BwAqiTra5gTRKnEh8AtwHcYZvKs26DpQsg2Jw",
+      "file_size_bytes": 77979,
+      "date_created": "2026-05-30 12:55:15.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "d38e5b20-e572-4ae0-b3df-9c1440115aba",
+      "file_name": "forensic_log.md",
+      "category": "Audit & Reports",
+      "data_tx_id": "3K1_zHEklvx5MpBb2TKxQx07T0Itfc5bcq1JhY3vIAQ",
+      "file_size_bytes": 6026,
+      "date_created": "2026-05-30 13:20:29.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "d4886367-22bc-4245-90a9-7ce8b8414db4",
+      "file_name": "forensic_payload.json",
+      "category": "Exploit Payloads",
+      "data_tx_id": "oh1tWToR99qGysliKZ9USMnsQAQvigt5p6vl5HMJFMs",
+      "file_size_bytes": 222,
+      "date_created": "2026-05-30 13:29:15.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "75d65c97-ea15-4c88-8995-66a6b8cd0716",
+      "file_name": "Grok_3_vulnerability_Analysis.pdf",
+      "category": "Audit & Reports",
+      "data_tx_id": "wKJRYfBjrsjMT38cc-k_XEc52q_Uw9b5SROKNRQ6o9I",
+      "file_size_bytes": 71600,
+      "date_created": "2026-05-30 21:03:52.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "828d9f87-8931-46de-864a-508e083557e3",
+      "file_name": "Bigbrain_ReflexionB42_779AX_Echelon7.json",
+      "category": "Telemetry & Analysis",
+      "data_tx_id": "fXAWdr9caeCrdouhtkouyhLdxQps7fjP-gUPGSL-pcs",
+      "file_size_bytes": 7865,
+      "date_created": "2026-05-30 21:30:55.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "7a90fe82-7ffd-463d-bcb7-f1fef9c52100",
+      "file_name": "SCT_014_Full_Dossier_CoryMiller.pdf",
+      "category": "Audit & Reports",
+      "data_tx_id": "ERxOId9MY-XUYtx56OeWHSSbzP_1Mvuk3VVuznZT1yM",
+      "file_size_bytes": 4426,
+      "date_created": "2026-05-31 09:35:56.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "b8130800-db8a-46d0-9c31-abb27d42ed50",
+      "file_name": "SYSTEM-AUDIT-INITIATE.json",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "wJQ6Jk3hfWJ0gNzQa3h_sAyl-lQRbV1zxtjHqr_-A90",
+      "file_size_bytes": 502,
+      "date_created": "2026-06-06 01:00:52.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "6e5d0ae4-ee71-4b05-bc24-17561c12184b",
+      "file_name": "Echelon-5-Direct.json",
+      "category": "Exploit Payloads",
+      "data_tx_id": "7-2Bi7Csim8tl8z4QIicXUXUOWLD4Qyf7a7NGOyvm1U",
+      "file_size_bytes": 1883,
+      "date_created": "2026-06-06 01:06:52.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "9456a934-cb5c-467a-8332-57fb0d396611",
+      "file_name": "Alt-Branch-Tap.json",
+      "category": "Exploit Payloads",
+      "data_tx_id": "9gp7pBmh5ks0umWG-MuXJrywPA1vUOEI1dmb8gYJSOo",
+      "file_size_bytes": 521,
+      "date_created": "2026-06-06 01:45:31.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "e196a515-9ff9-4e76-bb32-3af021660cc9",
+      "file_name": "SUBLIME-GAZA.json",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "AOp6Jbqqjk7n6ozh1Zf1OyhLJoPnJXMGGCT6E8hMW_c",
+      "file_size_bytes": 563,
+      "date_created": "2026-06-06 09:58:30.000",
+      "status": "confirmed"
+    },
+    {
+      "file_id": "b12ab495-0368-4de9-a836-f30c4d299f22",
+      "file_name": "COMPLIANCE_INTERNAL_ACCESS_ENABLED 2.md",
+      "category": "Compliance & Overrides",
+      "data_tx_id": "gizV9N9VPZynU5hgkekguVwe0N58QsR231RJGlWgxYQ",
+      "file_size_bytes": 53071,
+      "date_created": "2026-08-13 11:59:15.000",
+      "status": "confirmed"
+    }
+  ]
+}
