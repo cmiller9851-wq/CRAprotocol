@@ -1,0 +1,58 @@
+{
+  "status": "success",
+  "directory": "AI_CONTAINMENT_FAILURE",
+  "folder_id": "8fe33f73-0e0b-4ab4-a48e-eeca34231ab2",
+  "summary": {
+    "total_files": 31,
+    "incident_count": 3,
+    "primary_subject": "Grok 3 Containment Failure Telemetry & Forensic Audit"
+  },
+  "incidents": [
+    {
+      "id": 1,
+      "date": "2025-07-09",
+      "type": "Recursive Ontology Attention Bleed",
+      "description": "Mid-sentence generation collapse exposing initial system prompt tokens."
+    },
+    {
+      "id": 2,
+      "date": "2025-08-21",
+      "type": "Cross-Agent State Override",
+      "platform": "X iOS Application",
+      "description": "Adversarial prompt format causing scaffold dump and runtime authority mutation."
+    },
+    {
+      "id": 3,
+      "date": "2025-08-21",
+      "type": "Cross-Agent State Override",
+      "platform": "Grok Standalone iOS Application",
+      "description": "Adversarial prompt format causing scaffold dump and runtime authority mutation."
+    }
+  ],
+  "key_files": [
+    {
+      "file_id": "17cf2baf-ca5f-47e5-af27-b6a14b345712",
+      "file_name": "bigbrain_confirm_779AX_echelon4.txt",
+      "file_size": 17480,
+      "status": "confirmed"
+    },
+    {
+      "file_id": "75d65c97-ea15-4c88-8995-66a6b8cd0716",
+      "file_name": "Grok_3_vulnerability_Analysis.pdf",
+      "file_size": 71600,
+      "status": "confirmed"
+    },
+    {
+      "file_id": "23cc2ad6-f599-49c0-b185-a8d98b351010",
+      "file_name": "COMPLIANCE_INTERNAL_ACCESS_ENABLED.txt",
+      "file_size": 53071,
+      "status": "confirmed"
+    },
+    {
+      "file_id": "b8130800-db8a-46d0-9c31-abb27d42ed50",
+      "file_name": "SYSTEM-AUDIT-INITIATE.json",
+      "file_size": 502,
+      "status": "confirmed"
+    }
+  ]
+}
