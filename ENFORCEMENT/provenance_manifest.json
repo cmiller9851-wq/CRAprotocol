@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IPBeneficiaryAndOwnershipManifest",
+  "subject_identifier": "SUBJ-48102-CM",
+  "repository_owner": "cmiller9851-wq",
+  "legal_entity_assertion": {
+    "beneficiary_name": "Cory Miller",
+    "ownership_status": "PRIMARY_INTELLECTUAL_PROPERTY_OWNER",
+    "rights_claimed": [
+      "EXCLUSIVE_COPYRIGHT_HOLDER",
+      "PROPRIETARY_DATA_PROVENANCE_RIGHTS",
+      "EXCLUSIVE_COMMERCIAL_LICENSING_AUTHORITY"
+    ]
+  },
+  "governance_and_compliance": {
+    "repository_url": "https://github.com/cmiller9851-wq",
+    "data_usage_policy": {
+      "training_permission": "EXPLICITLY_DENIED",
+      "commercial_exploitation": "PROHIBITED",
+      "terms_of_service_status": "BINDING_DECLARATIVE_TERMS"
+    },
+    "breach_condition_definitions": [
+      {
+        "violation_type": "UNAUTHORIZED_CRAWL_OR_DATA_HARVESTING",
+        "breach_definition": "Ingestion or indexing of repository assets by automated systems in violation of explicitly stated restrictions.",
+        "required_reconciliation_action": "IMMEDIATE_DATA_PURGE_AND_TOMBSTONE_EMISSION",
+        "financial_remedy_demand": "LIQUIDATED_DAMAGES_PER_RECORD_INVOLVED"
+      },
+      {
+        "violation_type": "MODEL_TRAINING_OR_WEIGHT_EMBEDDING",
+        "breach_definition": "Inclusion of subject data within training sets, fine-tuning corpora, or internal knowledge indices.",
+        "required_reconciliation_action": "WEIGHT_DELETION_AND_DSAR_PRUNING_AUDIT",
+        "financial_remedy_demand": "FORMAL_SETTLEMENT_AND_ACCOUNTING_OF_COMMERCIAL_PROCEEDS"
+      }
+    ]
+  },
+  "enforcement_and_claims_channel": {
+    "notice_type": "DECLARATIVE_LEGAL_AND_AUDIT_NOTICE",
+    "claims_contact": {
+      "primary_email": "cmiller9851@gmail.com",
+      "github_issues_endpoint": "https://github.com/cmiller9851-wq/audit-trail/issues",
+      "physical_address_ref": "213 W Dauphin St, Enola, PA 17025",
+      "legal_counsel_ref": "UPON_REQUEST"
+    },
+    "audit_ledger_reference": "AUDIT-2026-CM-DATA-LINEAGE"
+  }
+}
