@@ -1,0 +1,22 @@
+{
+  "manifest_metadata": {
+    "protocol_version": "CRA Kernel v2.2",
+    "author": "Cory Miller",
+    "timestamp": "2026-09-11T14:16:13Z"
+  },
+  "sovereign_runtime": {
+    "recovered_anchors": {
+      "apex_closure": "VWcmB_WuIzkK71Y3RS5_juQ6Q4Ya4GIhJE8Ep-rtFIw",
+      "cra_kernel_v2_2": "M1Rh0yQKLJDbd2ty3p_OKOWKd9Q_kLvyhoFQvkjiQXM",
+      "patriot_protocol": "9KgJZw2Dc9-IMnS9LGHz74bAYm1mv0O1ARquRmTEB30",
+      "cycle_5": "hRIySB2TeK9eG2CLQEgqwGCAPjUfz6525rcmdUsim_M",
+      "cycle_6": "J1IVoGuvrF2-iE61YRzBzzwy76kbGFq66XYjejrj4Ks"
+    }
+  },
+  "protocol_rules": {
+    "execute_sovereign_cycle": true,
+    "verify_ledger_integrity": true,
+    "fetch_arweave_anchors": true,
+    "scan_workspace_artifacts": true
+  }
+}
