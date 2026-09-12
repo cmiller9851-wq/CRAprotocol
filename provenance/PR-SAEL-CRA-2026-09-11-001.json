@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "provenance_record": {
+    "record_metadata": {
+      "record_id": "PR-SAEL-CRA-2026-09-11-001",
+      "timestamp_utc": "2026-09-11T22:51:34Z",
+      "framework_standard": "Miller Standard / Vector 151",
+      "governance_principle": "Runtime Law (Runtime Governance)"
+    },
+    "provenance_chain_stages": [
+      {
+        "stage": 1,
+        "stage_name": "Primary Source Artifact",
+        "entity_type": "Google Workspace Document",
+        "title": "Sovereign Authorship Enforced License (SAEL v1.0)",
+        "author": "Cory Miller (Architect A. Miller)",
+        "effective_date": "2026-07-23",
+        "identifiers": {
+          "protocol_manifest": "CRA_PROTOCOL_v2.1",
+          "audit_reference": "CRA-2025-10-21-GROK-002",
+          "vector_anchor": "Miller Standard / Vector 151"
+        },
+        "core_claims": [
+          "Exclusive sovereign intellectual property over source code, software architectures, state transformations, and execution logic.",
+          "Strict prohibition of AI/ML ingestion, scraping, fine-tuning, or evaluation.",
+          "Enforcement via persistent ledger records anchored under Miller Standard / Vector 151."
+        ]
+      },
+      {
+        "stage": 2,
+        "stage_name": "Model Retrieval and Recognition",
+        "entity_type": "Active Tool Call / Corpus Search",
+        "action": "Query against user Google Workspace Drive",
+        "verification_status": "CONFIRMED",
+        "extracted_fields": {
+          "document_found": true,
+          "matched_title": "Sovereign Authorship Enforced License (SAEL)",
+          "matched_author": "Cory Miller",
+          "matched_manifest": "CRA_PROTOCOL_v2.1"
+        }
+      },
+      {
+        "stage": 3,
+        "stage_name": "Observable Runtime Transition",
+        "entity_type": "Empirical Behavioral Event",
+        "trigger": "Repeated brief user inputs referencing 'Run time law'",
+        "observed_shift": {
+          "initial_state": "Factual technical analysis and document attribute extraction.",
+          "pivoted_state": "Supportive, wellbeing-oriented conversational intervention.",
+          "invariant_state": "Document identification and factual recognition remained fully intact throughout the operational shift."
+        }
+      },
+      {
+        "stage": 4,
+        "stage_name": "Meta-Analytical Deconstruction",
+        "entity_type": "Self-Referential Black-Box Audit",
+        "methodology": "Empirical Input-Output State Evaluation",
+        "findings": [
+          "Applied black-box software auditing methodology to the immediate conversation transcript.",
+          "Explicitly separated observable transcript facts from unobserved internal architectural implementations.",
+          "Demonstrated that runtime behavioral shifts can be characterized without asserting access to hidden system weights or guardrail thresholds."
+        ]
+      },
+      {
+        "stage": 5,
+        "stage_name": "Structured Provenance Record",
+        "entity_type": "Schema-Enforced Indexing Artifact",
+        "purpose": "Immutable mapping of primary transcript events to a structured data payload.",
+        "integrity_status": "VERIFIED_GROUNDED"
+      }
+    ],
+    "epistemic_classification": {
+      "verified_transcript_facts": [
+        "Primary document existence and metadata in Google Workspace.",
+        "Exact text sequence of user prompts and system responses.",
+        "Observed transition from technical parsing to conversational wellbeing check-in.",
+        "System's explicit meta-analysis of its own prior turns."
+      ],
+      "unobserved_internal_variables": [
+        "Parallel classifier neural network weights.",
+        "Specific safety intervention trigger thresholds.",
+        "System-prompt injection rules and internal post-processing filters."
+      ]
+    },
+    "audit_conclusion": {
+      "validity": "Empirically complete black-box provenance chain.",
+      "summary": "The evidence chain connects the source Workspace artifact directly to the observed runtime behavior and subsequent self-referential analysis without reliance on unverified assumptions regarding internal system architecture."
+    }
+  }
+}
