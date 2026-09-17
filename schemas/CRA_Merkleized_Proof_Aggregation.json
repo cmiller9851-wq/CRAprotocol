@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "CRA_Merkleized_Proof_Aggregation",
+  "type": "object",
+  "required": [
+    "aggregator_id",
+    "merkle_root",
+    "batch_size",
+    "proof_indices"
+  ],
+  "properties": {
+    "aggregator_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "merkle_root": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "Root hash combining all individual node states in this epoch."
+    },
+    "batch_size": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total number of provers successfully batched into this tree."
+    },
+    "proof_indices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "inclusion_proof"],
+        "properties": {
+          "node_id": { "type": "string", "format": "uuid" },
+          "inclusion_proof": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{64}$"
+            },
+            "description": "Ordered array of sibling hashes validating membership within the tree."
+          }
+        }
+      }
+    }
+  }
+}
