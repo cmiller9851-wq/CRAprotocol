@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "CRA_Local_Node_Attestation",
+  "type": "object",
+  "required": [
+    "node_id",
+    "timestamp",
+    "hardware_identity",
+    "firmware_measurements"
+  ],
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique cryptographic identifier for the swarm node prover."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 network-coordinated timestamp of measurement."
+    },
+    "hardware_identity": {
+      "type": "object",
+      "required": ["dice_pubkey_hash", "security_version"],
+      "properties": {
+        "dice_pubkey_hash": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "SHA-256 hash of the node's Device Identifier Composition Engine public key."
+        },
+        "security_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "firmware_measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["layer_index", "measurement_hash", "authority_id"],
+        "properties": {
+          "layer_index": { "type": "integer" },
+          "measurement_hash": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$"
+          },
+          "authority_id": { "type": "string" }
+        }
+      }
+    }
+  }
+}
