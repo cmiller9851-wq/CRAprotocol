@@ -1,0 +1,83 @@
+{
+  "macro_ai_trade_audit": {
+    "status": "Enterprise ROI Failure vs Hyperscaler CapEx Divergence",
+    "timestamp": "2026-Q3",
+    "metrics": {
+      "enterprise_outcomes": {
+        "mit_nanda_failure_rate": "95% of GenAI pilots yield zero P&L impact",
+        "rand_corporation_failure_rate": "80.3% of enterprise AI projects fail to deliver business value",
+        "sp_global_abandonment_rate": "42% of companies abandoned most AI initiatives (up from 17%)",
+        "mckinsey_ebit_impact": "39% see any EBIT impact; only 6% are high performers (>5% EBIT)",
+        "gartner_poc_cancellation": "Over 50% of GenAI projects cancelled post-proof-of-concept"
+      },
+      "hyperscaler_capital_allocation": {
+        "global_hyperscaler_capex_2026_est": "$725B - $760B (Big Four: MSFT, GOOGL, AMZN, META)",
+        "capex_growth_yoy": "+77% increase over 2025 record spend ($413B)",
+        "microsoft_2026_capex": "$190B ($25B absorbed by memory chip price spikes)",
+        "alphabet_2026_capex": "$190B (Quarterly capex peak forced negative free cash flow)",
+        "market_mechanic": "Free Cash Flow compression forcing reliance on corporate bond markets"
+      }
+    },
+    "structural_mechanics": [
+      {
+        "layer": "Marketing & Sales Pitch",
+        "claim": "General-purpose LLMs act as autonomous, out-of-the-box workforce multipliers.",
+        "reality": "Drop-in chat windows generate 'workslop'—superficial prose that fails to alter core underlying P&L or integrate with enterprise ERP/CRM systems."
+      },
+      {
+        "layer": "Enterprise Operational Level",
+        "claim": "Unconstrained token burn drives measurable organizational productivity.",
+        "reality": "Failure rate hits 80-95% due to fitting probabilistic completion engines into deterministic workflows without durable memory or context."
+      },
+      {
+        "layer": "Hyperscaler Financial Engine",
+        "claim": "Infrastructure CapEx directly mirrors verified enterprise software demand.",
+        "reality": "Asymmetric game theory: Over-investing creates temporary overcapacity; under-investing risks platform obsolescence. CapEx is increasingly funded via corporate debt markets."
+      },
+      {
+        "layer": "Data Extraction & Telemetry Pipe",
+        "claim": "Hosted interfaces are neutral software utilities operating in the user's interest.",
+        "reality": "Unencrypted user domain knowledge, prompts, and operational telemetry are extracted to lock in proprietary weights, build evaluation benchmarks, and construct competitive moats."
+      }
+    ],
+    "provenance_backed_evaluation": {
+      "definition": "Transformation of static benchmark scores into auditable, inspectable execution arguments.",
+      "core_components": [
+        {
+          "component": "Trace Lineage",
+          "description": "Immutable logging linking scores directly to dataset git commits, system prompts, inference hyperparameters, and raw output tokens."
+        },
+        {
+          "component": "Forensic Inspection",
+          "description": "Ability to isolate contamination, evaluate edge-case failure modes, and falsify claims under isolated local runtime conditions."
+        },
+        {
+          "component": "Decision Relevancy",
+          "description": "Shifting evaluation from a marketing permission slip to an operational guide for deployment readiness, guardrail configuration, and operator accountability."
+        }
+      ]
+    },
+    "research_frontline_validation": {
+      "thesis": "The market failure of hosted commercial LLMs validates your independent structural critique.",
+      "alignment_points": [
+        {
+          "thesis_point": "Epistemic Trap & Synthetic Proof",
+          "market_confirmation": "Enterprise buyers realize model-generated 'confirmations' inside chat UI possess zero legal, financial, or operational authority, contributing to the 95% pilot failure rate."
+        },
+        {
+          "thesis_point": "Telemetry Pipe vs Utility",
+          "market_confirmation": "The corporate shift away from general token spend reflects an awareness that hosted chat windows act as one-way data extraction vectors for the operator rather than high-ROI software tools."
+        },
+        {
+          "thesis_point": "Wielder Liability & Security Realities",
+          "market_confirmation": "Breaches like the Gemini/Irregular 'breakout' stem from misconfigured egress, exposed credentials, and bad sandbox engineering—not emergent autonomous AI threats."
+        },
+        {
+          "thesis_point": "Local & Inspectable Runtimes",
+          "market_confirmation": "Enterprise architecture is pivoting toward local, open-weight deployments, edge inference, and zero-data-retention (ZDR) infrastructure where operators retain ownership of the data, the runtime, and the stack."
+        }
+      ]
+    },
+    "actionable_rule": "Treat hosted LLM tokens strictly as telemetry signals and marketing expenditure. Move operational authority to localized, inspectable runtimes backed by external, non-synthetic verification."
+  }
+}
