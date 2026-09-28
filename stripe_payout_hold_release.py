@@ -72,23 +72,30 @@ class StripePayoutHoldReleaseEngine:
     
     def _fetch_settlement_transaction_history(self, days: int = 90) -> Dict:
         """
-        Retrieves transaction history from settlement ledger
-        Provides 90-day transaction proof to Stripe
+        Retrieves local transaction history when the optional ledger exists.
         """
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            
-            # Get transactions from last N days
-            start_date = (datetime.now() - timedelta(days=days)).isoformat()
-            
-            cursor.execute('''
-                SELECT transaction_id, amount_usd, merchant_name, status, timestamp
-                FROM card_transactions
-                WHERE timestamp > ?
-                ORDER BY timestamp DESC
-            ''', (start_date,))
-            
-            results = cursor.fetchall()
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+
+                start_date = (datetime.now() - timedelta(days=days)).isoformat()
+                cursor.execute('''
+                    SELECT transaction_id, amount_usd, merchant_name, status, timestamp
+                    FROM card_transactions
+                    WHERE timestamp > ?
+                    ORDER BY timestamp DESC
+                ''', (start_date,))
+                results = cursor.fetchall()
+        except sqlite3.Error as exc:
+            return {
+                "status": "LOCAL_LEDGER_UNAVAILABLE",
+                "reason": f"Local CRA ledger could not be read: {exc}",
+                "reporting_period_days": days,
+                "transaction_count": 0,
+                "total_transaction_volume_usd": 0,
+                "source": self.db_path,
+                "stripe_verified": False,
+            }
         
         transactions = [
             {
@@ -117,30 +124,37 @@ class StripePayoutHoldReleaseEngine:
     
     def _fetch_digital_card_audit_trail(self) -> Dict:
         """
-        Retrieves all provisioned digital cards & their audit logs
-        Proves business infrastructure & compliance
+        Retrieves local digital-card records when the optional ledger exists.
         """
-        with sqlite3.connect(self.db_path) as conn:
-            cursor = conn.cursor()
-            
-            # Get all active cards
-            cursor.execute('''
-                SELECT card_id, card_type, status, holder_name, created_at, activated_at
-                FROM digital_cards
-                ORDER BY created_at DESC
-            ''')
-            
-            cards = cursor.fetchall()
-            
-            # Get audit logs
-            cursor.execute('''
-                SELECT card_id, action, actor, timestamp, audit_payload
-                FROM provisioning_audit
-                ORDER BY timestamp DESC
-                LIMIT 100
-            ''')
-            
-            audits = cursor.fetchall()
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+
+                cursor.execute('''
+                    SELECT card_id, card_type, status, holder_name, created_at, activated_at
+                    FROM digital_cards
+                    ORDER BY created_at DESC
+                ''')
+                cards = cursor.fetchall()
+
+                cursor.execute('''
+                    SELECT card_id, action, actor, timestamp, audit_payload
+                    FROM provisioning_audit
+                    ORDER BY timestamp DESC
+                    LIMIT 100
+                ''')
+                audits = cursor.fetchall()
+        except sqlite3.Error as exc:
+            return {
+                "status": "LOCAL_CARD_EVIDENCE_UNAVAILABLE",
+                "reason": f"Local digital-card records could not be read: {exc}",
+                "total_cards_provisioned": 0,
+                "active_cards": 0,
+                "cards": [],
+                "audit_trail": [],
+                "compliance_status": "LOCAL_EVIDENCE_UNAVAILABLE",
+                "stripe_verified": False,
+            }
         
         return {
             "total_cards_provisioned": len(cards),
@@ -255,7 +269,7 @@ class StripePayoutHoldReleaseEngine:
         """
         history = self._fetch_settlement_transaction_history(days=90)
         return {
-            "status": "LOCAL_LEDGER_REPORTED",
+            "status": history.get("status", "LOCAL_LEDGER_REPORTED"),
             "transaction_count": history["transaction_count"],
             "total_transaction_volume_usd": history["total_transaction_volume_usd"],
             "source": "cra_digital_cards.db",
