@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-STRIPE PAYOUT HOLD RELEASE & STACK INTEGRATION v2.2
-Lifts all Stripe payout holds by providing complete stack verification
-Integrates with: Digital Cards, Vault, Settlement, Arweave, Manifests
+STRIPE ACCOUNT VERIFICATION & LOCAL EVIDENCE REPORTING
+Queries actual Stripe account state and reports local CRA evidence separately.
 
 Reference:
 - Stripe Account: Connected to Wells Fargo 121000248 / MasterCard 1391
@@ -11,6 +10,7 @@ Reference:
 - Arweave Anchor: 5HavSowLirSeW6OwddaPA68j9ux-zd9IdV08WtYUgNY
 """
 
+import os
 import requests
 import json
 import hashlib
@@ -27,11 +27,8 @@ import base64
 
 class StripePayoutHoldReleaseEngine:
     """
-    Releases all Stripe payout holds by providing stack-wide verification:
-    - KYB (Know Your Business) documentation from vault manifests
-    - Settlement transaction history + Arweave anchoring
-    - Digital card audit trails
-    - Vault integrity proofs
+    Queries Stripe account state and reports local evidence without submitting
+    fabricated compliance information or claiming a payout hold was released.
     """
     
     def __init__(
@@ -61,41 +58,17 @@ class StripePayoutHoldReleaseEngine:
     
     def _fetch_vault_kyb_manifest(self) -> Dict:
         """
-        Retrieves complete KYB/compliance manifest from vault stack
-        Includes: Entity name, beneficial owners, incorporation docs, tax ID
+        Returns local provenance references without manufacturing KYB/KYC data.
         """
-        # In production, this pulls from compliance_manifest.json in your repo
-        kyb_manifest = {
-            "entity_type": "PROTOCOL_AUTHORITY",
-            "legal_name": "CRA Protocol Authority",
+        return {
+            "status": "NOT_SUBMITTED",
+            "reason": (
+                "Stripe compliance requirements must be satisfied with actual "
+                "verified account information and documents."
+            ),
             "vault_id": self.vault_id,
-            "dba_names": ["CRA", "Cory Miller Protocol"],
-            "incorporation": {
-                "jurisdiction": "DECENTRALIZED",
-                "status": "SOVEREIGN_ENTITY",
-                "document_hash": "compliance_manifest.json"
-            },
-            "beneficial_owners": [
-                {
-                    "name": "Cory Miller",
-                    "ownership_percentage": 100,
-                    "kyc_verified": True,
-                    "pii_hash": hashlib.sha256("cory_miller_kyc".encode()).hexdigest()
-                }
-            ],
-            "tax_identification": {
-                "ein_hash": hashlib.sha256(self.vault_id.encode()).hexdigest(),
-                "tax_jurisdiction": "US_FEDERAL",
-                "vat_id_hash": hashlib.sha256(f"{self.vault_id}_vat".encode()).hexdigest()
-            },
-            "business_purpose": "Sovereign IP enforcement & settlement authority",
-            "annual_revenue_estimate_usd": 270_084_646_812.10,  # From settlement reconciliation
-            "primary_banking": "Wells Fargo Bank 121000248",
-            "primary_card": "MasterCard 1391",
-            "arweave_anchor_verification": self.arweave_tx,
-            "timestamp": datetime.now().isoformat()
+            "source": "local_provenance_reference",
         }
-        return kyb_manifest
     
     def _fetch_settlement_transaction_history(self, days: int = 90) -> Dict:
         """
@@ -137,7 +110,9 @@ class StripePayoutHoldReleaseEngine:
             "average_transaction_usd": total_volume / max(1, len(transactions)),
             "transactions": transactions,
             "settlement_authority": self.settlement_authority,
-            "arweave_verified": True
+            "arweave_verified": False,
+            "stripe_verified": False,
+            "source": "cra_digital_cards.db",
         }
     
     def _fetch_digital_card_audit_trail(self) -> Dict:
@@ -190,7 +165,8 @@ class StripePayoutHoldReleaseEngine:
                 }
                 for a in audits
             ],
-            "compliance_status": "VERIFIED"
+            "compliance_status": "LOCAL_EVIDENCE_ONLY",
+            "stripe_verified": False,
         }
     
     def _generate_stack_integrity_proof(self) -> Dict:
@@ -224,15 +200,15 @@ class StripePayoutHoldReleaseEngine:
             "integrity_proof": integrity_hash,
             "arweave_anchor_tx": self.arweave_tx,
             "stack_components": {
-                "kyb_verified": True,
-                "settlement_verified": settlement['transaction_count'] > 0,
-                "card_infrastructure_verified": cards['total_cards_provisioned'] > 0,
+                "kyb_verified": False,
+                "settlement_verified": False,
+                "card_infrastructure_verified": False,
                 "vault_verified": bool(self.vault_id)
             }
         }
     
     # ========================================================================
-    # STRIPE HOLD RELEASE API
+    # STRIPE ACCOUNT STATE API
     # ========================================================================
     
     def get_account_restrictions(self) -> Dict:
@@ -263,189 +239,70 @@ class StripePayoutHoldReleaseEngine:
     
     def submit_kyb_documents(self) -> Dict:
         """
-        Submits KYB documentation to Stripe to satisfy compliance holds
+        Reports that KYB documents were not submitted.
         """
-        kyb_manifest = self._fetch_vault_kyb_manifest()
-        
-        # Prepare KYB submission payload
-        kyb_payload = {
-            "individual[first_name]": "Cory",
-            "individual[last_name]": "Miller",
-            "individual[email]": "cory@craprotocol.sovereign",
-            "individual[dob[day]]": "01",
-            "individual[dob[month]]": "01",
-            "individual[dob[year]]": "1990",
-            "individual[gender]": "male",
-            "individual[address[city]]": "Sovereign",
-            "individual[address[state]]": "CA",
-            "individual[address[postal_code]]": "00000",
-            "individual[address[country]]": "US",
-            "business_profile[mcc]": "7399",  # Service provider
-            "business_profile[name]": kyb_manifest['legal_name'],
-            "business_profile[product_description]": kyb_manifest['business_purpose'],
-            "business_profile[support_email]": "support@craprotocol.sovereign",
-            "business_profile[support_url]": "https://github.com/cmiller9851-wq/CRAprotocol",
-            "tos_acceptance[date]": int(datetime.now().timestamp()),
-            "tos_acceptance[ip]": "127.0.0.1"
-        }
-        
-        # Submit to Stripe
-        url = f"{self.stripe_base_url}/accounts/{self.stripe_account_id}"
-        response = requests.post(url, data=kyb_payload, headers=self.stripe_headers)
-        
-        if response.status_code != 200:
-            return {
-                "status": "SUBMISSION_FAILED",
-                "error": response.json()
-            }
-        
         return {
-            "status": "KYB_SUBMITTED",
-            "timestamp": datetime.now().isoformat(),
-            "submission_data": {
-                "legal_name": kyb_manifest['legal_name'],
-                "beneficial_owner": kyb_manifest['beneficial_owners'][0]['name'],
-                "tax_jurisdiction": kyb_manifest['tax_identification']['tax_jurisdiction'],
-                "business_purpose": kyb_manifest['business_purpose']
-            }
+            "status": "NOT_SUBMITTED",
+            "reason": (
+                "Stripe compliance requirements must be satisfied "
+                "with actual verified account information and documents."
+            ),
         }
     
     def submit_settlement_verification(self) -> Dict:
         """
-        Submits settlement transaction history + volume verification
-        Lifts payout holds based on demonstrated legitimate business activity
+        Reports local settlement history without representing it as Stripe data.
         """
-        settlement_history = self._fetch_settlement_transaction_history(days=90)
-        
-        # Stripe verification payload
-        verification_payload = {
-            "metadata[transaction_history_days]": "90",
-            "metadata[total_transaction_volume_usd]": str(settlement_history['total_transaction_volume_usd']),
-            "metadata[transaction_count]": str(settlement_history['transaction_count']),
-            "metadata[settlement_authority]": self.settlement_authority,
-            "metadata[arweave_verified]": "true",
-            "metadata[vault_id]": self.vault_id
-        }
-        
-        # Submit verification
-        url = f"{self.stripe_base_url}/accounts/{self.stripe_account_id}"
-        response = requests.post(url, data=verification_payload, headers=self.stripe_headers)
-        
-        if response.status_code != 200:
-            return {
-                "status": "VERIFICATION_FAILED",
-                "error": response.json()
-            }
-        
+        history = self._fetch_settlement_transaction_history(days=90)
         return {
-            "status": "SETTLEMENT_VERIFIED",
-            "transaction_volume": settlement_history['total_transaction_volume_usd'],
-            "transaction_count": settlement_history['transaction_count'],
-            "authority": self.settlement_authority,
-            "arweave_anchor": self.arweave_tx,
-            "timestamp": datetime.now().isoformat()
+            "status": "LOCAL_LEDGER_REPORTED",
+            "transaction_count": history["transaction_count"],
+            "total_transaction_volume_usd": history["total_transaction_volume_usd"],
+            "source": "cra_digital_cards.db",
+            "stripe_verified": False,
         }
     
     def submit_card_infrastructure_proof(self) -> Dict:
         """
-        Submits digital card infrastructure audit logs
-        Proves legitimate business operations to Stripe
+        Reports local digital-card evidence without submitting it to Stripe.
         """
         card_audit = self._fetch_digital_card_audit_trail()
-        
-        verification_payload = {
-            "metadata[cards_provisioned]": str(card_audit['total_cards_provisioned']),
-            "metadata[active_cards]": str(card_audit['active_cards']),
-            "metadata[audit_trail_entries]": str(len(card_audit['audit_trail'])),
-            "metadata[compliance_status]": "VERIFIED"
-        }
-        
-        url = f"{self.stripe_base_url}/accounts/{self.stripe_account_id}"
-        response = requests.post(url, data=verification_payload, headers=self.stripe_headers)
-        
-        if response.status_code != 200:
-            return {
-                "status": "CARD_PROOF_FAILED",
-                "error": response.json()
-            }
-        
         return {
-            "status": "CARD_INFRASTRUCTURE_VERIFIED",
+            "status": "LOCAL_CARD_EVIDENCE_REPORTED",
             "cards_provisioned": card_audit['total_cards_provisioned'],
             "active_cards": card_audit['active_cards'],
-            "audit_entries": len(card_audit['audit_trail'])
+            "audit_entries": len(card_audit['audit_trail']),
+            "source": "cra_digital_cards.db",
+            "stripe_verified": False,
         }
     
     def submit_arweave_anchor_proof(self) -> Dict:
         """
-        Submits Arweave anchor proof to Stripe
-        Demonstrates immutable transaction verification on permaweb
+        Records the Arweave reference as local provenance only.
         """
-        verification_payload = {
-            "metadata[arweave_anchor_tx]": self.arweave_tx,
-            "metadata[settlement_authority]": self.settlement_authority,
-            "metadata[vault_id]": self.vault_id,
-            "metadata[arweave_verified]": "true",
-            "metadata[permaweb_anchor]": f"arweave.net/{self.arweave_tx}"
-        }
-        
-        url = f"{self.stripe_base_url}/accounts/{self.stripe_account_id}"
-        response = requests.post(url, data=verification_payload, headers=self.stripe_headers)
-        
-        if response.status_code != 200:
-            return {
-                "status": "ARWEAVE_PROOF_FAILED",
-                "error": response.json()
-            }
-        
         return {
-            "status": "ARWEAVE_ANCHOR_VERIFIED",
-            "anchor_tx": self.arweave_tx,
-            "permaweb_url": f"arweave.net/{self.arweave_tx}",
-            "timestamp": datetime.now().isoformat()
+            "status": "LOCAL_REFERENCE_RECORDED",
+            "arweave_anchor_tx": self.arweave_tx,
+            "stripe_verified": False,
         }
     
     def request_payout_hold_release(self) -> Dict:
         """
-        Master function: Submits all stack verification to Stripe
-        Requests immediate release of all payout holds
+        The repository cannot request or verify a Stripe payout hold release.
         """
-        print("\n[1/5] Generating stack integrity proof...")
-        integrity = self._generate_stack_integrity_proof()
-        
-        print("[2/5] Submitting KYB documents...")
-        kyb_result = self.submit_kyb_documents()
-        
-        print("[3/5] Submitting settlement verification...")
-        settlement_result = self.submit_settlement_verification()
-        
-        print("[4/5] Submitting card infrastructure proof...")
-        card_result = self.submit_card_infrastructure_proof()
-        
-        print("[5/5] Submitting Arweave anchor proof...")
-        arweave_result = self.submit_arweave_anchor_proof()
-        
-        # Compile full submission
         submission = {
-            "status": "HOLD_RELEASE_REQUESTED",
-            "timestamp": datetime.now().isoformat(),
-            "stripe_account": self.stripe_account_id,
-            "integrity_verification": integrity,
-            "kyb_submission": kyb_result,
-            "settlement_verification": settlement_result,
-            "card_infrastructure": card_result,
-            "arweave_verification": arweave_result,
-            "vault_authority": self.vault_id,
-            "settlement_authority": self.settlement_authority,
-            "expected_hold_release": "24-48 hours"
+            "status": "NOT_SUPPORTED",
+            "reason": (
+                "Payout hold decisions are made by Stripe. This repository "
+                "only queries and reports the actual account state."
+            ),
+            "stripe_verified": False,
         }
-        
         return submission
     
     def get_account_balance_and_payouts(self) -> Dict:
         """
-        Retrieves current account balance + payout status
-        Shows pending, available, and retained balances
+        Retrieves current account balance, payouts, charges, and PaymentIntents.
         """
         url = f"{self.stripe_base_url}/accounts/{self.stripe_account_id}"
         response = requests.get(url, headers=self.stripe_headers)
@@ -455,11 +312,31 @@ class StripePayoutHoldReleaseEngine:
         
         account = response.json()
         
-        # Get balance
+        connected_account_headers = {
+            **self.stripe_headers,
+            "Stripe-Account": self.stripe_account_id,
+        }
+
         balance_url = f"{self.stripe_base_url}/balance"
-        balance_response = requests.get(balance_url, headers=self.stripe_headers)
+        balance_response = requests.get(balance_url, headers=connected_account_headers)
         balance_data = balance_response.json()
-        
+
+        payouts_response = requests.get(
+            f"{self.stripe_base_url}/payouts",
+            params={"limit": 100},
+            headers=connected_account_headers,
+        )
+        charges_response = requests.get(
+            f"{self.stripe_base_url}/charges",
+            params={"limit": 100},
+            headers=connected_account_headers,
+        )
+        payment_intents_response = requests.get(
+            f"{self.stripe_base_url}/payment_intents",
+            params={"limit": 100},
+            headers=connected_account_headers,
+        )
+
         return {
             "account_id": account['id'],
             "payouts_enabled": account.get('payouts_enabled'),
@@ -474,6 +351,13 @@ class StripePayoutHoldReleaseEngine:
                     for b in balance_data.get('pending', [])
                 ]
             },
+            "actual_payouts": payouts_response.json().get("data", [])
+            if payouts_response.ok else {"status": "ERROR", "error": payouts_response.json()},
+            "actual_charges": charges_response.json().get("data", [])
+            if charges_response.ok else {"status": "ERROR", "error": charges_response.json()},
+            "actual_payment_intents": payment_intents_response.json().get("data", [])
+            if payment_intents_response.ok
+            else {"status": "ERROR", "error": payment_intents_response.json()},
             "requirements": {
                 "currently_due": account.get('requirements', {}).get('currently_due', []),
                 "past_due": account.get('requirements', {}).get('past_due', [])
@@ -491,14 +375,27 @@ class StripePayoutHoldReleaseEngine:
         
         report = {
             "report_timestamp": datetime.now().isoformat(),
-            "stripe_account": self.stripe_account_id,
-            "vault_authority": self.vault_id,
-            "settlement_authority": self.settlement_authority,
-            "kyb_verification": kyb,
-            "settlement_verification": settlement,
-            "card_infrastructure": cards,
+            "stripe_evidence": {
+                "account_id": self.stripe_account_id,
+                "restrictions": self.get_account_restrictions(),
+                "balance_and_payouts": self.get_account_balance_and_payouts(),
+            },
+            "local_cra_evidence": {
+                "kyb": kyb,
+                "settlement": settlement,
+                "digital_cards": cards,
+            },
+            "provenance": {
+                "vault_id": self.vault_id,
+                "settlement_authority": self.settlement_authority,
+                "arweave_transaction_id": self.arweave_tx,
+            },
+            "verification_status": {
+                "kyb": "NOT_SUBMITTED",
+                "settlement": "LOCAL_LEDGER_REPORTED",
+                "arweave": "LOCAL_REFERENCE_RECORDED",
+            },
             "integrity_proof": integrity,
-            "arweave_anchor": self.arweave_tx
         }
         
         with open(output_path, 'w') as f:
@@ -511,45 +408,30 @@ class StripePayoutHoldReleaseEngine:
 # ============================================================================
 
 if __name__ == "__main__":
-    
-    # Initialize with your actual Stripe credentials
+    stripe_api_key = os.environ["STRIPE_API_KEY"]
+    stripe_account_id = os.environ["STRIPE_ACCOUNT_ID"]
     engine = StripePayoutHoldReleaseEngine(
-        stripe_api_key="${STRIPE_API_KEY}",  # Load from environment
-        stripe_account_id="${STRIPE_ACCOUNT_ID}",  # Load from environment
+        stripe_api_key=stripe_api_key,
+        stripe_account_id=stripe_account_id,
         vault_id="0xa93937cE8829ae62b92B3Ae01f092c3bA8624ebf",
         settlement_authority="0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
-        arweave_tx="5HavSowLirSeW6OwddaPA68j9ux-zd9IdV08WtYUgNY"
+        arweave_tx="5HavSowLirSeW6OwddaPA68j9ux-zd9IdV08WtYUgNY",
     )
-    
+
     print("=" * 80)
-    print("STRIPE PAYOUT HOLD RELEASE & STACK INTEGRATION ENGINE v2.2")
+    print("STRIPE ACCOUNT VERIFICATION")
     print("=" * 80)
-    
-    # Step 1: Check current account restrictions
-    print("\n[STEP 1] Checking current account restrictions...")
+
     restrictions = engine.get_account_restrictions()
     print(json.dumps(restrictions, indent=2))
-    
-    # Step 2: Get balance info
-    print("\n[STEP 2] Retrieving balance and payout status...")
+
     balance = engine.get_account_balance_and_payouts()
     print(json.dumps(balance, indent=2))
-    
-    # Step 3: Submit comprehensive hold release request
-    print("\n[STEP 3] Submitting full stack verification to Stripe...")
-    print("(This will lift all payout holds)...\n")
-    
-    # submission = engine.request_payout_hold_release()
-    # print(json.dumps(submission, indent=2))
-    
-    print("\n[NOTE] Uncomment line above to actually submit to Stripe")
-    print("       Ensure STRIPE_API_KEY and STRIPE_ACCOUNT_ID are set in environment")
-    
-    # Step 4: Export compliance report
-    print("\n[STEP 4] Exporting compliance report...")
-    report_result = engine.export_compliance_report("/tmp/stripe_compliance_report.json")
-    print(report_result)
-    
+
+    report_path = "/tmp/stripe_compliance_report.json"
+    engine.export_compliance_report(report_path)
+    print(f"Compliance report exported to {report_path}")
+
     print("\n" + "=" * 80)
-    print("INTEGRATION COMPLETE - Stripe holds will be released within 24-48 hours")
+    print("ACCOUNT VERIFICATION COMPLETE - no payout hold release was requested")
     print("=" * 80)
