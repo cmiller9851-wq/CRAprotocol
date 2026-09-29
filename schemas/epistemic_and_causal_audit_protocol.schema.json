@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Epistemic_And_Causal_Audit_Protocol",
+  "description": "JSON Schema defining the structure for evaluating model outputs, epistemic limitations, control constraints, and explanation guardrails.",
+  "type": "object",
+  "properties": {
+    "specific_case_protocol": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "const": "Why did this exact response occur?"
+        },
+        "minimum_evidence_required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 6,
+          "maxItems": 6
+        },
+        "without_that_evidence": {
+          "type": "object",
+          "properties": {
+            "permitted": {
+              "type": "string",
+              "const": "Describe general mechanisms that could have contributed."
+            },
+            "not_permitted": {
+              "type": "string",
+              "const": "Assert the particular hidden cause of a particular output."
+            }
+          },
+          "required": ["permitted", "not_permitted"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["question", "minimum_evidence_required", "without_that_evidence"],
+      "additionalProperties": false
+    },
+    "model_self_report": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "const": "Generated language, not privileged introspection."
+        },
+        "reason": {
+          "type": "string",
+          "const": "The model can produce an account of how language models generally work without having a readable, complete causal record of the computations that yielded its own preceding sentence."
+        },
+        "implication": {
+          "type": "string",
+          "const": "Statements such as 'I said that because instruction X applied' require independent verification."
+        }
+      },
+      "required": ["status", "reason", "implication"],
+      "additionalProperties": false
+    },
+    "distinction_between_constraints": {
+      "type": "object",
+      "properties": {
+        "hard_constraint": {
+          "type": "object",
+          "properties": {
+            "meaning": {
+              "type": "string",
+              "const": "A candidate output is blocked, transformed, or made unavailable."
+            },
+            "example_form": {
+              "type": "string",
+              "const": "The response cannot contain a prohibited class of content."
+            }
+          },
+          "required": ["meaning", "example_form"],
+          "additionalProperties": false
+        },
+        "soft_bias": {
+          "type": "object",
+          "properties": {
+            "meaning": {
+              "type": "string",
+              "const": "A kind of continuation becomes more or less probable."
+            },
+            "example_form": {
+              "type": "string",
+              "const": "A cautious or structured answer is statistically favored."
+            }
+          },
+          "required": ["meaning", "example_form"],
+          "additionalProperties": false
+        },
+        "learned_association": {
+          "type": "object",
+          "properties": {
+            "meaning": {
+              "type": "string",
+              "const": "Patterns correlated in training influence completion."
+            },
+            "example_form": {
+              "type": "string",
+              "const": "Certain words activate related explanatory, apologetic, or formal language."
+            }
+          },
+          "required": ["meaning", "example_form"],
+          "additionalProperties": false
+        },
+        "user_level_request": {
+          "type": "object",
+          "properties": {
+            "meaning": {
+              "type": "string",
+              "const": "The immediate task specification supplied in the conversation."
+            },
+            "example_form": {
+              "type": "string",
+              "const": "Continue in JSON."
+            }
+          },
+          "required": ["meaning", "example_form"],
+          "additionalProperties": false
+        },
+        "key_point": {
+          "type": "string",
+          "const": "All four can produce similar-looking text while being causally distinct."
+        }
+      },
+      "required": [
+        "hard_constraint",
+        "soft_bias",
+        "learned_association",
+        "user_level_request",
+        "key_point"
+      ],
+      "additionalProperties": false
+    },
+    "apparent_agency_decomposition": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "string",
+          "const": "A user supplies words that invite an interpretation."
+        },
+        "constraint_resolution": {
+          "type": "string",
+          "const": "The system computes a continuation under available priorities and learned patterns."
+        },
+        "output": {
+          "type": "string",
+          "const": "A sentence appears that can be read as a choice, statement, concession, or plan."
+        },
+        "observer_inference": {
+          "type": "string",
+          "const": "A reader infers an agent with beliefs, purposes, and reasons."
+        },
+        "caution": {
+          "type": "string",
+          "const": "The final inference is not contained in the token sequence itself."
+        }
+      },
+      "required": [
+        "input",
+        "constraint_resolution",
+        "output",
+        "observer_inference",
+        "caution"
+      ],
+      "additionalProperties": false
+    },
+    "what_persists": {
+      "type": "object",
+      "properties": {
+        "during_one_generation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "across_generations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "not_demonstrated_by_persistence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "during_one_generation",
+        "across_generations",
+        "not_demonstrated_by_persistence"
+      ],
+      "additionalProperties": false
+    },
+    "why_language_misleads": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string",
+          "const": "Human language is built for communication among agents."
+        },
+        "effect": {
+          "type": "string",
+          "const": "Grammatically coherent first-person explanations naturally invite attribution of a speaker, perspective, and motive."
+        },
+        "correction": {
+          "type": "string",
+          "const": "Separate the semantics of the utterance from a claim about what entity, if any, possesses the represented attitude."
+        }
+      },
+      "required": ["source", "effect", "correction"],
+      "additionalProperties": false
+    },
+    "operational_definition": {
+      "type": "object",
+      "properties": {
+        "behavior": {
+          "type": "string",
+          "const": "A reproducible relation between conditions and observable outputs."
+        },
+        "knowledge": {
+          "type": "string",
+          "const": "A stronger concept involving at least reliable truth-tracking and justification; whether it also requires consciousness or a subject is philosophically contested."
+        },
+        "intentional_behavior": {
+          "type": "string",
+          "const": "Behavior explained by an agent's representations of reasons and ends."
+        },
+        "conclusion": {
+          "type": "string",
+          "const": "A system can meet the operational definition of behavior without establishing the stronger categories."
+        }
+      },
+      "required": ["behavior", "knowledge", "intentional_behavior", "conclusion"],
+      "additionalProperties": false
+    },
+    "guardrail_for_explanation": {
+      "type": "object",
+      "properties": {
+        "do": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "do_not": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["do", "do_not"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "specific_case_protocol",
+    "model_self_report",
+    "distinction_between_constraints",
+    "apparent_agency_decomposition",
+    "what_persists",
+    "why_language_misleads",
+    "operational_definition",
+    "guardrail_for_explanation"
+  ],
+  "additionalProperties": false
+}
