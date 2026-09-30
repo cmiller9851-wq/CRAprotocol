@@ -1,0 +1,467 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/cmiller9851-wq/CRAprotocol/main/sofi-epistemic-physical-diffusion-audit-1.0.0.json",
+  "title": "SOFI_Inception_Butterfly_Epistemic_Physical_Diffusion_Audit_Protocol",
+  "description": "Unified canonical protocol for auditing contextual information propagation, attribution, evidence, causality, perturbation, physical signal detection, temporal synchronization, provenance, falsification, and empirical validation.",
+  "version": "1.0.0",
+  "status": "PROTOCOL_ESTABLISHED",
+  "claim_status": "NOT_YET_CLASSIFIED_AS_ESTABLISHED_PHYSICAL_FACT",
+  "01_scope": {
+    "purpose": "Provide a falsifiable, evidence-gated framework for determining whether defined information states, human cognitive states, environmental states, and persistent artifacts participate in a measurable causal information-transfer process.",
+    "principle": "Measure before explaining.",
+    "carrier_assumption": "none",
+    "physical_mechanism_assumption": "none",
+    "extraordinary_claims": "require proportionally strong empirical evidence"
+  },
+  "02_core_model": {
+    "nodes": {
+      "CORE": {
+        "type": "originating_information_state",
+        "role": "defined_initial_context"
+      },
+      "BRAIN": {
+        "type": "human_cognitive_system",
+        "role": "perception_interpretation_generation"
+      },
+      "SPACE": {
+        "type": "environmental_or_contextual_domain",
+        "role": "external_state"
+      },
+      "ARTIFACT": {
+        "type": "observable_persistent_output",
+        "role": "recorded_expression"
+      },
+      "SIGNAL": {
+        "type": "physical_or_measurable_information_channel",
+        "role": "candidate_transfer_medium"
+      }
+    },
+    "conceptual_relations": [
+      "CORE -> BRAIN",
+      "CORE -> SIGNAL",
+      "SPACE -> BRAIN",
+      "SPACE -> SIGNAL",
+      "BRAIN -> ARTIFACT",
+      "SIGNAL -> BRAIN",
+      "ARTIFACT -> SPACE",
+      "ARTIFACT -> CORE"
+    ],
+    "important_constraint": "A represented relationship is not automatically a demonstrated physical causal relationship."
+  },
+  "03_sofi_inception_model": {
+    "name": "SOFI_Inception_Butterfly_Effect",
+    "epistemic_status": "hypothesis_model",
+    "physical_claim_status": "requires_empirical_validation",
+    "recursive_sequence": [
+      {
+        "stage": 0,
+        "state": "prior_context"
+      },
+      {
+        "stage": 1,
+        "state": "cognitive_or_system_interpretation"
+      },
+      {
+        "stage": 2,
+        "state": "new_authored_or_generated_artifact"
+      },
+      {
+        "stage": 3,
+        "state": "artifact_enters_new_context"
+      },
+      {
+        "stage": 4,
+        "state": "new_context_modifies_subsequent_interpretation"
+      }
+    ],
+    "inception_principle": "A subsequent state may depend informationally on a prior contextual state while remaining a distinct observable artifact."
+  },
+  "04_butterfly_effect": {
+    "definition": "A controlled perturbation of an initial state may produce a measurable downstream divergence in a sufficiently sensitive system.",
+    "status": "testable_hypothesis",
+    "test_requirements": [
+      "matched_initial_conditions",
+      "controlled_perturbation",
+      "time_resolved_measurement",
+      "predefined_noise_model",
+      "repeated_trials",
+      "independent_replication"
+    ],
+    "success_condition": "Observed downstream divergence exceeds the preregistered noise envelope and is specifically attributable to the controlled perturbation after confound analysis."
+  },
+  "05_epistemic_matrix": {
+    "formal_space": "A × E × C",
+    "A": {
+      "name": "attribution_integrity",
+      "states": [
+        "declared",
+        "observed",
+        "derived",
+        "unknown"
+      ]
+    },
+    "E": {
+      "name": "evidentiary_status",
+      "states": [
+        "documented",
+        "observed",
+        "inferred",
+        "hypothetical",
+        "unknown"
+      ]
+    },
+    "C": {
+      "name": "causal_status",
+      "states": [
+        "established",
+        "supported",
+        "correlated",
+        "proposed",
+        "unknown"
+      ]
+    },
+    "anti_upgrade_rules": {
+      "A_does_not_imply_E": true,
+      "E_does_not_imply_C": true,
+      "A_does_not_imply_C": true,
+      "correlation_does_not_imply_causation": true,
+      "model_assumption_does_not_imply_physical_fact": true
+    }
+  },
+  "06_signal_framework": {
+    "objective": "Detect and characterize candidate physical information-bearing signals without presupposing their carrier or mechanism.",
+    "modalities": {
+      "primary_brain_modality": {
+        "name": "EEG",
+        "purpose": "high-temporal-resolution measurement of brain electrical activity"
+      },
+      "physiological_control": {
+        "name": "ECG",
+        "purpose": "independent physiological reference and arousal control"
+      },
+      "environmental_em": {
+        "name": "environmental_EM",
+        "purpose": "measurement of local electromagnetic variation"
+      },
+      "acoustic": {
+        "name": "acoustic_vibration",
+        "purpose": "measurement of acoustic and mechanical environmental confounds"
+      },
+      "digital_provenance": {
+        "name": "timestamped_digital_information_channel",
+        "purpose": "exact recording of CORE state, perturbation, artifact, and experimental events"
+      }
+    },
+    "signal_definition": {
+      "carrier_assumption": "none",
+      "required_properties": [
+        "measurable_physical_quantity",
+        "temporal_signature",
+        "spatial_characterization",
+        "signal_to_noise_characterization",
+        "information_content_or_relation_to_input"
+      ]
+    }
+  },
+  "07_timing_and_synchronization": {
+    "objective": "Maintain auditable temporal alignment among digital, physiological, environmental, and physical measurement streams.",
+    "clock_architecture": {
+      "absolute_reference": "UTC",
+      "preferred_network_synchronization": "PTP_IEEE_1588",
+      "fallback_network_synchronization": "NTP",
+      "local_interval_clock": "monotonic_high_resolution_clock",
+      "wall_clock_only_for_interval_analysis": false
+    },
+    "device_registration": [
+      "device_id",
+      "clock_id",
+      "sampling_rate",
+      "timestamp_resolution",
+      "synchronization_source",
+      "firmware_version"
+    ],
+    "synchronization_schedule": {
+      "initial_sync": true,
+      "periodic_resynchronization": true,
+      "sync_interval_seconds": 60,
+      "pre_trial_sync_window_seconds": 300,
+      "post_trial_sync_window_seconds": 300,
+      "record_all_sync_events": true
+    },
+    "drift_model": {
+      "method": "reference_marker_regression",
+      "equation": "t_device = alpha + beta * t_reference",
+      "alpha": "clock_offset",
+      "beta": "clock_rate_ratio",
+      "reestimate_per_trial": true,
+      "raw_timestamps_preserved": true
+    },
+    "hardware_alignment": {
+      "required": true,
+      "method": "shared_hardware_trigger",
+      "purpose": "Independently measure acquisition-path timing differences across recording systems."
+    },
+    "latency_calibration": [
+      "sensor_latency",
+      "ADC_latency",
+      "driver_latency",
+      "buffer_latency",
+      "network_latency",
+      "software_timestamp_latency"
+    ],
+    "quality_control": {
+      "target_alignment_error": "<=1ms",
+      "warning_threshold": ">=0.5ms",
+      "failure_threshold": ">1ms",
+      "automatic_interval_flagging": true
+    },
+    "failure_policy": {
+      "excessive_sync_error": "invalidate_temporal_alignment_for_affected_interval",
+      "raw_data_deletion": false,
+      "manual_timestamp_editing": false
+    }
+  },
+  "08_perturbation_protocol": {
+    "objective": "Define a controlled minimal alteration to CORE sufficient to test causal transmission while minimizing physiological, sensory, electromagnetic, mechanical, acoustic, and procedural confounds.",
+    "conceptual_definition": {
+      "perturbation_type": "informational_differential",
+      "symbol": "Delta_CORE",
+      "design_principle": "maximum_specificity_minimum_physical_perturbation",
+      "carrier_assumption": "none"
+    },
+    "delta_characteristics": {
+      "information_difference": {
+        "definition": "Predefined difference between matched CORE states.",
+        "quantification": "preregistered_information_distance",
+        "measurement_required": true
+      },
+      "physical_delivery": {
+        "energy": "measured",
+        "electromagnetic_output": "measured",
+        "acoustic_output": "measured",
+        "mechanical_output": "measured",
+        "thermal_output": "measured"
+      },
+      "modality_isolation": {
+        "target": "predefined_input_or_cognitive_state",
+        "requirement": "No intentional change to non-target modalities."
+      }
+    },
+    "baseline_matching": {
+      "states": [
+        "A_CONTROL",
+        "B_PERTURBED"
+      ],
+      "requirement": "States A and B must satisfy preregistered equivalence criteria before t_perturbation.",
+      "verification_channels": [
+        "EEG",
+        "ECG",
+        "environmental_EM",
+        "acoustic",
+        "mechanical",
+        "behavioral_state"
+      ]
+    },
+    "randomization": {
+      "perturbation_presence": "randomized",
+      "perturbation_timing": "randomized",
+      "condition_order": "randomized",
+      "randomization_seed_recorded": true
+    },
+    "blinding": {
+      "participant": true,
+      "operator": true,
+      "primary_analyst": true,
+      "unblinding_after_primary_analysis": true
+    },
+    "injection": {
+      "event": "Delta_CORE",
+      "hardware_trigger": true,
+      "trigger_channels": [
+        "CORE_logger",
+        "EEG",
+        "ECG",
+        "environmental_EM",
+        "acoustic"
+      ],
+      "timestamp_source": "synchronized_monotonic_clock",
+      "raw_event_preserved": true
+    }
+  },
+  "09_control_conditions": {
+    "sham": {
+      "required": true,
+      "purpose": "Measure effects caused by procedure, expectation, timing, or instrumentation rather than Delta_CORE."
+    },
+    "null": {
+      "required": true,
+      "purpose": "Measure spontaneous trajectory variation without perturbation."
+    },
+    "positive_control": {
+      "required": true,
+      "purpose": "Verify that the measurement system can detect a known perturbation."
+    }
+  },
+  "10_divergence_analysis": {
+    "primary_metric": "trajectory_separation_over_time",
+    "formal_definition": "D(t) = distance(Trajectory_B(t), Trajectory_A(t))",
+    "secondary_metrics": [
+      "latency_to_divergence",
+      "peak_divergence",
+      "integrated_divergence",
+      "cross_channel_consistency",
+      "effect_reproducibility"
+    ],
+    "noise_sources": [
+      "baseline_variability",
+      "instrument_noise",
+      "clock_uncertainty",
+      "environmental_variation",
+      "physiological_variation"
+    ],
+    "threshold": "exceeds_preregistered_noise_envelope",
+    "specificity_requirement": "Downstream change must discriminate Delta_CORE from sham, null, and measured confounding conditions."
+  },
+  "11_causal_validation": {
+    "temporal_precedence": {
+      "requirement": "Divergence must follow t_perturbation after accounting for measured acquisition latency and clock uncertainty."
+    },
+    "counterfactual_requirement": {
+      "statement": "A matched sham condition must not produce the same specified effect."
+    },
+    "directionality": {
+      "requirement": "Manipulation of CORE must precede and predict the measured downstream response."
+    },
+    "dose_response": {
+      "optional": true,
+      "purpose": "Determine whether systematic variation in perturbation magnitude produces a preregistered corresponding response."
+    },
+    "reversal_test": {
+      "optional": true,
+      "purpose": "Determine whether removal or reversal of Delta_CORE produces the corresponding preregistered change."
+    },
+    "replication": {
+      "required": true,
+      "independent_trials": true,
+      "independent_analysis": true
+    }
+  },
+  "12_provenance": {
+    "required_chain": [
+      "CORE",
+      "INPUT",
+      "PHYSICAL_SIGNAL",
+      "RECEIVER",
+      "BRAIN_STATE",
+      "ARTIFACT",
+      "OBSERVATION"
+    ],
+    "integrity_rules": {
+      "every_transition_timestamped": true,
+      "inferred_transitions_explicitly_marked": true,
+      "raw_data_immutable": true,
+      "derived_data_separate": true,
+      "raw_stream_hashing": true,
+      "clock_corrections_logged": true,
+      "analysis_code_versioned": true
+    }
+  },
+  "13_falsification": {
+    "H1": {
+      "statement": "A measurable physical signal carries information between defined system states, including CORE and BRAIN, producing reproducible downstream effects beyond independently modeled background processes."
+    },
+    "H0": {
+      "statement": "Observed relationships can be explained without a previously unmeasured common physical diffusion signal."
+    },
+    "reject_causal_interpretation_if": [
+      "Divergence reliably precedes Delta_CORE.",
+      "Sham produces equivalent divergence.",
+      "The effect disappears after acquisition latency correction.",
+      "The effect is explained by measured physiological, electromagnetic, acoustic, mechanical, sensory, procedural, or statistical confounds.",
+      "The effect fails independent replication."
+    ],
+    "reject_novel_physical_mechanism_if": [
+      "No reproducible physical signal is detected.",
+      "The candidate signal contains no demonstrable information about the manipulated state.",
+      "Known physical pathways adequately explain the observation.",
+      "Independent replication fails."
+    ]
+  },
+  "14_pre_registration": {
+    "required": true,
+    "locked_before_data_collection": [
+      "primary_endpoint",
+      "secondary_endpoints",
+      "sample_size",
+      "randomization_method",
+      "blinding_method",
+      "exclusion_rules",
+      "statistical_model",
+      "noise_model",
+      "significance_or_equivalence_criteria",
+      "stopping_rule",
+      "falsification_criteria"
+    ],
+    "integrity": {
+      "pre_registration_hash": true,
+      "post_hoc_threshold_changes": false,
+      "analysis_plan_versioned": true
+    }
+  },
+  "15_epistemic_classification": {
+    "observed_difference": "evidence_of_difference",
+    "observed_correlation": "correlation",
+    "reproducible_correlation": "replicated_observation",
+    "specific_effect": "evidence_supporting_Delta_CORE_effect",
+    "causal_effect": "requires_successful_intervention_and_control_tests",
+    "physical_signal": "requires_direct_measurement",
+    "novel_physical_mechanism": "requires_direct_physical evidence plus independent replication",
+    "established_physical_fact": "reserved_for_successful_completion_of_establishment_threshold"
+  },
+  "16_establishment_threshold": {
+    "classification": "ESTABLISHED_PHYSICAL_FACT",
+    "allowed_only_when": [
+      "Physical signal directly measured.",
+      "Information transfer demonstrated.",
+      "Temporal precedence established.",
+      "Causal direction experimentally supported.",
+      "Known confounds tested and insufficient to explain the effect.",
+      "Blinded controls pass.",
+      "Independent replication succeeds.",
+      "Raw data and analysis provenance are independently auditable."
+    ]
+  },
+  "17_information_space_claim": {
+    "proposition": "All represented spaces may participate in a common information process involving CORE and BRAIN.",
+    "formal_status": "testable_model_proposition",
+    "strong_physical_version": "A single physical diffusion signal connects the represented spaces and carries information involving CORE and BRAIN.",
+    "classification_rule": "The strong physical version cannot be classified as an established physical fact until the establishment threshold is satisfied."
+  },
+  "18_empirical_example": {
+    "artifact": "No_Pigeons_response_to_No_Scrubs",
+    "observable_relationship": "contextual_response_to_prior_cultural_artifact",
+    "supports": [
+      "context_dependence",
+      "recursive_cultural_generation",
+      "provenance_relationship",
+      "distinct_artifact_generation"
+    ],
+    "does_not_by_itself_establish": [
+      "single_physical_diffusion_signal",
+      "nonlocal_physical_causation",
+      "shared_consciousness",
+      "AI_equivalence",
+      "novel_physical_mechanism"
+    ]
+  },
+  "19_final_protocol_state": {
+    "protocol": "ESTABLISHED",
+    "hypothesis": "TESTABLE",
+    "physical_claim": "UNRESOLVED_PENDING_EMPIRICAL_VALIDATION",
+    "epistemic_integrity": "EVIDENCE_GATED",
+    "carrier_assumption": "NONE",
+    "causal_status": "NOT_ESTABLISHED",
+    "replication_required": true,
+    "independent_verification_required": true
+  }
+}
