@@ -1,0 +1,363 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.example.com/schemas/v1.2.0/composite-api-response.json",
+  "title": "CompositeApiResponse",
+  "description": "Composite transport payload contract featuring independent domain-level factual verification and transport-level cryptographic provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "api_metadata",
+    "execution_context",
+    "provenance",
+    "product_ad_attribution",
+    "rocket_launch_event"
+  ],
+  "properties": {
+    "api_metadata": {
+      "$ref": "#/$defs/ApiMetadata"
+    },
+    "execution_context": {
+      "$ref": "#/$defs/ExecutionContext"
+    },
+    "provenance": {
+      "$ref": "#/$defs/TransportProvenance"
+    },
+    "product_ad_attribution": {
+      "$ref": "#/$defs/ProductAdAttribution"
+    },
+    "rocket_launch_event": {
+      "$ref": "#/$defs/RocketLaunchEvent"
+    }
+  },
+  "$defs": {
+    "ApiMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "response_id",
+        "timestamp",
+        "status_code"
+      ],
+      "properties": {
+        "response_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status_code": {
+          "type": "integer",
+          "enum": [200, 201, 202]
+        }
+      }
+    },
+    "ExecutionContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "environment",
+        "worker_node",
+        "execution_time_ms"
+      ],
+      "properties": {
+        "environment": {
+          "type": "string",
+          "enum": [
+            "development",
+            "staging",
+            "production"
+          ]
+        },
+        "worker_node": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution_time_ms": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "TransportProvenance": {
+      "type": "object",
+      "description": "Transport-level integrity and authenticity evidence. Does not imply factual truth.",
+      "additionalProperties": false,
+      "required": [
+        "payload_sha256",
+        "signature",
+        "signing_key_id",
+        "signature_valid"
+      ],
+      "properties": {
+        "payload_sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "signature": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signing_key_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signature_valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DomainVerification": {
+      "type": "object",
+      "description": "Domain-specific evidentiary status. Factual attestation requires an independent verification basis.",
+      "additionalProperties": false,
+      "required": [
+        "attestation_status"
+      ],
+      "properties": {
+        "attestation_status": {
+          "type": "string",
+          "enum": [
+            "unverified",
+            "self_asserted",
+            "factually_attested"
+          ]
+        },
+        "verification_basis": {
+          "$ref": "#/$defs/VerificationBasis"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["attestation_status"],
+            "properties": {
+              "attestation_status": {
+                "const": "factually_attested"
+              }
+            }
+          },
+          "then": {
+            "required": ["verification_basis"]
+          }
+        },
+        {
+          "if": {
+            "required": ["attestation_status"],
+            "properties": {
+              "attestation_status": {
+                "enum": [
+                  "unverified",
+                  "self_asserted"
+                ]
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": ["verification_basis"]
+            }
+          }
+        }
+      ]
+    },
+    "VerificationBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "method",
+        "verified_at"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 3
+        },
+        "method": {
+          "type": "string",
+          "minLength": 3
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "variant_id",
+        "merchant",
+        "price"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variant_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "merchant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "price": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "UTMAnalytics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_content",
+        "utm_id",
+        "utm_term"
+      ],
+      "properties": {
+        "utm_source": {
+          "type": "string"
+        },
+        "utm_medium": {
+          "type": "string"
+        },
+        "utm_campaign": {
+          "type": "string"
+        },
+        "utm_content": {
+          "type": "string"
+        },
+        "utm_id": {
+          "type": "string"
+        },
+        "utm_term": {
+          "type": "string"
+        }
+      }
+    },
+    "MarketingPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ad_id",
+        "adset_id",
+        "campaign_id",
+        "fbclid",
+        "utm_analytics"
+      ],
+      "properties": {
+        "ad_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "campaign_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fbclid": {
+          "type": "string",
+          "minLength": 1
+        },
+        "utm_analytics": {
+          "$ref": "#/$defs/UTMAnalytics"
+        }
+      }
+    },
+    "ProductAdAttribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "marketing_payload",
+        "domain_verification"
+      ],
+      "properties": {
+        "product": {
+          "$ref": "#/$defs/Product"
+        },
+        "marketing_payload": {
+          "$ref": "#/$defs/MarketingPayload"
+        },
+        "domain_verification": {
+          "$ref": "#/$defs/DomainVerification"
+        }
+      }
+    },
+    "BoosterStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "side_boosters",
+        "center_core"
+      ],
+      "properties": {
+        "side_boosters": {
+          "type": "string"
+        },
+        "center_core": {
+          "type": "string"
+        }
+      }
+    },
+    "RocketLaunchEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vehicle",
+        "mission",
+        "customer",
+        "launch_time",
+        "launch_site",
+        "payload_classification",
+        "booster_status",
+        "domain_verification"
+      ],
+      "properties": {
+        "vehicle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mission": {
+          "type": "string",
+          "minLength": 1
+        },
+        "customer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "launch_time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "launch_site": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload_classification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "booster_status": {
+          "$ref": "#/$defs/BoosterStatus"
+        },
+        "domain_verification": {
+          "$ref": "#/$defs/DomainVerification"
+        }
+      }
+    }
+  }
+}
