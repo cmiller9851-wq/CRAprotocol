@@ -1,8 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://api.example.com/schemas/v1.2.0/composite-api-response.json",
+  "$id": "https://raw.githubusercontent.com/cmiller9851-wq/CRAprotocol/main/schemas/composite-api-response.schema.json",
   "title": "CompositeApiResponse",
-  "description": "Composite transport payload contract featuring independent domain-level factual verification and transport-level cryptographic provenance.",
+  "version": "1.2.0",
+  "description": "Composite transport payload contract for API responses containing product attribution and rocket-launch event data, with transport-level integrity evidence and independent domain-level verification status.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -49,9 +50,20 @@
         },
         "status_code": {
           "type": "integer",
-          "enum": [200, 201, 202]
+          "enum": [
+            200,
+            201,
+            202
+          ]
         }
-      }
+      },
+      "examples": [
+        {
+          "response_id": "composite-api-response-20261002-001",
+          "timestamp": "2026-10-02T12:21:05Z",
+          "status_code": 200
+        }
+      ]
     },
     "ExecutionContext": {
       "type": "object",
@@ -78,11 +90,18 @@
           "type": "number",
           "minimum": 0
         }
-      }
+      },
+      "examples": [
+        {
+          "environment": "production",
+          "worker_node": "cra-ingestion-node-01",
+          "execution_time_ms": 184.27
+        }
+      ]
     },
     "TransportProvenance": {
       "type": "object",
-      "description": "Transport-level integrity and authenticity evidence. Does not imply factual truth.",
+      "description": "Transport-level integrity and authenticity evidence. A valid hash or signature establishes integrity or authenticity relative to the applicable cryptographic process; it does not establish factual truth of the underlying domain claims.",
       "additionalProperties": false,
       "required": [
         "payload_sha256",
@@ -93,24 +112,36 @@
       "properties": {
         "payload_sha256": {
           "type": "string",
-          "pattern": "^[a-fA-F0-9]{64}$"
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "SHA-256 digest of the canonically serialized payload."
         },
         "signature": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Cryptographic signature covering the defined canonical payload."
         },
         "signing_key_id": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Identifier for the key used to produce the signature."
         },
         "signature_valid": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether signature verification succeeded against the supplied payload and signing key."
         }
-      }
+      },
+      "examples": [
+        {
+          "payload_sha256": "REPLACE_WITH_COMPUTED_CANONICAL_PAYLOAD_SHA256",
+          "signature": "REPLACE_WITH_ACTUAL_SIGNATURE",
+          "signing_key_id": "CRAprotocol-production-signing-key-01",
+          "signature_valid": true
+        }
+      ]
     },
     "DomainVerification": {
       "type": "object",
-      "description": "Domain-specific evidentiary status. Factual attestation requires an independent verification basis.",
+      "description": "Domain-specific evidentiary status. Domain verification is independent of transport integrity and must not be inferred from schema validation, hashing, or signature validation.",
       "additionalProperties": false,
       "required": [
         "attestation_status"
@@ -131,7 +162,9 @@
       "allOf": [
         {
           "if": {
-            "required": ["attestation_status"],
+            "required": [
+              "attestation_status"
+            ],
             "properties": {
               "attestation_status": {
                 "const": "factually_attested"
@@ -139,12 +172,16 @@
             }
           },
           "then": {
-            "required": ["verification_basis"]
+            "required": [
+              "verification_basis"
+            ]
           }
         },
         {
           "if": {
-            "required": ["attestation_status"],
+            "required": [
+              "attestation_status"
+            ],
             "properties": {
               "attestation_status": {
                 "enum": [
@@ -156,9 +193,24 @@
           },
           "then": {
             "not": {
-              "required": ["verification_basis"]
+              "required": [
+                "verification_basis"
+              ]
             }
           }
+        }
+      ],
+      "examples": [
+        {
+          "attestation_status": "factually_attested",
+          "verification_basis": {
+            "source": "Meta Conversions API Ledger",
+            "method": "Server-to-Server Event Hash Match",
+            "verified_at": "2026-10-02T12:21:05Z"
+          }
+        },
+        {
+          "attestation_status": "self_asserted"
         }
       ]
     },
@@ -211,7 +263,15 @@
           "type": "string",
           "minLength": 1
         }
-      }
+      },
+      "examples": [
+        {
+          "title": "Custom Photo Balaclava Mask",
+          "variant_id": "53466586480929",
+          "merchant": "Pawfect House",
+          "price": "$22.99 USD"
+        }
+      ]
     },
     "UTMAnalytics": {
       "type": "object",
@@ -243,7 +303,17 @@
         "utm_term": {
           "type": "string"
         }
-      }
+      },
+      "examples": [
+        {
+          "utm_source": "facebook",
+          "utm_medium": "paid_social",
+          "utm_campaign": "120251811365940096",
+          "utm_content": "120251811368740096",
+          "utm_id": "120251811366310096",
+          "utm_term": "Custom Photo Balaclava Mask"
+        }
+      ]
     },
     "MarketingPayload": {
       "type": "object",
@@ -275,7 +345,23 @@
         "utm_analytics": {
           "$ref": "#/$defs/UTMAnalytics"
         }
-      }
+      },
+      "examples": [
+        {
+          "ad_id": "120251811368740096",
+          "adset_id": "120251811366310096",
+          "campaign_id": "120251811365940096",
+          "fbclid": "REPLACE_WITH_ACTUAL_FBCLID",
+          "utm_analytics": {
+            "utm_source": "facebook",
+            "utm_medium": "paid_social",
+            "utm_campaign": "120251811365940096",
+            "utm_content": "120251811368740096",
+            "utm_id": "120251811366310096",
+            "utm_term": "Custom Photo Balaclava Mask"
+          }
+        }
+      ]
     },
     "ProductAdAttribution": {
       "type": "object",
@@ -295,7 +381,39 @@
         "domain_verification": {
           "$ref": "#/$defs/DomainVerification"
         }
-      }
+      },
+      "examples": [
+        {
+          "product": {
+            "title": "Custom Photo Balaclava Mask",
+            "variant_id": "53466586480929",
+            "merchant": "Pawfect House",
+            "price": "$22.99 USD"
+          },
+          "marketing_payload": {
+            "ad_id": "120251811368740096",
+            "adset_id": "120251811366310096",
+            "campaign_id": "120251811365940096",
+            "fbclid": "REPLACE_WITH_ACTUAL_FBCLID",
+            "utm_analytics": {
+              "utm_source": "facebook",
+              "utm_medium": "paid_social",
+              "utm_campaign": "120251811365940096",
+              "utm_content": "120251811368740096",
+              "utm_id": "120251811366310096",
+              "utm_term": "Custom Photo Balaclava Mask"
+            }
+          },
+          "domain_verification": {
+            "attestation_status": "factually_attested",
+            "verification_basis": {
+              "source": "Meta Conversions API Ledger",
+              "method": "Server-to-Server Event Hash Match",
+              "verified_at": "2026-10-02T12:21:05Z"
+            }
+          }
+        }
+      ]
     },
     "BoosterStatus": {
       "type": "object",
@@ -306,12 +424,20 @@
       ],
       "properties": {
         "side_boosters": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "center_core": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         }
-      }
+      },
+      "examples": [
+        {
+          "side_boosters": "Operational",
+          "center_core": "Operational"
+        }
+      ]
     },
     "RocketLaunchEvent": {
       "type": "object",
@@ -357,7 +483,89 @@
         "domain_verification": {
           "$ref": "#/$defs/DomainVerification"
         }
+      },
+      "examples": [
+        {
+          "vehicle": "SpaceX Falcon Heavy",
+          "mission": "NROL-97",
+          "customer": "NRO",
+          "launch_time": "2026-10-01T23:54:00-04:00",
+          "launch_site": "LC-39A",
+          "payload_classification": "Classified",
+          "booster_status": {
+            "side_boosters": "Operational",
+            "center_core": "Operational"
+          },
+          "domain_verification": {
+            "attestation_status": "self_asserted"
+          }
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "api_metadata": {
+        "response_id": "composite-api-response-20261002-001",
+        "timestamp": "2026-10-02T12:21:05Z",
+        "status_code": 200
+      },
+      "execution_context": {
+        "environment": "production",
+        "worker_node": "cra-ingestion-node-01",
+        "execution_time_ms": 184.27
+      },
+      "provenance": {
+        "payload_sha256": "REPLACE_WITH_COMPUTED_CANONICAL_PAYLOAD_SHA256",
+        "signature": "REPLACE_WITH_ACTUAL_SIGNATURE",
+        "signing_key_id": "CRAprotocol-production-signing-key-01",
+        "signature_valid": true
+      },
+      "product_ad_attribution": {
+        "product": {
+          "title": "Custom Photo Balaclava Mask",
+          "variant_id": "53466586480929",
+          "merchant": "Pawfect House",
+          "price": "$22.99 USD"
+        },
+        "marketing_payload": {
+          "ad_id": "120251811368740096",
+          "adset_id": "120251811366310096",
+          "campaign_id": "120251811365940096",
+          "fbclid": "REPLACE_WITH_ACTUAL_FBCLID",
+          "utm_analytics": {
+            "utm_source": "facebook",
+            "utm_medium": "paid_social",
+            "utm_campaign": "120251811365940096",
+            "utm_content": "120251811368740096",
+            "utm_id": "120251811366310096",
+            "utm_term": "Custom Photo Balaclava Mask"
+          }
+        },
+        "domain_verification": {
+          "attestation_status": "factually_attested",
+          "verification_basis": {
+            "source": "Meta Conversions API Ledger",
+            "method": "Server-to-Server Event Hash Match",
+            "verified_at": "2026-10-02T12:21:05Z"
+          }
+        }
+      },
+      "rocket_launch_event": {
+        "vehicle": "SpaceX Falcon Heavy",
+        "mission": "NROL-97",
+        "customer": "NRO",
+        "launch_time": "2026-10-01T23:54:00-04:00",
+        "launch_site": "LC-39A",
+        "payload_classification": "Classified",
+        "booster_status": {
+          "side_boosters": "Operational",
+          "center_core": "Operational"
+        },
+        "domain_verification": {
+          "attestation_status": "self_asserted"
+        }
       }
     }
-  }
+  ]
 }
