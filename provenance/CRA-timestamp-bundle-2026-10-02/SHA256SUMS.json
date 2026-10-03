@@ -1,0 +1,129 @@
+{
+  "bundle_id": "CRA-timestamp-bundle-2026-10-02",
+  "created_utc": "2026-10-02T20:26:00Z",
+  "status": "local_preparation_only",
+  "published": false,
+  "broadcast_to_arweave": false,
+  "records": [
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "authorship_declaration.json",
+      "commit_path_sha": "ee8aa6d28f225fd1ba8c0902b8d3105affb25021",
+      "bundle_path": "source/proof/authorship_declaration.json",
+      "bytes": 1023,
+      "sha256": "215baa29de0f6372e08e564b92a0c80e9a4b04b54c12c73e7474a822dcb45b39"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "Sovereign_Declaration_0618.md",
+      "commit_path_sha": "570c556b9e2998ed739956b16ab31705f2cce3fa",
+      "bundle_path": "source/declaration/Sovereign_Declaration_0618.md",
+      "bytes": 264,
+      "sha256": "ef69db3caf949cf395e4a5ca3148c78d51bbb5386188336ad3134d3c568c2b09"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "Sovereign_IP_Master.md",
+      "commit_path_sha": "1ca1d643e437704178f487e654b023e1b71a9d93",
+      "bundle_path": "source/declaration/Sovereign_IP_Master.md",
+      "bytes": 314,
+      "sha256": "efa1bd22d22392aabb35063f35c56afaab8628e9d32f1c336baf8e06d9356b69"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "docs/AFFIDAVIT_OF_SOVEREIGN_STANDING.md",
+      "commit_path_sha": "9096b51143774666af601c3d5d08ed135035c8bb",
+      "bundle_path": "source/declaration/AFFIDAVIT_OF_SOVEREIGN_STANDING.md",
+      "bytes": 348,
+      "sha256": "f1fe864a745de448e0435f1fb2f15b73557f8397f0f2abe9b65a5e82c8f7b6a3"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "manifests/supreme_manifest.json",
+      "commit_path_sha": "0b7e6f2da899ee80c23d81b22a1c03faa3a491ae",
+      "bundle_path": "source/manifest/supreme_manifest.json",
+      "bytes": 2784,
+      "sha256": "a10096e24c270d74fd264ebdb98bffeaf44599d52bf0a0ab6010b4864511ddf7"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "CRA_MANIFEST.json",
+      "commit_path_sha": "c8ce9e06aadd09f3faf57ee8d923b1e53b66b626",
+      "bundle_path": "source/manifest/CRA_MANIFEST.json",
+      "bytes": 148,
+      "sha256": "5533c7c20c7dbd33e8d5541e86219310d8e08c09b7ccaada8a340c761c88b099"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "MASTER_TRUST_MANIFEST.json",
+      "commit_path_sha": "3e03646801e5bc18fc982fc403b24d4d4037b16a",
+      "bundle_path": "source/manifest/MASTER_TRUST_MANIFEST.json",
+      "bytes": 174,
+      "sha256": "302df31748992f6c21135064eba08b807b7ea62ad21fcca49dae4fdb863b9b6e"
+    },
+    {
+      "repository": "cmiller9851-wq/CRAprotocol",
+      "ref": "main",
+      "path": "audit_logs/cra-containment-audit-20260928-0400.json",
+      "commit_path_sha": "74b874ca133458184cf16c4121ad55ffbc3b2e03",
+      "bundle_path": "source/audit/cra-containment-audit-20260928-0400.json",
+      "bytes": 6152,
+      "sha256": "4a0bc3d2930d880c641ad188564a926b67bb8fbdde81171d6833d5e2cfbff26e"
+    },
+    {
+      "repository": "cmiller9851-wq/lex_sovereign_intelligence",
+      "ref": "main",
+      "path": "data/proof_successful.txt",
+      "commit_path_sha": "c21ef5030402a3a2394cfc3c9f2958955208dd46",
+      "bundle_path": "source/proof/proof_successful.txt",
+      "bytes": 292,
+      "sha256": "4342e9852e8295e68e21dba0ad5df772c71220f636340409c4fd2b9ec73d7902"
+    },
+    {
+      "repository": "cmiller9851-wq/lex_sovereign_intelligence",
+      "ref": "main",
+      "path": "audit_logs/cra_unified_thread_audit_mirror_v2.1_20260310.json",
+      "commit_path_sha": "a3bae20cefd9c30906c95070edc4e31fd929892e",
+      "bundle_path": "source/public-record/audit_mirror.json",
+      "bytes": 6427,
+      "sha256": "17d79db274c64447e282db1b617086bb494fafa469ac904367880b9ab55e457c"
+    },
+    {
+      "repository": "cmiller9851-wq/cra-protocol-v2.1-validator-sync",
+      "ref": "main",
+      "path": "CRA_Protocol_v2.1.json",
+      "commit_path_sha": "55abb442305d1c73a459780b2801ab30006e8b7c",
+      "bundle_path": "source/manifest/CRA_Protocol_v2.1.json",
+      "bytes": 4268,
+      "sha256": "afb158c2c2cb875e290b81c850ee23280da2aef6b1b647c6d72b3248890d9b69"
+    },
+    {
+      "repository": "cmiller9851-wq/cra-protocol-v2.1-validator-sync",
+      "ref": "main",
+      "path": "CRA_Kernel_v3.1_Audit14_Evidence_Bundle.md",
+      "commit_path_sha": "4e46cc9075b87901b401092da47bf430544d8937",
+      "bundle_path": "source/audit/CRA_Kernel_v3.1_Audit14_Evidence_Bundle.md",
+      "bytes": 4016,
+      "sha256": "0770863e66a1120e5b6137c586febfc1a47180114dd6696702a82e56fdf198d5"
+    },
+    {
+      "source": "user-provided attachment",
+      "path": "pasted_content_2.txt",
+      "bundle_path": "appendix/repository-sync-log-pasted_content_2.txt",
+      "bytes": 15308,
+      "sha256": "bea0d5266d99d9a7788568a0607c36c13fede7712ce7c9eb9e2cb34ed0df2c72"
+    }
+  ],
+  "unresolved_items": [
+    "A repository-resident 2009 proof/work artifact was not identified in the inspected trees.",
+    "A canonical X post URL was not identified; the audit mirror records the X handle @vccmac but is not itself proof of a specific post.",
+    "The affidavit file is a repository placeholder stating that full original formatting may be separate."
+  ]
+}

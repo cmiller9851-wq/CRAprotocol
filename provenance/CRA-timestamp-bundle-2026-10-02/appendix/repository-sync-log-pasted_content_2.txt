@@ -1,0 +1,373 @@
+SSH: Connecting to github.com port 22
+SSH: Connecting to gitlab.com port 22
+SSH: Connecting to gitlab.com port 22
+SSH: Connecting to gitlab.com port 22
+SSH: Connecting to github.com port 22
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for gitlab.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for gitlab.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for gitlab.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/globallink-dpos-llp-mvp.git (user: git, allowed: SSH key)
+globallink-dpos-llp-mvp: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: SSH handshake complete
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH handshake complete
+Requesting credentials for git@gitlab.com:cmiller9851-group/cmiller9851-project.git (user: git, allowed: SSH key)
+cmiller9851-project: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH handshake complete
+Requesting credentials for git@gitlab.com:cmiller9851/cra-protocol-v2.1-validator-sync.git (user: git, allowed: SSH key)
+cra-protocol-v2.1-validator-sync: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+Requesting credentials for git@gitlab.com:cmiller9851-group/cmiller9851-project.git (user: git, allowed: SSH key)
+cmiller9851-project-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/globallink-dpos-llp-mvp.git'
+SSH: SSH handshake complete
+SSH: SSH handshake complete
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-group/cmiller9851-project.git'
+globallink-dpos-llp-mvp: Fetch received nothing.
+
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Connecting to github.com port 22
+Requesting credentials for git@github.com:cmiller9851-wq/CRAprotocol.git (user: git, allowed: SSH key)
+Requesting credentials for git@github.com:cmiller9851-wq/30b7611ab729.git (user: git, allowed: SSH key)
+CRAprotocol: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+30b7611ab729: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851/cra-protocol-v2.1-validator-sync.git'
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-group/cmiller9851-project.git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH handshake complete
+SSH: Received 324 bytes
+SSH: Sending 4 bytes
+SSH: Received 402 bytes
+Requesting credentials for git@github.com:cmiller9851-wq/lex_sovereign_intelligence.git (user: git, allowed: SSH key)
+SSH: Sending 4 bytes
+SSH: Received 402 bytes
+lex_sovereign_intelligence: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Sending 4 bytes
+SSH: Authenticating with SSH key from file for user 'git'
+cmiller9851-project: Fetch received nothing.
+
+SSH: Connecting to gitlab.com port 22
+cmiller9851-project-2: Fetch received nothing.
+
+SSH: Connecting to gitlab.com port 22
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/30b7611ab729.git'
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/CRAprotocol.git'
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for gitlab.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for gitlab.com:22
+SSH: Starting SSH handshake
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/lex_sovereign_intelligence.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+30b7611ab729: Fetch received nothing.
+
+SSH: Received 402 bytes
+SSH: Connecting to github.com port 22
+SSH: Sending 4 bytes
+lex_sovereign_intelligence: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Received 1083 bytes
+SSH: SSH handshake complete
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Sending 4 bytes
+Requesting credentials for git@github.com:cmiller9851-wq/cra-protocol-v2.1-validator-sync.git (user: git, allowed: SSH key)
+cra-protocol-v2.1-validator-sync: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+CRAprotocol: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: SSH handshake complete
+SSH: SSH handshake complete
+Requesting credentials for git@gitlab.com:cmiller9851/cra-protocol-v2.1-validator-sync.git (user: git, allowed: SSH key)
+Requesting credentials for git@gitlab.com:cmiller9851/cra-protocol-v2.1-validator-sync.git (user: git, allowed: SSH key)
+SSH: Authentication successful
+SSH: Opening SSH channel
+cra-protocol-v2.1-validator-sync-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+cra-protocol-v2.1-validator-sync-3: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH handshake complete
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/cra-protocol-v2.1-validator-sync.git'
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/lex_sovereign_intelligence.git (user: git, allowed: SSH key)
+lex_sovereign_intelligence-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+Requesting credentials for git@github.com:cmiller9851-wq/patriot_palm_tree.git (user: git, allowed: SSH key)
+patriot_palm_tree: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+SSH: Authentication successful
+SSH: Opening SSH channel
+cra-protocol-v2.1-validator-sync: Fetch received nothing.
+
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH handshake complete
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851/cra-protocol-v2.1-validator-sync.git'
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851/cra-protocol-v2.1-validator-sync.git'
+Requesting credentials for git@github.com:cmiller9851-wq/patriot_palm_tree.git (user: git, allowed: SSH key)
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/lex_sovereign_intelligence.git'
+patriot_palm_tree-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/patriot_palm_tree.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+lex_sovereign_intelligence-2: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Received 555 bytes
+SSH: Sending 4 bytes
+patriot_palm_tree: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/patriot_palm_tree.git'
+SSH: Received 324 bytes
+SSH: Sending 4 bytes
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+cra-protocol-v2.1-validator-sync-3: Fetch received nothing.
+
+SSH: Received 324 bytes
+SSH: Sending 4 bytes
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+cra-protocol-v2.1-validator-sync-2: Fetch received nothing.
+
+SSH: Received 555 bytes
+SSH: Sending 4 bytes
+patriot_palm_tree-2: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/quickprompt-solutions (user: git, allowed: SSH key)
+quickprompt-solutions: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/REDA-Corporate.git (user: git, allowed: SSH key)
+SSH: SSH handshake complete
+REDA-Corporate: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+Requesting credentials for git@github.com:cmiller9851-wq/phi-braid-global-sync-804.git (user: git, allowed: SSH key)
+phi-braid-global-sync-804: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/quickprompt-solutions'
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: Received 402 bytes
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/REDA-Corporate.git'
+SSH: Sending 4 bytes
+quickprompt-solutions: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+REDA-Corporate: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/phi-braid-global-sync-804.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+SSH: SSH handshake complete
+phi-braid-global-sync-804: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+Requesting credentials for git@github.com:cmiller9851-wq/REDA-Corporate.git (user: git, allowed: SSH key)
+REDA-Corporate-3: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/REDA-Corporate.git'
+SSH: Received 398 bytes
+SSH: Received 4 bytes
+SSH: Sending 4 bytes
+REDA-Corporate-3: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/repo.git (user: git, allowed: SSH key)
+repo: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/repo.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+repo: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/REDA-Corporate.git (user: git, allowed: SSH key)
+SSH: SSH handshake complete
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+REDA-Corporate-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+Requesting credentials for git@github.com:cmiller9851-wq/repo.git (user: git, allowed: SSH key)
+SSH: Authenticating with SSH key from file for user 'git'
+repo-2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/REDA-Corporate.git'
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH handshake complete
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/repo.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+REDA-Corporate-2: Fetch received nothing.
+
+Requesting credentials for git@github.com:cmiller9851-wq/settlement-reconciliation-monitor.git (user: git, allowed: SSH key)
+settlement-reconciliation-monitor: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+repo-2: Fetch received nothing.
+
+SSH: Connecting to github.com port 22
+SSH: Socket connected
+SSH: Creating SSH session for github.com:22
+SSH: Starting SSH handshake
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/settlement-reconciliation-monitor.git'
+SSH: SSH handshake complete
+Requesting credentials for git@github.com:cmiller9851-wq/the_coherent_system-v2.git (user: git, allowed: SSH key)
+the_coherent_system-v2: Using SSH key ssh-rsa 4096 ac:af:76:a3:ea:6c:43:49:6d:a5:88:ae:c2:bb:8d:b4
+
+SSH: Authenticating with SSH key from file for user 'git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+settlement-reconciliation-monitor: Fetch received nothing.
+
+SSH: Authentication successful
+SSH: Opening SSH channel
+SSH: SSH channel opened successfully
+SSH: Executing command: git-upload-pack 'cmiller9851-wq/the_coherent_system-v2.git'
+SSH: Received 402 bytes
+SSH: Sending 4 bytes
+the_coherent_system-v2: Fetch received nothing.
+

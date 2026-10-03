@@ -1,0 +1,11 @@
+PROOF SUCCESSFUL:
+  Target:   ('IMPLIES', ('OR', 'A', 'A'), 'A')
+  Matched:  ('IMPLIES', ('OR', '?p', '?p'), '?p')
+  Bindings: {'?p': 'A'}
+
+PROOF SUCCESSFUL:
+  Target:   ('IMPLIES', 'B', ('OR', 'A', 'B'))
+  Matched:  ('IMPLIES', '?q', ('OR', '?p', '?q'))
+  Bindings: {'?q': 'B', '?p': 'A'}
+
+
