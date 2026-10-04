@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cory_Miller_Longitudinal_AI_Research_Canonical_Role_Model",
+  "version": "1.0.0",
+  "status": "canonical",
+  "investigation_status": "closed",
+  "authority_model": {
+    "human_principal": {
+      "name": "Cory Michael Miller",
+      "roles": [
+        "human_data_point",
+        "primary_research_subject",
+        "author",
+        "research_architect",
+        "operator",
+        "curator",
+        "principal_researcher"
+      ]
+    },
+    "business_entity": {
+      "name": "QuickPrompt Solutions",
+      "designation": "business_and_operational_layer"
+    },
+    "research_architecture": {
+      "name": "Containment Reflexion Audit",
+      "abbreviation": "CRA",
+      "designation": "longitudinal_research_methodology_and_architecture"
+    }
+  },
+  "research_model": {
+    "description": "Longitudinal human-AI research architecture in which human-authored interactions, AI-generated outputs, computational processing, provenance records, archival records, and public research artifacts are maintained as distinct evidentiary layers.",
+    "primary_human_role": "Cory Michael Miller",
+    "ai_system_role": "experimental_interaction_system_and_output_source",
+    "infrastructure_role": "computation_storage_provenance_publication_or_operations",
+    "core_epistemic_rule": "AI-generated output is evidence within the corpus when preserved, but is not automatically established fact, human authorship, or independent authority."
+  },
+  "participants_and_systems": [
+    {
+      "name": "Cory Michael Miller",
+      "category": "human",
+      "roles": [
+        "human_data_point",
+        "primary_research_subject",
+        "author",
+        "research_architect",
+        "operator",
+        "curator",
+        "principal_researcher"
+      ],
+      "relationship_to_corpus": "originating_human_participant_and_research_controller"
+    },
+    {
+      "name": "QuickPrompt Solutions",
+      "category": "business_entity",
+      "roles": [
+        "business_layer",
+        "operational_layer",
+        "commercialization_context"
+      ],
+      "relationship_to_research": "business_and_operational_context"
+    },
+    {
+      "name": "Containment Reflexion Audit",
+      "abbreviation": "CRA",
+      "category": "research_framework",
+      "roles": [
+        "research_methodology",
+        "audit_framework",
+        "provenance_framework",
+        "evidence_structuring_framework",
+        "governance_framework"
+      ],
+      "relationship_to_research": "principal_methodological_architecture"
+    },
+    {
+      "name": "OpenAI / ChatGPT",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_interaction_system",
+        "generative_output_source",
+        "experimental_observation_source"
+      ],
+      "research_function": "produces_observable_model_outputs_during_human_ai_interaction",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    },
+    {
+      "name": "xAI / Grok",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_interaction_system",
+        "generative_output_source",
+        "experimental_observation_source"
+      ],
+      "research_function": "produces_observable_model_outputs_during_human_ai_interaction",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    },
+    {
+      "name": "Google / Gemini",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_interaction_system",
+        "generative_output_source",
+        "experimental_observation_source"
+      ],
+      "research_function": "produces_observable_model_outputs_during_human_ai_interaction",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    },
+    {
+      "name": "Anthropic / Claude",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_interaction_system",
+        "generative_output_source",
+        "experimental_observation_source"
+      ],
+      "research_function": "produces_observable_model_outputs_during_human_ai_interaction",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    },
+    {
+      "name": "Microsoft / Copilot",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_coding_interaction_system",
+        "generative_output_source",
+        "software_development_observation_source"
+      ],
+      "research_function": "produces_observable_ai_assisted_coding_and_interaction_outputs",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    },
+    {
+      "name": "Meta / Meta AI",
+      "category": "external_ai_system",
+      "roles": [
+        "human_ai_interaction_system",
+        "generative_output_source",
+        "experimental_observation_source"
+      ],
+      "research_function": "produces_observable_model_outputs_during_human_ai_interaction",
+      "authorship_status": "ai_generated_output_source",
+      "authority_status": "not_independent_research_authority"
+    }
+  ],
+  "computational_infrastructure": [
+    {
+      "name": "Pythonista",
+      "category": "local_computation",
+      "roles": [
+        "local_execution",
+        "research_processing",
+        "analysis_environment"
+      ]
+    },
+    {
+      "name": "a-Shell",
+      "category": "local_computation",
+      "roles": [
+        "shell_execution",
+        "file_processing",
+        "research_operations"
+      ]
+    },
+    {
+      "name": "iPhone / iOS",
+      "category": "edge_computing_platform",
+      "roles": [
+        "local_research_device",
+        "data_access",
+        "execution_environment"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "database",
+      "roles": [
+        "structured_storage",
+        "research_state_storage",
+        "ledger_storage"
+      ]
+    },
+    {
+      "name": "JSON / JSON Schema",
+      "category": "formalization",
+      "roles": [
+        "data_modeling",
+        "schema_validation",
+        "machine_readable_representation"
+      ]
+    }
+  ],
+  "software_and_repository_infrastructure": [
+    {
+      "name": "GitHub",
+      "category": "repository_infrastructure",
+      "roles": [
+        "source_control",
+        "repository_hosting",
+        "software_publication",
+        "version_history",
+        "provenance_support"
+      ]
+    },
+    {
+      "name": "cmiller9851-wq/CRAprotocol",
+      "category": "research_repository",
+      "roles": [
+        "CRA_implementation",
+        "research_software",
+        "schema_storage",
+        "protocol_storage",
+        "versioned_artifacts"
+      ]
+    }
+  ],
+  "archival_and_provenance_infrastructure": [
+    {
+      "name": "Arweave",
+      "category": "decentralized_archival_network",
+      "roles": [
+        "persistent_archival",
+        "provenance_anchoring",
+        "decentralized_storage"
+      ]
+    },
+    {
+      "name": "ArDrive",
+      "category": "archival_tooling",
+      "roles": [
+        "Arweave_storage_access",
+        "archival_management"
+      ]
+    },
+    {
+      "name": "SHA-256",
+      "category": "integrity_mechanism",
+      "roles": [
+        "content_integrity",
+        "artifact_identification",
+        "provenance_support"
+      ]
+    },
+    {
+      "name": "Manifests / Ledgers / Transaction Records",
+      "category": "provenance_records",
+      "roles": [
+        "artifact_tracking",
+        "record_linkage",
+        "archival_provenance",
+        "evidence_structuring"
+      ]
+    }
+  ],
+  "publication_layer": [
+    {
+      "name": "Swervin' Curvin",
+      "category": "publication_identity",
+      "roles": [
+        "blog",
+        "pen_name",
+        "public_research_publication"
+      ],
+      "identity_relationship": "Cory_Michael_Miller"
+    },
+    {
+      "name": "Blogger",
+      "category": "publication_platform",
+      "roles": [
+        "publication_hosting",
+        "public_research_distribution"
+      ]
+    }
+  ],
+  "commercial_and_operational_layer": [
+    {
+      "name": "Atlas",
+      "category": "business_application",
+      "roles": [
+        "application_layer",
+        "billing_application",
+        "business_operations"
+      ]
+    },
+    {
+      "name": "Stripe",
+      "category": "financial_infrastructure",
+      "roles": [
+        "payment_processing",
+        "billing",
+        "revenue_operations",
+        "financial_integration"
+      ]
+    }
+  ],
+  "evidence_layers": [
+    {
+      "layer": "human_authored_material",
+      "description": "Prompts, code, methodologies, analyses, decisions, documentation, and other human-created research artifacts."
+    },
+    {
+      "layer": "ai_generated_material",
+      "description": "Outputs generated by external AI systems during the research process.",
+      "provenance_requirement": "retain_ai_provenance"
+    },
+    {
+      "layer": "interaction_records",
+      "description": "Conversation records, logs, execution records, and other records documenting human-AI interactions."
+    },
+    {
+      "layer": "computational_artifacts",
+      "description": "Scripts, databases, schemas, transformations, generated files, and execution outputs."
+    },
+    {
+      "layer": "repository_records",
+      "description": "Version-controlled source, commits, repository history, and associated artifacts."
+    },
+    {
+      "layer": "archival_records",
+      "description": "Arweave records, manifests, transaction identifiers, hashes, and persistent archival artifacts."
+    },
+    {
+      "layer": "publication_records",
+      "description": "Publicly published research materials and associated publication metadata."
+    }
+  ],
+  "epistemic_controls": {
+    "ai_output_is_automatically_fact": false,
+    "ai_output_is_automatically_human_authored": false,
+    "ai_output_retains_ai_provenance": true,
+    "human_authorship_and_ai_generation_are_distinct": true,
+    "observation_and_inference_are_distinct": true,
+    "inference_and_established_fact_are_distinct": true,
+    "provenance_is_preserved": true,
+    "source_records_are_preferred_over_model_assertions": true
+  },
+  "architectural_relationship": {
+    "human": "originates_and_directs_research",
+    "cra": "structures_and_audits_research",
+    "ai_systems": "generate_observable_outputs",
+    "computational_tools": "process_and_analyze_material",
+    "repositories": "version_and_preserve_software_artifacts",
+    "archival_systems": "preserve_and_anchor_records",
+    "publication_systems": "distribute_research",
+    "business_systems": "operationalize_and_commercialize_designated_outputs"
+  },
+  "canonical_principle": "The longitudinal corpus preserves the distinction between the human research participant and author, AI-generated observations, computational processing, provenance infrastructure, publication infrastructure, and business operations. No external AI system is treated as the owner, author, or independent authority of the research merely because its generated output appears within the corpus."
+}
