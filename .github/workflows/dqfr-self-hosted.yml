@@ -48,12 +48,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          count=0
-          while IFS= read -r -d '' file; do
-            python -m json.tool "$file" >/dev/null
-            count=$((count + 1))
-          done < <(git ls-files -z -- '*.json')
-          echo "Validated ${count} tracked JSON manifests."
+          python scripts/validate_json_whitelist.py
 
       - name: Compile DQFR Python sources
         shell: bash
@@ -63,6 +58,7 @@ jobs:
             dqfr_calculator/compute.py
             dqfr_sovereign_audit.py
             src/dqfr/metrics.py
+            cra_agent/dynamic_transformer.py
           )
           for file in "${files[@]}"; do
             test -f "$file"
