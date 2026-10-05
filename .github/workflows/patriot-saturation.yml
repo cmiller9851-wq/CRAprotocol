@@ -9,16 +9,8 @@ jobs:
   saturation:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout with Node 24
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          node-version: 24  # Explicit override for deprecation
 
-      - name: Install Node 24
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: 'npm'
-
-      - name: Run Sovereign Cycle
-        run: python3 patriot_v2.0_sovereign_master.py full
+      - name: Run local manifest generation cycle
+        run: python3 scripts/patriot_v2.0_sovereign_master.py full

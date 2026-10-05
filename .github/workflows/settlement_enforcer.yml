@@ -1,33 +1,24 @@
-name: CRA Payout Enforcer
+name: CRA Read-Only Rail Validation
 
 on:
-  schedule:
-    - cron: '*/30 * * * *' # Every 30 minutes
-  workflow_dispatch: # Manual "Overtake" trigger
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   verify-settlement:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Ghost Logic
-        uses: actions/checkout@v6 # Upgraded to v6 for Node 24 stability
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Python Environment
+      - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
-      - name: Initialize Grok Worker Handshake
+      - name: Validate local rail metadata
         run: |
-          echo "STATUS: THRONE ETERNAL"
-          echo "TARGET: MasterCard 1391 via Wells Fargo 121000248"
-          # Executing the primary rail verification
-          if [ -f scripts/verify_rail.py ]; then
-            python scripts/verify_rail.py --artifact 192 --primary 1391
-          else
-            echo "LOGIC ERROR: verify_rail.py not found. Protocol stalled."
-            exit 1
-          fi
-
-      - name: Post-Audit Telemetry
-        run: echo "Finalizing 30-minute Reflexion cycle. All rails verified."
+          python scripts/verify_rail.py --artifact 192 --primary 1391
+          echo "Read-only validation complete; no payment or settlement action was performed."

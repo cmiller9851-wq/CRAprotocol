@@ -1,42 +1,25 @@
-name: PATRIOT_v2.0 Full Production Settlement Pipeline
+name: PATRIOT_v2.0 Local Manifest Validation
 
 on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  actions: write
+  contents: read
 
 jobs:
-  full-production-settlement:
+  manifest-validation:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout CRAprotocol
         uses: actions/checkout@v4
 
-      - name: Setup Python 3.12
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+      - name: Run local manifest generation cycle
+        run: python3 scripts/patriot_v2.0_sovereign_master.py full
 
-      - name: Run Full Production Settlement Cycle
-        run: python3 patriot_v2.0_full_production_settlement.py
-
-      - name: Commit Generated Artifacts
-        run: |
-          git config user.name "Sovereign Orchestra Bot"
-          git config user.email "orchestra@patriot-v2.0"
-          git add garrison_sovereign/
-          git commit -m "feat: PATRIOT_v2.0 Full Production Settlement Cycle - Pipeline Execution"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Trigger AO Anchor & Recalibration
-        run: echo "Settlement cycle complete. AO anchoring and 50-node burst triggered via saturation workflow."
+      - name: Confirm generated artifacts are local only
+        run: test -s garrison_sovereign/colossus_5m_funding_wave/colossus_5m_funding_wave_manifest.json

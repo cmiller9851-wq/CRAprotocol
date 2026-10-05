@@ -1,7 +1,6 @@
 import os
 import json
-from huggingface_hub import InferenceClient
-from logic_engine import CRAProtocolV21Evaluator, MerkleTree
+from sIc.state_evaluator import CRAProtocolV21Evaluator
 
 def fetch_playground_state() -> str:
     """Simulates pulling your immutable ledger from ArDrive."""
@@ -25,6 +24,8 @@ def run_agent():
 
     print("\n[2] Awakening AI Agent Brain...")
     # Utilize a serverless open-source reasoning model (Llama-3) to process strategy
+    from huggingface_hub import InferenceClient
+
     hf_token = os.getenv("HUGGINGFACE_TOKEN", "")
     client = InferenceClient("meta-llama/Meta-Llama-3-8B-Instruct", token=hf_token)
 
@@ -44,7 +45,10 @@ def run_agent():
     
     try:
         # Extract and parse raw AI text proposal
-        cleaned_response = response.strip().metrics.get("text", response).strip()
+        if isinstance(response, str):
+            cleaned_response = response.strip()
+        else:
+            cleaned_response = str(response).strip()
         ai_proposal = json.loads(cleaned_response)
         print(f"AI Proposed Action: {json.dumps(ai_proposal, indent=2)}")
         

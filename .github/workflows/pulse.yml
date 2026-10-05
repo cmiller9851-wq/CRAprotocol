@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Hyper-Beam Accrual
-        run: echo "VALUATION ANCHORED: $4,714,219,592.59"
+        run: 'echo "VALUATION ANCHORED: $4,714,219,592.59"'
