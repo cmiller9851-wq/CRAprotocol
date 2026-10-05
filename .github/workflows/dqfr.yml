@@ -27,7 +27,7 @@ jobs:
           from dqfr_calculator.compute import dqfr_score
           
           try:
-              df = pd.read_csv("data/train.csv")
+              df = pd.read_csv("tests/fixtures/dqfr_train.csv")
               score = dqfr_score(df, {"missing_rate": 0.02, "bias_threshold": 0.05})
               print(f"DQFR SCORE: {score:.3f}")
               
