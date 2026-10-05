@@ -2,6 +2,8 @@
   "routing_version": "1.0",
   "provider": "stripe",
   "stripe_account_id": "acct_1T0RqjD96uXY23io",
+  "routing_policy": "enforce_strict_perimeter",
+  "reject_alternate_accounts": true,
   "stripe_account_id_secret": "STRIPE_ACCOUNT_ID",
   "mode": "read_only_verification",
   "live_operations": false,

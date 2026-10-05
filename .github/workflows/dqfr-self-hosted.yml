@@ -42,6 +42,20 @@ jobs:
           set -euo pipefail
           python scripts/validate_json_whitelist.py
 
+      - name: Verify strict settlement routing manifest
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          routing = json.loads(Path("config/settlement_routing.json").read_text())
+          assert routing["stripe_account_id"] == "acct_1T0RqjD96uXY23io"
+          assert routing["routing_policy"] == "enforce_strict_perimeter"
+          assert routing["reject_alternate_accounts"] is True
+          print("Settlement routing manifest verified for the canonical account.")
+          PY
+
       - name: Compile DQFR Python sources
         shell: bash
         run: |
