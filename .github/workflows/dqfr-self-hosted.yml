@@ -1,0 +1,102 @@
+name: DQFR Self-Hosted Validation
+
+on:
+  push:
+    branches:
+      - main
+      - 'ci/**'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dqfr-self-hosted-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.12.3"
+  EXPECTED_STRIPE_ACCOUNT_ID: "acct_1T0RqjD96uXY23io"
+
+jobs:
+  dqfr:
+    name: DQFR and settlement-route validation
+    runs-on: [self-hosted, linux, x64, qps-ci]
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify Python baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual_version="$(python --version 2>&1)"
+          echo "Runner Python: ${actual_version}"
+          test "$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')" = "3.12"
+
+      - name: Install DQFR runtime dependency
+        run: python -m pip install --upgrade pandas
+
+      - name: Validate tracked JSON manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=0
+          while IFS= read -r -d '' file; do
+            python -m json.tool "$file" >/dev/null
+            count=$((count + 1))
+          done < <(git ls-files -z -- '*.json')
+          echo "Validated ${count} tracked JSON manifests."
+
+      - name: Compile DQFR Python sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=(
+            dqfr_calculator/compute.py
+            dqfr_sovereign_audit.py
+            src/dqfr/metrics.py
+          )
+          for file in "${files[@]}"; do
+            test -f "$file"
+            python -m py_compile "$file"
+          done
+          echo "Compiled ${#files[@]} DQFR Python sources."
+
+      - name: Run deterministic DQFR smoke check
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          from dqfr_calculator.compute import dqfr_score
+
+          frame = pd.DataFrame({
+              "value": [1, 2, 3, 4],
+              "label": [0, 1, 0, 1],
+          })
+          score = dqfr_score(frame, {"missing_rate": 0.02, "bias_threshold": 0.05})
+          print(f"DQFR smoke score: {score:.3f}")
+          assert score >= 0.95, f"DQFR smoke threshold failed: {score:.3f}"
+          PY
+
+      - name: Verify settlement routing guard
+        shell: bash
+        env:
+          STRIPE_ACCOUNT_ID: ${{ secrets.STRIPE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          configured_id="$(python -c 'import json; print(json.load(open("config/settlement_routing.json"))["stripe_account_id"])')"
+          test "$configured_id" = "$EXPECTED_STRIPE_ACCOUNT_ID"
+          if [[ -z "${STRIPE_ACCOUNT_ID:-}" ]]; then
+            echo "STRIPE_ACCOUNT_ID secret is not configured; routing guard cannot be verified."
+            exit 1
+          fi
+          test "$STRIPE_ACCOUNT_ID" = "$EXPECTED_STRIPE_ACCOUNT_ID"
+          echo "Stripe routing guard matched the configured read-only account."
+          echo "No Stripe API request or settlement write is performed by this workflow."

@@ -1,0 +1,14 @@
+{
+  "routing_version": "1.0",
+  "provider": "stripe",
+  "stripe_account_id": "acct_1T0RqjD96uXY23io",
+  "stripe_account_id_secret": "STRIPE_ACCOUNT_ID",
+  "mode": "read_only_verification",
+  "live_operations": false,
+  "payout_hold_release": false,
+  "settlement_writes": false,
+  "evidence_policy": {
+    "stripe_state_must_remain_separate_from_local_ledger": true,
+    "local_provenance_is_not_stripe_confirmation": true
+  }
+}
