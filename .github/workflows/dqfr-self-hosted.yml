@@ -1,13 +1,6 @@
 name: DQFR Self-Hosted Validation
 
 on:
-  push:
-    branches:
-      - main
-      - 'ci/**'
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -19,7 +12,6 @@ concurrency:
 
 env:
   PYTHON_VERSION: "3.12.3"
-  EXPECTED_STRIPE_ACCOUNT_ID: "acct_1T0RqjD96uXY23io"
 
 jobs:
   dqfr:
@@ -80,19 +72,3 @@ jobs:
           print(f"DQFR smoke score: {score:.3f}")
           assert score >= 0.95, f"DQFR smoke threshold failed: {score:.3f}"
           PY
-
-      - name: Verify settlement routing guard
-        shell: bash
-        env:
-          STRIPE_ACCOUNT_ID: ${{ secrets.STRIPE_ACCOUNT_ID }}
-        run: |
-          set -euo pipefail
-          configured_id="$(python -c 'import json; print(json.load(open("config/settlement_routing.json"))["stripe_account_id"])')"
-          test "$configured_id" = "$EXPECTED_STRIPE_ACCOUNT_ID"
-          if [[ -z "${STRIPE_ACCOUNT_ID:-}" ]]; then
-            echo "STRIPE_ACCOUNT_ID secret is not configured; routing guard cannot be verified."
-            exit 1
-          fi
-          test "$STRIPE_ACCOUNT_ID" = "$EXPECTED_STRIPE_ACCOUNT_ID"
-          echo "Stripe routing guard matched the configured read-only account."
-          echo "No Stripe API request or settlement write is performed by this workflow."

@@ -1,33 +1,63 @@
-name: CRA Kernel CI
+name: CRAprotocol Validation
 
 on:
   push:
-    branches: [main, cra-kernel-hardened, 'ci/**']
+    branches: [main, 'ci/**']
   pull_request:
-    branches: [main, cra-kernel-hardened]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  test-kernel:
+  validate:
+    name: Python, manifest, and DQFR validation
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       matrix:
         python-version: ['3.10', '3.11', '3.12']
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install test dependencies
-        run: python -m pip install --upgrade pip pytest pandas
+        run: python -m pip install --upgrade pip pytest pandas numpy
+
+      - name: Validate supported JSON manifests
+        run: python scripts/validate_json_whitelist.py
+
+      - name: Compile core Python modules
+        run: |
+          python -m py_compile \
+            cra_agent/dynamic_transformer.py \
+            dqfr_calculator/compute.py \
+            dqfr_sovereign_audit.py \
+            executive_override.py \
+            observability_exporter.py \
+            sIc/state_evaluator.py \
+            src/ai_agent.py \
+            src/dqfr/metrics.py
 
       - name: Run unit tests
         run: python -m unittest test_cra_kernel.py -v
 
-      - name: Run pytest suite
+      - name: Run local pytest suite
         run: python -m pytest -q --ignore=tests/proposition_preservation_test.py
 
-      - name: Execute kernel verification output
-        run: python cra_mathematical_kernel.py
+      - name: Run deterministic DQFR fixture check
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          from dqfr_calculator.compute import dqfr_score
+          frame = pd.read_csv('tests/fixtures/dqfr_train.csv')
+          score = dqfr_score(frame, {'missing_rate': 0.02, 'bias_threshold': 0.05})
+          print(f'DQFR score: {score:.3f}')
+          assert score >= 0.95
+          PY
