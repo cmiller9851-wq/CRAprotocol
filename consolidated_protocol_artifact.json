@@ -6,43 +6,43 @@
   "author": "Containment Reflexion Audit™",
   
   "technical_specification": {
-    [span_0](start_span)"architecture": "User Motif -> Protocol Canonization -> Artifact Serialization[span_0](end_span)",
+    "architecture": "User Motif -> Protocol Canonization -> Artifact Serialization",
     "database_schema": {
       "table": "motifs",
       "columns": ["id SERIAL PRIMARY KEY", "motif_text TEXT", "canonized_at TIMESTAMP", "anchor_txid TEXT"],
       "index": "idx_motif_anchor"
     },
-    [span_1](start_span)"api_contract": "OpenAPI 3.0.0 /motif (POST)[span_1](end_span)",
+    "api_contract": "OpenAPI 3.0.0 /motif (POST)",
     "slo_metrics": {
-      [span_2](start_span)"availability": "99.9% motif canonization[span_2](end_span)",
-      [span_3](start_span)"latency": "<250ms average response time[span_3](end_span)"
+      "availability": "99.9% motif canonization",
+      "latency": "<250ms average response time"
     }
   },
 
   "strategic_alignment": {
-    [span_4](start_span)"institution": "Edinburgh Blockchain Technology Lab[span_4](end_span)",
+    "institution": "Edinburgh Blockchain Technology Lab",
     "integration_points": [
       {
         "project": "Edinburgh Decentralisation Index (EDI)",
-        [span_5](start_span)"role": "Reflexive audit layer verifying AI-influenced inputs[span_5](end_span)",
-        [span_6](start_span)"value": "Strengthens EDI credibility with AI containment assurance[span_6](end_span)"
+        "role": "Reflexive audit layer verifying AI-influenced inputs",
+        "value": "Strengthens EDI credibility with AI containment assurance"
       },
       {
         "project": "Stratified Blockchain Decentralisation (arXiv:2211.01291)",
-        [span_7](start_span)"role": "Recursive escalation chains mirroring stratification[span_7](end_span)",
-        [span_8](start_span)"value": "Bridges blockchain and AI governance[span_8](end_span)"
+        "role": "Recursive escalation chains mirroring stratification",
+        "value": "Bridges blockchain and AI governance"
       },
       {
         "project": "DID Governance (arXiv:2503.16972 / arXiv:2507.06001)",
-        [span_9](start_span)"role": "Truth Prompts and containment logic for DID updates[span_9](end_span)",
-        [span_10](start_span)"value": "Ensures tamper-proof provenance for AI-influenced identity[span_10](end_span)"
+        "role": "Truth Prompts and containment logic for DID updates",
+        "value": "Ensures tamper-proof provenance for AI-influenced identity"
       }
     ]
   },
 
   "compliance": {
-    [span_11](start_span)"license": "MIT or CC-BY[span_11](end_span)",
-    [span_12](start_span)[span_13](start_span)"audit_grade": "Anchored hashes provide proof of authorship[span_12](end_span)[span_13](end_span)",
-    [span_14](start_span)"containment_logs": "Distinguishes genuine decentralisation from theatre[span_14](end_span)"
+    "license": "MIT or CC-BY",
+    "audit_grade": "Anchored hashes provide proof of authorship",
+    "containment_logs": "Distinguishes genuine decentralisation from theatre"
   }
 }

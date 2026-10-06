@@ -18,7 +18,7 @@
   "reasoning_trace": {
     "thought_signatures_enabled": true,
     "thought_signatures_format": "cryptographic hidden-state tokens",
-    "trace_anchor_id": "braid:sha256:...",      // where you’d hang the vendor thoughtSignature
+    "trace_anchor_id": "braid:sha256:...",
     "trace_storage": "immutable-log://cra-ledger/mainnet"
   },
   "thinking_kernel": {

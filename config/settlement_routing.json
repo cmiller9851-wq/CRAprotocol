@@ -1,0 +1,5 @@
+{
+  "stripe_account_id": "acct_1T0RqjD96uXY23io",
+  "routing_policy": "enforce_strict_perimeter",
+  "reject_alternate_accounts": true
+}
