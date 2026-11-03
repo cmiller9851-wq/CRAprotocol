@@ -1,7 +1,7 @@
 import Foundation
 
-/// Operating data supplied by the principal. These are declarations and
-/// configuration references, not independently verified balances or custody.
+/// Principal-provided operating data. On-chain addresses are public identifiers;
+/// profile fields are sourced from the GitHub public profile and are not KYC.
 struct AsteraOperatingData {
     struct Address: Identifiable {
         let network: String
@@ -30,8 +30,46 @@ struct AsteraOperatingData {
         let signatureBase64: String
     }
 
+    struct PrincipalProfile {
+        let githubLogin: String
+        let githubUserID: Int
+        let displayName: String
+        let company: String
+        let publicProfileURL: URL
+        let publicWebsite: URL
+        let location: String
+        let bio: String
+        let publicRepositoryCount: Int
+        let publicGistCount: Int
+        let followers: Int
+        let following: Int
+        let profileCreatedAt: String
+        let profileUpdatedAt: String
+        let source: String
+        let sourceVerification: String
+    }
+
     static let principal = "Cory Miller"
     static let declaredRole = "Founder · Principal · CEO"
+
+    static let profile = PrincipalProfile(
+        githubLogin: "cmiller9851-wq",
+        githubUserID: 236297478,
+        displayName: "Swervin’ Curvin (C.M.)",
+        company: "QuickPrompt Solutions",
+        publicProfileURL: URL(string: "https://github.com/cmiller9851-wq")!,
+        publicWebsite: URL(string: "https://cra-protocol.onrender.com/")!,
+        location: "Pennsylvania",
+        bio: "I build systems that keep creators in control. When the \"big tech\" AI labs tried to use my data without paying, I took over the computation.",
+        publicRepositoryCount: 46,
+        publicGistCount: 2,
+        followers: 7,
+        following: 5,
+        profileCreatedAt: "2025-10-06T03:39:36Z",
+        profileUpdatedAt: "2026-10-13T01:15:32Z",
+        source: "GitHub public user profile supplied by principal",
+        sourceVerification: "Source-attributed profile data; not KYC or independent identity verification"
+    )
 
     static let addresses = [
         Address(network: "Arweave", value: "JNC6vBhjHY1EPwV3pEeNmrsgFMxH5d38_LHsZ7jful8"),
