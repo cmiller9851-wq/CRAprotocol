@@ -32,6 +32,7 @@ async def worker(client: httpx.AsyncClient, url: str, end_time: float, latencies
                     json={"agent": rng.choice(["telemetry-worker", "matrix-worker"]),
                           "payload": {"vid": f"veh_{rng.randint(0,4)}", "coords": coords}},
                     timeout=10.0,
+                    headers={"X402-Payment": "loadtest_demo_token"},
                 )
             else:
                 # 40%: direct telemetry matrix computation
@@ -39,6 +40,7 @@ async def worker(client: httpx.AsyncClient, url: str, end_time: float, latencies
                     f"{url}/telemetry/matrix",
                     json={"coords": coords, "labels": ["A", "B", "C", "D", "E"]},
                     timeout=10.0,
+                    headers={"X402-Payment": "loadtest_demo_token"},
                 )
             if r.status_code == 200:
                 latencies.append((time.perf_counter() - t0) * 1000.0)
