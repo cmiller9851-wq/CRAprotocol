@@ -117,11 +117,12 @@ async def startup():
         return DistanceMatrixProcessor(mat).eta_matrix_minutes()
 
     async def sweep_worker(payload):
-        return sweep_engine.sweep(force=payload.get("force", False) if isinstance(payload, dict) else False)
+        force = payload.get("force", False) if isinstance(payload, dict) else False
+        return await asyncio.to_thread(sweep_engine.sweep, force)
 
     _supervisor.register(AgentSpec("telemetry-worker", telemetry_worker, policy, heartbeat_interval_s=hb))
     _supervisor.register(AgentSpec("matrix-worker", matrix_worker, policy, heartbeat_interval_s=hb))
-    _supervisor.register(AgentSpec("sweep-agent", sweep_worker, policy, heartbeat_interval_s=30.0))
+    _supervisor.register(AgentSpec("sweep-agent", sweep_worker, policy, heartbeat_interval_s=60.0))
     await _supervisor.start()
 
 
@@ -159,18 +160,18 @@ async def list_events(kind: str | None = None):
 @app.get("/revenue")
 async def revenue():
     data = gateway.revenue_summary()
-    data["sweep"] = sweep_engine.status()
+    data["sweep"] = await asyncio.to_thread(sweep_engine.status)
     return data
 
 
 @app.get("/sweep")
 async def sweep_status():
-    return sweep_engine.status()
+    return await asyncio.to_thread(sweep_engine.status)
 
 
 @app.post("/sweep")
 async def run_sweep(force: bool = False):
-    return sweep_engine.sweep(force=force)
+    return await asyncio.to_thread(sweep_engine.sweep, force=force)
 
 
 # ---------------------------------------------------------------------------
