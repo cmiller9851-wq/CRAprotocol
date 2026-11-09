@@ -1,0 +1,23 @@
+# One-command local deployment (no Kubernetes required)
+#   docker compose -f deploy/docker-compose.yaml up --build
+services:
+  runtime:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: cra-runtime
+    ports:
+      - "8000:8000"
+    environment:
+      - HEARTBEAT_INTERVAL=0.5
+      - RETRY_MAX_ATTEMPTS=5
+      - RETRY_BASE_BACKOFF=0.25
+      - LOG_LEVEL=INFO
+      - MAPBOX_ACCESS_TOKEN=${MAPBOX_ACCESS_TOKEN:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://127.0.0.1:8000/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
