@@ -5,9 +5,9 @@ services:
     build:
       context: ..
       dockerfile: deploy/Dockerfile
+    image: cra-supervisor:local
     container_name: cra-runtime
-    ports:
-      - "8000:8000"
+    network_mode: host                # enables sandbox/cloud-container compatibility; remove if using Docker Desktop bridge
     environment:
       - HEARTBEAT_INTERVAL=0.5
       - RETRY_MAX_ATTEMPTS=5
