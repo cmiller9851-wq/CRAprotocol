@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-11-09T18:50:00Z",
+  "version": "1.0.0",
+  "license": "SAEL-1.0",
+  "authors": "QuickPrompt Solutions\u2122 \u2014 Cory Miller, Sovereign Architect",
+  "repository": "cmiller9851-wq/CRAprotocol",
+  "pull_request": "https://github.com/cmiller9851-wq/CRAprotocol/pull/9",
+  "settlement_topology": {
+    "primary_wallet": {
+      "address": "0x421949B526e7e215a64E88E6F4cEE6ABd10a2500",
+      "type": "CoinbaseSmartWallet",
+      "erc4337": true,
+      "created": "2026-01-10T09:06:59Z",
+      "creation_tx": "0x8769b2362d7603b7c172f57c72ee2f4dc9a5d53c0f93c4a329ed24b731d42646",
+      "creator": "0xBA5ED110eFDBa3D005bfC882d75358ACBbB85842 (CoinbaseSmartWalletFactory)",
+      "names": ["cmillerr.cb.id", "swervincurvin.base.eth"],
+      "live_balances": {
+        "usdc_base": 0.009779,
+        "eth_base": 0.000003,
+        "eth_mainnet": 0.000013
+      },
+      "role": "PRIMARY_COLLECTION"
+    },
+    "destination_wallets": {
+      "cmillerr.cb.id": {
+        "address": "0x421949B526e7e215a64E88E6F4cEE6ABd10a2500",
+        "notes": "same wallet as primary; safe default sweep target",
+        "confidence": "VERIFIED_SELF"
+      },
+      "cmiller.cb.id": {
+        "address": "0xeEBdcafB98ca78cD90C78260E8f84ad57176a430",
+        "type": "EOA",
+        "eth_mainnet": 0.004623,
+        "tx_count": 6,
+        "last_active": "2023-08-18",
+        "notes": "older 2023 account; excellent cold destination IF keys available",
+        "confidence": "VERIFIED_USER_2023"
+      },
+      "swervincurvin.cb.id": {
+        "address": "0xd65691c4255963be892b21F4dBba1aE9Ac3ca068",
+        "type": "EOA",
+        "tx_count": 0,
+        "confidence": "DORMANT_AVOID"
+      },
+      "supremecory.blockchain": {
+        "registered": false,
+        "registry": "Unstoppable Domains",
+        "confidence": "UNREGISTERED"
+      }
+    }
+  },
+  "sweep_engine": {
+    "engine": "CdpSweepEngine",
+    "source_file": "modules/payments/cdp_sweep.py",
+    "source_wallet": "0x421949B526e7e215a64E88E6F4cEE6ABd10a2500",
+    "destination_name": "cmillerr.cb.id",
+    "resolved_destination": "0x421949B526e7e215a64E88E6F4cEE6ABd10a2500",
+    "threshold_usdc": 5.0,
+    "reserve_usdc": 0.5,
+    "cooldown_seconds": 1800,
+    "supervisor_interval_seconds": 60,
+    "asset": "USDC",
+    "network": "base-mainnet",
+    "token_contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "transfer_selector": "0xa9059cbb",
+    "execution_rails": ["cdp", "raw_tx"],
+    "live_mode": false,
+    "env_live_flag": "SWEEP_LIVE=1"
+  },
+  "rails": {
+    "primary": {
+      "name": "cdp_stablecoin",
+      "network": "base-mainnet",
+      "currency": "USDC",
+      "default_price": 0.01,
+      "verifier": "SettlementGateway.verify (service.py)"
+    },
+    "card": {
+      "name": "stripe",
+      "webhook_processor": "modules/payments/stripe_webhook.py",
+      "status": "OPTIONAL"
+    },
+    "cdp": {
+      "api": "https://api.cdp.coinbase.com/v2/transactions",
+      "auth": "ES256 CDP JWT via generate_cdp_jwt (cdp_routing.py)",
+      "status": "CREDENTIALS_NEEDED"
+    }
+  },
+  "endpoints": {
+    "observability": ["GET /health", "GET /tasks", "GET /events", "GET /revenue", "GET /sweep"],
+    "paid_micro": ["POST /tasks/enqueue", "POST /telemetry/matrix"],
+    "admin": ["POST /sweep?force=true"]
+  },
+  "credentials_required": {
+    "cdp_mode": ["CDP_API_KEY_NAME", "CDP_API_KEY_PRIVATE_KEY"],
+    "raw_mode": ["SWEEP_WALLET_PRIVATE_KEY"],
+    "stripe": ["STRIPE_WEBHOOK_SECRET", "STRIPE_API_KEY"],
+    "mapbox": ["MAPBOX_ACCESS_TOKEN"]
+  },
+  "verification_evidence": {
+    "ens_controller_cb_id": "0xe11d762cc7b0448ed8c565734b742ce39bbb38a6 (Coinbase)",
+    "ens_offchain_resolver_cb_id": "0x1934fc75ad10d7eed51dc7a92773cac96a06be56",
+    "ens_offchain_resolver_base_eth": "0xde9049636f4a1dfe0a64d1bfe3155c0a14c54f31",
+    "ud_proxy_reader": "0xa9a6A3626993D487d2Dbda3173cf58cA1a9D9e9f",
+    "coinbase_smart_wallet_factory": "0xBA5ED110eFDBa3D005bfC882d75358ACBbB85842",
+    "erc4337_entrypoint_v07": "0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789",
+    "module_tests_passing": 82,
+    "chains_verified_zero": ["polygon", "optimism", "arbitrum", "bsc"],
+    "addresses_in_user_files": false
+  }
+}
