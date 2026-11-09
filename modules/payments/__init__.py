@@ -26,3 +26,13 @@ from .cdp_routing import (
     SettlementRail,
     generate_cdp_jwt,
 )
+
+from .middleware import X402PaywallMiddleware
+from .x402_core import (
+    X402Signer,
+    X402Verifier,
+    X402VerifyWrapper,
+    X402Payload,
+    X402ErrorCode,
+    VerificationResult,
+)
