@@ -14,6 +14,13 @@ services:
       - RETRY_BASE_BACKOFF=0.25
       - LOG_LEVEL=INFO
       - MAPBOX_ACCESS_TOKEN=${MAPBOX_ACCESS_TOKEN:-}
+      # Settlement routing — verified primary wallet (cmillerr.cb.id / swervincurvin.base.eth)
+      - X402_RECIPIENT=0x421949B526e7e215a64E88E6F4cEE6ABd10a2500
+      - SWEEP_DESTINATION=cmillerr.cb.id
+      - SWEEP_THRESHOLD_USDC=5.0
+      - SWEEP_COOLDOWN_SECONDS=1800
+      - SWEEP_LIVE=0
+      - X402_PRICE_USDC=0.01
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-fs", "http://127.0.0.1:8000/health"]

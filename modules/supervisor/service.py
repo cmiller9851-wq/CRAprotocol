@@ -20,6 +20,11 @@ from modules.supervisor import (
 )
 from modules.telemetry import MapboxClient, DistanceMatrixProcessor, make_synthetic_fleet
 from modules.payments.middleware import X402PaywallMiddleware
+from modules.payments.cdp_sweep import (
+    CdpSweepEngine,
+    PRIMARY_WALLET,
+    DEFAULT_SWEEP_DESTINATION,
+)
 
 app = FastAPI(title="CRA Supervisor & Telemetry Runtime", version="1.0.0")
 
@@ -34,19 +39,17 @@ class SettlementGateway:
     def __init__(self, recipient: str, default_price: float = 0.01):
         self.recipient = recipient
         self.default_price = default_price
-        self.ledger: List[Dict[str, Any]] = []  # settlement ledger
+        self.ledger: List[Dict[str, Any]] = []
 
     def verify(self, header: str, expected_amount: float = None) -> Tuple[bool, str, Optional[Dict[str, Any]]]:
         if not isinstance(header, str) or not header.strip():
             return False, "empty payment header", None
         header = header.strip()
-        # Dev/demo bypass tokens
         if header.startswith(("test_", "dev_", "mock_", "demo_", "loadtest_", "load_", "bench_", "smoke_")) or header == "valid_token_123":
             rec = {"tx_hash": f"0xmock{int(time.time()*1000):x}", "amount_usdc": expected_amount or self.default_price,
                    "rail": "dev_mock", "timestamp": time.time()}
             self.ledger.append(rec)
             return True, "OK", rec
-        # Real tx-hash mode: 0x-prefixed hexadecimal transaction
         if header.startswith("0x") and len(header) >= 66:
             rec = {"tx_hash": header, "amount_usdc": expected_amount or self.default_price,
                    "rail": "cdp_stablecoin", "timestamp": time.time()}
@@ -58,15 +61,23 @@ class SettlementGateway:
         return {
             "settlements_count": len(self.ledger),
             "total_revenue_usdc": round(sum(r["amount_usdc"] for r in self.ledger), 4),
-            "recipient": self.recipient,
+            "primary_wallet": self.recipient,
             "default_price_usdc": self.default_price,
             "latest_settlements": self.ledger[-50:],
         }
 
 
 gateway = SettlementGateway(
-    recipient=os.environ.get("X402_RECIPIENT", "0xSovereignVault..."),
+    recipient=os.environ.get("X402_RECIPIENT", PRIMARY_WALLET),
     default_price=float(os.environ.get("X402_PRICE_USDC", "0.01")),
+)
+
+sweep_engine = CdpSweepEngine(
+    primary_wallet=os.environ.get("X402_RECIPIENT", PRIMARY_WALLET),
+    sweep_destination=os.environ.get("SWEEP_DESTINATION", DEFAULT_SWEEP_DESTINATION),
+    min_threshold_usdc=float(os.environ.get("SWEEP_THRESHOLD_USDC", "5.0")),
+    cooldown_seconds=int(os.environ.get("SWEEP_COOLDOWN_SECONDS", "1800")),
+    dry_run=os.environ.get("SWEEP_LIVE", "0") != "1",
 )
 
 if os.environ.get("X402_PAYWALL_ENABLED", "1") == "1":
@@ -74,7 +85,7 @@ if os.environ.get("X402_PAYWALL_ENABLED", "1") == "1":
         X402PaywallMiddleware,
         verifier=gateway,
         protected_prefixes={"/telemetry/", "/tasks/"},
-        exempt_paths={"/health", "/docs", "/openapi.json", "/redoc", "/revenue", "/events", "/tasks"},
+        exempt_paths={"/health", "/docs", "/openapi.json", "/redoc", "/revenue", "/events", "/tasks", "/sweep"},
         default_price_usdc=gateway.default_price,
         recipient_address=gateway.recipient,
     )
@@ -105,8 +116,12 @@ async def startup():
         mat = client.matrix(coords)
         return DistanceMatrixProcessor(mat).eta_matrix_minutes()
 
+    async def sweep_worker(payload):
+        return sweep_engine.sweep(force=payload.get("force", False) if isinstance(payload, dict) else False)
+
     _supervisor.register(AgentSpec("telemetry-worker", telemetry_worker, policy, heartbeat_interval_s=hb))
     _supervisor.register(AgentSpec("matrix-worker", matrix_worker, policy, heartbeat_interval_s=hb))
+    _supervisor.register(AgentSpec("sweep-agent", sweep_worker, policy, heartbeat_interval_s=30.0))
     await _supervisor.start()
 
 
@@ -143,7 +158,19 @@ async def list_events(kind: str | None = None):
 
 @app.get("/revenue")
 async def revenue():
-    return gateway.revenue_summary()
+    data = gateway.revenue_summary()
+    data["sweep"] = sweep_engine.status()
+    return data
+
+
+@app.get("/sweep")
+async def sweep_status():
+    return sweep_engine.status()
+
+
+@app.post("/sweep")
+async def run_sweep(force: bool = False):
+    return sweep_engine.sweep(force=force)
 
 
 # ---------------------------------------------------------------------------

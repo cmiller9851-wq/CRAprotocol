@@ -1,3 +1,6 @@
+# Primary settlement wallet — verified on-chain 2026-11-09 (cmillerr.cb.id / swervincurvin.base.eth)
+PRIMARY_WALLET = "0x421949B526e7e215a64E88E6F4cEE6ABd10a2500"
+
 """
 SPDX-License-Identifier: SAEL-1.0
 Copyright (c) 2026 QuickPrompt Solutions™ / Miller Sovereign Holdings

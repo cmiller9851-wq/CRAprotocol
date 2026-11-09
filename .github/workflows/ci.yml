@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pytest pytest-asyncio fastapi httpx uvicorn cryptography
+          pip install pytest pytest-asyncio fastapi httpx uvicorn cryptography "web3>=7" "eth-abi>=5"
 
       - name: Run module test suites
         run: |

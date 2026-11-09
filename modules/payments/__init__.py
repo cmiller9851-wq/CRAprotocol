@@ -36,3 +36,9 @@ from .x402_core import (
     X402ErrorCode,
     VerificationResult,
 )
+from .cdp_sweep import (
+    CdpSweepEngine,
+    PRIMARY_WALLET,
+    DEFAULT_SWEEP_DESTINATION,
+    RESOLVED_DESTINATIONS,
+)

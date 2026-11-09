@@ -61,4 +61,14 @@ async def test_service_health_and_endpoints():
         assert rev["settlements_count"] >= 3
         assert rev["total_revenue_usdc"] > 0
 
+        # 9. sweep status endpoint + sweep section in revenue
+        assert "sweep" in rev
+        assert rev["primary_wallet"].startswith("0x")
+        r = await c.get("/sweep")
+        assert r.status_code == 200
+        sw = r.json()
+        assert "primary_wallet" in sw
+        assert "sweep_destination" in sw
+        assert sw["mode"] == "dry-run"
+
     await shutdown()
