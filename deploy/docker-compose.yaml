@@ -1,0 +1,30 @@
+# One-command local deployment (no Kubernetes required)
+#   docker compose -f deploy/docker-compose.yaml up --build
+services:
+  runtime:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: cra-supervisor:local
+    container_name: cra-runtime
+    network_mode: host                # enables sandbox/cloud-container compatibility; remove if using Docker Desktop bridge
+    environment:
+      - HEARTBEAT_INTERVAL=0.5
+      - RETRY_MAX_ATTEMPTS=5
+      - RETRY_BASE_BACKOFF=0.25
+      - LOG_LEVEL=INFO
+      - MAPBOX_ACCESS_TOKEN=${MAPBOX_ACCESS_TOKEN:-}
+      # Settlement routing — verified primary wallet (cmillerr.cb.id / swervincurvin.base.eth)
+      - X402_RECIPIENT=0x421949B526e7e215a64E88E6F4cEE6ABd10a2500
+      - SWEEP_DESTINATION=cmillerr.cb.id
+      - SWEEP_THRESHOLD_USDC=5.0
+      - SWEEP_COOLDOWN_SECONDS=1800
+      - SWEEP_LIVE=0
+      - X402_PRICE_USDC=0.01
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://127.0.0.1:8000/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

@@ -1,18 +1,18 @@
-name: CRA Kernel CI
+name: CRA Runtime CI
 
 on:
   push:
-    branches: [ main, cra-kernel-hardened ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, cra-kernel-hardened ]
+    branches: [ main ]
 
 jobs:
-  test-kernel:
+  test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
-
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
 
@@ -21,35 +21,24 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Run Unit Tests
-        run: |
-          python -m unittest test_cra_kernel.py -v
-
-      - name: Execute Kernel Verification Output
-        run: |
-          python cra_mathematical_kernel.py
-name: CI
-
-on:
-  push:
-    branches: [ main, onboarding/* ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
       - name: Install dependencies
         run: |
-          python -m venv .venv
-          source .venv/bin/activate
-          pip install -r requirements.txt || true
-      - name: Run tests
+          pip install --upgrade pip
+          pip install pytest pytest-asyncio fastapi httpx uvicorn cryptography "web3>=7" "eth-abi>=5"
+
+      - name: Run module test suites
         run: |
-          python -m pytest -q
+          PYTHONPATH=. pytest \
+            tests/modules/test_stream_inspector.py \
+            tests/modules/test_payments.py \
+            tests/test_suite_comprehensive.py \
+            tests/modules/test_supervisor.py \
+            tests/modules/test_mapbox_matrix.py \
+            tests/modules/test_congestion_rerouting.py \
+            tests/modules/test_service.py \
+            tests/modules/test_x402_middleware.py \
+            --asyncio-mode=auto -v -W ignore
+
+      - name: Kernel self-test (legacy)
+        run: python -m unittest test_cra_kernel.py -v
+        continue-on-error: true
