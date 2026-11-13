@@ -88,7 +88,7 @@ class CRALedger:
                 signature BLOB NOT NULL,
                 parent_hash TEXT NOT NULL,
                 event_hash TEXT NOT NULL UNIQUE,
-                state TEXT NOT NULL CHECK (state IN ('VERIFIED', 'QUARANTINED')),
+                state TEXT NOT NULL CHECK (state IN ('UNVERIFIED', 'VERIFIED', 'QUARANTINED', 'RECONCILING', 'RECONCILED')),
                 anomaly_score REAL NOT NULL CHECK (anomaly_score >= 0 AND anomaly_score <= 1)
             );
             CREATE TABLE IF NOT EXISTS compensation_obligations (
@@ -165,6 +165,48 @@ class CRALedger:
         )
         self.db.commit()
         return AppendResult(next_sequence, event_hash, state)
+
+    def append_unverified(
+        self,
+        *,
+        event_id: str,
+        event_time: str,
+        payload: dict[str, Any],
+    ) -> AppendResult:
+        """Append a syntactically accepted event without claiming trust.
+
+        This is the safe boundary for permissionless ingestion: the event is
+        chained into the WAL immediately, but it has no signature and remains
+        UNVERIFIED until a downstream reconciliation adapter produces evidence.
+        """
+
+        if not event_id or not event_time:
+            raise ValueError("event_id and event_time are required")
+        if self.db.execute(
+            "SELECT 1 FROM ledger_events WHERE event_id = ?", (event_id,)
+        ).fetchone():
+            raise ValueError("replayed event_id")
+        canonical = canonicalize(payload)
+        sequence, parent_hash = self._tip()
+        next_sequence = sequence + 1
+        event_hash = sha256_hex(parent_hash.encode("ascii"), canonical, b"")
+        self.db.execute(
+            """INSERT INTO ledger_events
+            (sequence, event_id, event_time, canonical_payload, signature,
+             parent_hash, event_hash, state, anomaly_score)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'UNVERIFIED', 0.0)""",
+            (
+                next_sequence,
+                event_id,
+                event_time,
+                canonical,
+                b"",
+                parent_hash,
+                event_hash,
+            ),
+        )
+        self.db.commit()
+        return AppendResult(next_sequence, event_hash, "UNVERIFIED")
 
     def add_compensation_obligation(
         self,
