@@ -1,0 +1,167 @@
+name: Non-blocking settlement coordinator
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+
+# This workflow is observational only. It never creates, cancels, retries,
+# blocks, reroutes, signs, or broadcasts a payment or transfer.
+env:
+  STRIPE_API_BASE: https://api.stripe.com/v1
+
+jobs:
+  stripe-observation:
+    name: Observe Stripe rail
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Collect sanitized Stripe state
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+          STRIPE_ACCOUNT_ID: ${{ secrets.STRIPE_ACCOUNT_ID }}
+        run: |
+          set +e
+          mkdir -p artifacts
+          if [ -z "${STRIPE_API_KEY:-}" ]; then
+            printf '%s\n' '{"status":"unavailable","reason":"STRIPE_API_KEY is not configured"}' > artifacts/stripe-summary.json
+            exit 0
+          fi
+
+          api_get() {
+            curl --silent --show-error --fail-with-body \
+              --header "Authorization: Bearer ${STRIPE_API_KEY}" \
+              --header "Stripe-Version: 2025-03-31.basil" \
+              "${STRIPE_API_BASE}$1"
+          }
+
+          balance="$(api_get /balance 2>/tmp/stripe-balance.err)"
+          intents="$(api_get '/payment_intents?limit=100' 2>/tmp/stripe-intents.err)"
+          charges="$(api_get '/charges?limit=100' 2>/tmp/stripe-charges.err)"
+          payouts="$(api_get '/payouts?limit=100' 2>/tmp/stripe-payouts.err)"
+
+          python - <<'PY' "$balance" "$intents" "$charges" "$payouts" "${STRIPE_ACCOUNT_ID:-unconfigured}" > artifacts/stripe-summary.json
+          import json
+          import sys
+          from datetime import datetime, timezone
+
+          def parse(value):
+              try:
+                  return json.loads(value)
+              except Exception:
+                  return None
+
+          # Keep this script deliberately simple and record malformed responses as gaps.
+          raw = [parse(v) for v in sys.argv[1:5]]
+          account = sys.argv[5]
+          balance, intents, charges, payouts = raw
+          result = {
+              "status": "observed" if all(raw) else "partial_or_unavailable",
+              "account_id_present": account != "unconfigured",
+              "observed_at": datetime.now(timezone.utc).isoformat(),
+              "balance": ({
+                  "available": balance.get("available", []),
+                  "pending": balance.get("pending", []),
+              } if isinstance(balance, dict) else None),
+              "payment_intents": ({
+                  "count": len(intents.get("data", [])),
+                  "has_more": intents.get("has_more"),
+                  "items": [{"id": x.get("id"), "amount": x.get("amount"), "currency": x.get("currency"), "status": x.get("status"), "created": x.get("created")} for x in intents.get("data", [])],
+              } if isinstance(intents, dict) else None),
+              "charges": ({
+                  "count": len(charges.get("data", [])),
+                  "has_more": charges.get("has_more"),
+                  "items": [{"id": x.get("id"), "amount": x.get("amount"), "currency": x.get("currency"), "paid": x.get("paid"), "status": x.get("status"), "created": x.get("created")} for x in charges.get("data", [])],
+              } if isinstance(charges, dict) else None),
+              "payouts": ({
+                  "count": len(payouts.get("data", [])),
+                  "has_more": payouts.get("has_more"),
+                  "items": [{"id": x.get("id"), "amount": x.get("amount"), "currency": x.get("currency"), "status": x.get("status"), "arrival_date": x.get("arrival_date"), "created": x.get("created")} for x in payouts.get("data", [])],
+              } if isinstance(payouts, dict) else None),
+              "execution": {"payments_created": False, "payments_blocked": False, "payouts_changed": False},
+          }
+          print(json.dumps(result, indent=2, sort_keys=True))
+          PY
+          {
+            echo "## Stripe rail"
+            cat artifacts/stripe-summary.json
+            echo
+            echo "Stripe observation is non-blocking; API failures are recorded as evidence gaps."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload sanitized Stripe artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stripe-observation-${{ github.run_id }}
+          path: artifacts/stripe-summary.json
+          retention-days: 14
+          if-no-files-found: warn
+
+  wallet-observation:
+    name: Observe wallet rail
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Read wallet balance without signing or broadcasting
+        env:
+          WALLET_RPC_URL: ${{ secrets.WALLET_RPC_URL }}
+          WALLET_ADDRESS: ${{ secrets.WALLET_ADDRESS }}
+          WALLET_CHAIN: ${{ vars.WALLET_CHAIN }}
+        run: |
+          set +e
+          mkdir -p artifacts
+          if [ -z "${WALLET_RPC_URL:-}" ] || [ -z "${WALLET_ADDRESS:-}" ]; then
+            cat > artifacts/wallet-summary.json <<'JSON'
+          {"status":"unavailable","reason":"WALLET_RPC_URL or WALLET_ADDRESS is not configured","execution":{"transfers_created":false,"transfers_blocked":false,"transactions_signed":false,"transactions_broadcast":false}}
+          JSON
+          else
+            response="$(curl --silent --show-error --fail-with-body \
+              --header 'Content-Type: application/json' \
+              --data "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"eth_getBalance\",\"params\":[\"${WALLET_ADDRESS}\",\"latest\"]}" \
+              "${WALLET_RPC_URL}" 2>/tmp/wallet-rpc.err)"
+            python - <<'PY' "$response" "${WALLET_ADDRESS}" "${WALLET_CHAIN:-unresolved}" > artifacts/wallet-summary.json
+          import json, sys
+          try:
+              payload = json.loads(sys.argv[1])
+              status = "observed" if "result" in payload and "error" not in payload else "partial_or_unavailable"
+              out = {"status": status, "chain": sys.argv[3], "address_present": bool(sys.argv[2]), "native_balance_hex": payload.get("result"), "execution": {"transfers_created": False, "transfers_blocked": False, "transactions_signed": False, "transactions_broadcast": False}}
+          except Exception as exc:
+              out = {"status":"partial_or_unavailable","reason":str(exc),"execution":{"transfers_created":False,"transfers_blocked":False,"transactions_signed":False,"transactions_broadcast":False}}
+          print(json.dumps(out, indent=2, sort_keys=True))
+          PY
+          fi
+          {
+            echo "## Wallet rail"
+            cat artifacts/wallet-summary.json
+            echo
+            echo "Wallet observation is read-only; no private key, signing, or broadcast is used."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload sanitized wallet artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wallet-observation-${{ github.run_id }}
+          path: artifacts/wallet-summary.json
+          retention-days: 14
+          if-no-files-found: warn
+
+  coordinator-summary:
+    name: Publish non-blocking coordination summary
+    needs: [stripe-observation, wallet-observation]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write coordination contract
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ## Coordination contract
+
+          Both rails are independent and non-blocking. An unavailable or failed observation is recorded as an evidence gap; it does not reject, pause, cancel, reroute, or hold a payment or transfer.
+
+          This workflow performs no Stripe writes and no wallet writes. It does not create PaymentIntents, Checkout Sessions, payouts, transfers, signatures, or broadcasts. Live execution requires a separately reviewed workflow with explicit destination, amount, asset, network, and approval controls.
+          EOF

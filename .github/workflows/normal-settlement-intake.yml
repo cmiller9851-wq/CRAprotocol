@@ -1,0 +1,185 @@
+name: Normal settlement intake
+
+on:
+  workflow_dispatch:
+    inputs:
+      rail:
+        description: "Settlement rail to prepare"
+        required: true
+        type: choice
+        options: [stripe, wallet, both]
+        default: both
+      stripe_amount_usd:
+        description: "Stripe Checkout amount in USD (blank when Stripe is not selected)"
+        required: false
+        type: string
+      wallet_amount:
+        description: "Wallet amount in the selected asset (blank when wallet is not selected)"
+        required: false
+        type: string
+      wallet_asset:
+        description: "Wallet asset on the configured receiving network"
+        required: false
+        type: choice
+        options: [USDC, ETH]
+        default: USDC
+      reference:
+        description: "Idempotent settlement reference"
+        required: true
+        type: string
+      description:
+        description: "Human-readable settlement description"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  STRIPE_API_BASE: https://api.stripe.com/v1
+  CHECKOUT_RETURN_BASE: https://cra-portal-yi6juxyd.manus.space
+
+# This workflow opens ordinary collection surfaces but never rejects or holds
+# an incoming payment. Stripe and wallet preparation are independent jobs.
+jobs:
+  stripe-checkout:
+    name: Create Stripe Checkout surface
+    if: inputs.rail == 'stripe' || inputs.rail == 'both'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Validate Stripe inputs
+        env:
+          STRIPE_AMOUNT_USD: ${{ inputs.stripe_amount_usd }}
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+        run: |
+          set -eu
+          test -n "${STRIPE_API_KEY:-}" || { echo "Stripe rail unavailable: STRIPE_API_KEY is not configured."; exit 0; }
+          test -n "${STRIPE_AMOUNT_USD:-}" || { echo "Stripe rail unavailable: stripe_amount_usd was not supplied."; exit 0; }
+
+      - name: Create one-time Checkout Session
+        id: create-session
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+          STRIPE_AMOUNT_USD: ${{ inputs.stripe_amount_usd }}
+          SETTLEMENT_REFERENCE: ${{ inputs.reference }}
+          SETTLEMENT_DESCRIPTION: ${{ inputs.description }}
+        run: |
+          set -eu
+          amount_cents="$(python - <<'PY'
+          from decimal import Decimal, ROUND_HALF_UP
+          import os
+          amount = Decimal(os.environ['STRIPE_AMOUNT_USD']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+          if amount <= 0:
+              raise SystemExit('stripe amount must be positive')
+          print(int(amount * 100))
+          PY
+          )"
+          encoded_description="$(python - <<'PY'
+          from urllib.parse import quote_plus
+          import os
+          print(quote_plus(os.environ['SETTLEMENT_DESCRIPTION']))
+          PY
+          )"
+          idempotency_key="github-settlement-${SETTLEMENT_REFERENCE}"
+          response="$(curl --silent --show-error --fail-with-body \
+            --request POST "${STRIPE_API_BASE}/checkout/sessions" \
+            --header "Authorization: Bearer ${STRIPE_API_KEY}" \
+            --header "Idempotency-Key: ${idempotency_key}" \
+            --data-urlencode 'mode=payment' \
+            --data-urlencode 'line_items[0][price_data][currency]=usd' \
+            --data-urlencode "line_items[0][price_data][unit_amount]=${amount_cents}" \
+            --data-urlencode "line_items[0][price_data][product_data][name]=${SETTLEMENT_DESCRIPTION}" \
+            --data-urlencode 'line_items[0][quantity]=1' \
+            --data-urlencode "success_url=${CHECKOUT_RETURN_BASE}/?settlement=complete&reference=${SETTLEMENT_REFERENCE}" \
+            --data-urlencode "cancel_url=${CHECKOUT_RETURN_BASE}/?settlement=canceled&reference=${SETTLEMENT_REFERENCE}" \
+            --data-urlencode "metadata[settlement_reference]=${SETTLEMENT_REFERENCE}" \
+            --data-urlencode "metadata[description]=${encoded_description}")"
+          python - <<'PY' "$response" > checkout-session.json
+          import json, sys
+          payload = json.loads(sys.argv[1])
+          print(json.dumps({
+            "status": "prepared",
+            "session_id": payload.get("id"),
+            "checkout_url": payload.get("url"),
+            "payment_status": payload.get("payment_status"),
+            "settlement_reference": payload.get("metadata", {}).get("settlement_reference"),
+            "execution": {"payment_created": False, "payment_blocked": False, "charged": False},
+          }, indent=2, sort_keys=True))
+          PY
+          cat checkout-session.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Stripe collection artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stripe-checkout-${{ github.run_id }}
+          path: checkout-session.json
+          retention-days: 30
+          if-no-files-found: warn
+
+  wallet-payment-instruction:
+    name: Prepare wallet payment instruction
+    if: inputs.rail == 'wallet' || inputs.rail == 'both'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Prepare receiving instruction
+        env:
+          WALLET_RECEIVING_ADDRESS: ${{ vars.WALLET_RECEIVING_ADDRESS }}
+          WALLET_RECEIVING_CHAIN: ${{ vars.WALLET_RECEIVING_CHAIN }}
+          WALLET_AMOUNT: ${{ inputs.wallet_amount }}
+          WALLET_ASSET: ${{ inputs.wallet_asset }}
+          SETTLEMENT_REFERENCE: ${{ inputs.reference }}
+          SETTLEMENT_DESCRIPTION: ${{ inputs.description }}
+        run: |
+          set -eu
+          python - <<'PY' > wallet-payment-instruction.json
+          import json, os, re
+          address = os.getenv("WALLET_RECEIVING_ADDRESS", "")
+          chain = os.getenv("WALLET_RECEIVING_CHAIN", "")
+          amount = os.getenv("WALLET_AMOUNT", "")
+          asset = os.getenv("WALLET_ASSET", "USDC")
+          if address and not re.fullmatch(r"0x[a-fA-F0-9]{40}", address):
+              raise SystemExit("WALLET_RECEIVING_ADDRESS must be a 20-byte EVM address")
+          result = {
+              "status": "prepared" if address and chain and amount else "unavailable",
+              "network": chain or None,
+              "asset": asset,
+              "amount": amount or None,
+              "recipient": address or None,
+              "settlement_reference": os.getenv("SETTLEMENT_REFERENCE"),
+              "description": os.getenv("SETTLEMENT_DESCRIPTION"),
+              "execution": {"transfer_created": False, "transaction_signed": False, "transaction_broadcast": False, "payment_blocked": False},
+              "note": "Payer sends directly to the configured public recipient; no private key or outbound transfer is used by this workflow.",
+          }
+          print(json.dumps(result, indent=2, sort_keys=True))
+          PY
+          cat wallet-payment-instruction.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload wallet instruction artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wallet-instruction-${{ github.run_id }}
+          path: wallet-payment-instruction.json
+          retention-days: 30
+          if-no-files-found: warn
+
+  settlement-contract:
+    name: Publish independent settlement contract
+    needs: [stripe-checkout, wallet-payment-instruction]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish contract
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ## Normal settlement contract
+
+          The Stripe Checkout surface and wallet payment instruction are independent collection paths. Anyone with the relevant payment surface may pay; the workflow does not whitelist senders or block incoming payments.
+
+          Reconciliation is asynchronous. Stripe is reconciled by Checkout Session, PaymentIntent, charge, balance, and payout evidence. Wallet receipts are reconciled by recipient, network, asset, amount, and transaction hash.
+
+          This workflow creates a Stripe Checkout Session only when manually dispatched with Stripe inputs. It does not charge a payer. It never creates an outbound wallet transfer, signs a transaction, or holds funds.
+          EOF
