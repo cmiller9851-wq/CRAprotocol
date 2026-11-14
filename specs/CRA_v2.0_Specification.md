@@ -40,6 +40,16 @@ Creator compensation is a first-class auditable obligation. A compensation recor
 
 The reference package does not send payments, validate a live blockchain, unlock encrypted assets, or operate a merchant account. Those actions require a separately reviewed adapter and explicit deployment configuration.
 
+### 4.1 Permissionless revenue ingestion
+
+A permissionless ingestion adapter MAY accept any request that satisfies the declared JSON schema without synchronous provider, account, customer, or authorization validation. Schema validation, payload-size limits, rate limiting, idempotency keys, and abuse controls remain appropriate intake controls; they are not payment authorization.
+
+The adapter MUST immediately canonicalize the accepted envelope, compute a deterministic content hash, and append a raw `UNVERIFIED` event to the SQLite WAL ledger. The event MUST enter a reconciliation queue. An unknown or unmapped source MUST be recorded under `UNATTRIBUTED`; it MUST NOT be rejected solely because attribution is unavailable.
+
+Downstream workers MAY transition an inflow through `RECONCILING` to `RECONCILED` only after independently verifying provider signatures, transaction references, recipient, amount, currency/token, nonce or replay status, and any required chain finality. Failed or unverifiable evidence transitions to `QUARANTINED`. Attribution may occur later without changing the settlement state.
+
+An accepted inbound payload is never equivalent to a paid or fulfilled transaction. The gateway MUST NOT release entitlements, record final revenue, send creator compensation, or call a live payment rail synchronously from the intake path.
+
 ## 5. Physical-to-logical containment
 
 A deployment MAY supply continuous heartbeat measurements from a host node and accelerator-management controller. Heartbeats SHOULD include a nonce, monotonic counter, measurement digest, expected device identity, and verifier signature. The software reference model records and validates these assertions; it does not measure PCIe electrical integrity or memory-bus behavior itself.
