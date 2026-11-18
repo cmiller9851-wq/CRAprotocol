@@ -7,6 +7,14 @@ from .kernel import (
     StaticVerifier,
     canonicalize,
 )
+from .fixed_point import (
+    FixedPointKernel,
+    FixedPointResult,
+    GridStateError,
+    NonConvergentError,
+    normalize_grid,
+    state_root,
+)
 
 __all__ = [
     "ANOMALY_THRESHOLD",
@@ -17,4 +25,10 @@ __all__ = [
     "RejectAllVerifier",
     "StaticVerifier",
     "canonicalize",
+    "FixedPointKernel",
+    "FixedPointResult",
+    "GridStateError",
+    "NonConvergentError",
+    "normalize_grid",
+    "state_root",
 ]
