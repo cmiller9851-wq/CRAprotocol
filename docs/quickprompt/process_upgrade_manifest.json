@@ -1,0 +1,10 @@
+{
+  "upgrade_id": "quickprompt-process-upgrade-2026-11-19",
+  "founder_owner_architect": "Cory Miller / QuickPrompt Solutions",
+  "repository_lane": "settlement",
+  "status": "review_candidate",
+  "backward_compatible": true,
+  "sensitive_data_included": false,
+  "legacy_records_overwritten": false,
+  "confirmation_required_before_verified": true
+}
