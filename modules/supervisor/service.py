@@ -113,7 +113,7 @@ async def startup():
     async def matrix_worker(payload):
         client = MapboxClient()
         coords = [tuple(c) for c in payload.get("coords", [])]
-        mat = client.matrix(coords)
+        mat = await asyncio.to_thread(client.matrix, coords)
         return DistanceMatrixProcessor(mat).eta_matrix_minutes()
 
     async def sweep_worker(payload):
@@ -192,6 +192,6 @@ async def enqueue(body: Dict[str, Any]):
 async def matrix(body: Dict[str, Any]):
     coords = [tuple(c) for c in body.get("coords", [])]
     client = MapboxClient()
-    mat = client.matrix(coords)
+    mat = await asyncio.to_thread(client.matrix, coords)
     proc = DistanceMatrixProcessor(mat, labels=body.get("labels"))
     return {"etas_min": proc.eta_matrix_minutes(), "anomalies": len(proc.congestion_anomalies())}
